@@ -1,0 +1,172 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="4.0" DefaultTargets="Build" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProductVersion>8.0.30703</ProductVersion>
+    <SchemaVersion>2.0</SchemaVersion>
+    <ProjectGuid>{ED3530C7-E90B-4A40-90C0-FD3568F02E32}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>TerraClasses</RootNamespace>
+    <AssemblyName>NClassMod</AssemblyName>
+    <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Reference Include="Microsoft.Xna.Framework, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Game, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="Microsoft.Xna.Framework.Graphics, Version=4.0.0.0, Culture=neutral, PublicKeyToken=842cf8be1de50553, processorArchitecture=x86" />
+    <Reference Include="NExperience.XNA">
+      <HintPath>..\NExperience\NExperience.XNA.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="System.Core" />
+    <Reference Include="System.Drawing" />
+    <Reference Include="System.Windows.Forms" />
+    <Reference Include="System.Xml.Linq" />
+    <Reference Include="System.Data.DataSetExtensions" />
+    <Reference Include="Microsoft.CSharp" />
+    <Reference Include="System.Data" />
+    <Reference Include="System.Xml" />
+    <Reference Include="tModLoader">
+      <HintPath>..\..\..\..\..\..\..\..\Program Files (x86)\Steam\steamapps\common\tModLoader\tModLoader.exe</HintPath>
+    </Reference>
+  </ItemGroup>
+  <ItemGroup>
+    <Compile Include="Buffs\Bless.cs" />
+    <Compile Include="ClassBase.cs" />
+    <Compile Include="ClassData.cs" />
+    <Compile Include="ClassDB.cs" />
+    <Compile Include="ClassList\Berseker.cs" />
+    <Compile Include="ClassList\Cerberus.cs" />
+    <Compile Include="ClassList\Cleric.cs" />
+    <Compile Include="ClassList\Archer.cs" />
+    <Compile Include="ClassList\Sharpshooter.cs" />
+    <Compile Include="ClassList\Fighter.cs" />
+    <Compile Include="ClassList\Mage.cs" />
+    <Compile Include="ClassList\Merchant.cs" />
+    <Compile Include="ClassList\Summoner.cs" />
+    <Compile Include="ClassList\Terrarian.cs" />
+    <Compile Include="ClassList\Thief.cs" />
+    <Compile Include="ClassSelectionInterface.cs" />
+    <Compile Include="ClassUnlockLoreBase.cs" />
+    <Compile Include="ClassUnlockLoreData.cs" />
+    <Compile Include="ConfigMod.cs" />
+    <Compile Include="Enum\SkillTypes.cs" />
+    <Compile Include="ItemMod.cs" />
+    <Compile Include="Items\ClassBooks\CerberusBook.cs" />
+    <Compile Include="Items\ClassBooks\ClassLoreBookPrefab.cs" />
+    <Compile Include="Items\ClassBooks\ArcherBook.cs" />
+    <Compile Include="Items\ClassBooks\ClericBook.cs" />
+    <Compile Include="Items\ClassBooks\BersekerBook.cs" />
+    <Compile Include="Items\ClassBooks\SummonerBook.cs" />
+    <Compile Include="Items\ClassBooks\SharpshooterBook.cs" />
+    <Compile Include="Items\ClassBooks\ThiefBook.cs" />
+    <Compile Include="Items\ClassBooks\MerchantBook.cs" />
+    <Compile Include="Items\ClassBooks\MageBook.cs" />
+    <Compile Include="Items\ClassBooks\FighterBook.cs" />
+    <Compile Include="MainMod.cs" />
+    <Compile Include="ModContentContainer.cs" />
+    <Compile Include="NpcMod.cs" />
+    <Compile Include="PlayerMod.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SkillBase.cs" />
+    <Compile Include="SkillData.cs" />
+    <Compile Include="SkillDB.cs" />
+    <Compile Include="SkillList\Archer\ArrowBarrage.cs" />
+    <Compile Include="SkillList\Archer\ExtraArrows.cs" />
+    <Compile Include="SkillList\Archer\FireArrow.cs" />
+    <Compile Include="SkillList\Archer\RangedMastery.cs" />
+    <Compile Include="SkillList\Archer\ArrowRain.cs" />
+    <Compile Include="SkillList\Archer\SwiftStep.cs" />
+    <Compile Include="SkillList\Berseker\Anger.cs" />
+    <Compile Include="SkillList\Berseker\AxePower.cs" />
+    <Compile Include="SkillList\Berseker\Constitution.cs" />
+    <Compile Include="SkillList\Berseker\Frenzy.cs" />
+    <Compile Include="SkillList\Cerberus\CerberusForm.cs" />
+    <Compile Include="SkillList\Cerberus\ElementalBreath.cs" />
+    <Compile Include="SkillList\Cleric\Bless.cs" />
+    <Compile Include="SkillList\Cleric\Heal.cs" />
+    <Compile Include="SkillList\Cleric\RepelUndead.cs" />
+    <Compile Include="SkillList\Fighter\CrowdControl.cs" />
+    <Compile Include="SkillList\Fighter\DoubleArrows.cs" />
+    <Compile Include="SkillList\Fighter\Endure.cs" />
+    <Compile Include="SkillList\Fighter\MeleeMastery.cs" />
+    <Compile Include="SkillList\Fighter\TrustyLongsword.cs" />
+    <Compile Include="SkillList\Fighter\ProgressiveAttack.cs" />
+    <Compile Include="SkillList\Mage\Fireball.cs" />
+    <Compile Include="SkillList\Mage\MagicArrows.cs" />
+    <Compile Include="SkillList\Mage\MagicMastery.cs" />
+    <Compile Include="SkillList\Mage\ManaControl.cs" />
+    <Compile Include="SkillList\Mage\MeteorShower.cs" />
+    <Compile Include="SkillList\Mage\SoulRage.cs" />
+    <Compile Include="SkillList\Merchant\Avarice.cs" />
+    <Compile Include="SkillList\Merchant\Barter.cs" />
+    <Compile Include="SkillList\Merchant\Overprice.cs" />
+    <Compile Include="SkillList\Merchant\Discount.cs" />
+    <Compile Include="SkillList\Sharpshooter\Birdfall.cs" />
+    <Compile Include="SkillList\Sharpshooter\Flintlock.cs" />
+    <Compile Include="SkillList\Sharpshooter\GunKnowledge.cs" />
+    <Compile Include="SkillList\Sharpshooter\Snipe.cs" />
+    <Compile Include="SkillList\Sharpshooter\SupressiveFire.cs" />
+    <Compile Include="SkillList\Summoner\HauntingPresence.cs" />
+    <Compile Include="SkillList\Summoner\InvokeBats.cs" />
+    <Compile Include="SkillList\Summoner\MinionMastery.cs" />
+    <Compile Include="SkillList\Summoner\SpiritFlame.cs" />
+    <Compile Include="SkillList\Summoner\SummonPotence.cs" />
+    <Compile Include="SkillList\Terrarian\BasicTraining.cs" />
+    <Compile Include="SkillSlot.cs" />
+    <Compile Include="SkillSprite.cs" />
+    <Compile Include="SkillUnlockReq.cs" />
+    <Compile Include="WorldMod.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Buffs\Bless.png" />
+    <Content Include="ChangeLog.txt" />
+    <Content Include="Content\Effects\cerberus.png" />
+    <Content Include="Content\Effects\longsword.png" />
+    <Content Include="Interface\Border.png" />
+    <Content Include="Interface\ClassBtn.png" />
+    <Content Include="Interface\LevelArrow.png" />
+    <Content Include="Items\ClassBooks\ArcherBook.png" />
+    <Content Include="Items\ClassBooks\BersekerBook.png" />
+    <Content Include="Items\ClassBooks\CerberusBook.png" />
+    <Content Include="Items\ClassBooks\ClassLoreBookPrefab.png" />
+    <Content Include="Items\ClassBooks\ClericBook.png" />
+    <Content Include="Items\ClassBooks\FighterBook.png" />
+    <Content Include="Items\ClassBooks\MageBook.png" />
+    <Content Include="Items\ClassBooks\MerchantBook.png" />
+    <Content Include="Items\ClassBooks\SharpshooterBook.png" />
+    <Content Include="Items\ClassBooks\SummonerBook.png" />
+    <Content Include="Items\ClassBooks\ThiefBook.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="SkillList\Thief\" />
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
+       Other similar extension points exist, see Microsoft.Common.targets.
+  <Target Name="BeforeBuild">
+  </Target>
+  <Target Name="AfterBuild">
+  </Target>
+  -->
+</Project>

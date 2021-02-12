@@ -1,0 +1,4 @@
+This mod is incomplete. It has been released to show It's current state so I can receive feedbacks on how I can make It.
+If you want more infos, click the Homepage button to go to the mod page.
+
+This mod is an attempt of adding a N Terraria style class system to tModLoader.
