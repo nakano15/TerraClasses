@@ -11,8 +11,8 @@ namespace TerraClasses.SkillList.Archer
         public SwiftStep()
         {
             Name = "Swift Step";
-            Description = "Boosts your movement speed by 20% for 30 seconds. ";
-            MaxLevel = 10;
+            Description = "Boosts your movement speed by 20% for 30 seconds.";
+            MaxLevel = 1;
             Cooldown = GetCooldown(0, 1);
             skillType = Enum.SkillTypes.Active;
         }

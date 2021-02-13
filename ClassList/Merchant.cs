@@ -15,6 +15,7 @@ namespace TerraClasses.ClassList
             AddSkill(20); //Barter
             AddSkill(21); //Avarice
             AddSkill(24); //Discount
+            AddSkill(45); //Throw Coins
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

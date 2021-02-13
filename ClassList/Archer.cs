@@ -11,11 +11,13 @@ namespace TerraClasses.ClassList
         {
             Name = "Archer";
             Description = "Good for Bow and Arrow users.";
-            AddSkill(1);
-            AddSkill(2);
-            AddSkill(3);
-            AddSkill(9);
-            AddSkill(19);
+            AddSkill(1); //Extra Arrows
+            AddSkill(2); //Ranged Mastery
+            AddSkill(3); //Arrow Rain
+            AddSkill(9); //Fire Arrow
+            AddSkill(19); //Arrow Barrage
+            AddSkill(40); //Precision
+            AddSkill(41); //Swift Step
             MaxLevel = 50;
         }
 

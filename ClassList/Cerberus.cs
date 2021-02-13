@@ -13,8 +13,8 @@ namespace TerraClasses.ClassList
             Description = "No longer guarding the gates of hell.";
             ClassType = ClassTypes.Aspect;
             MaxLevel = 50;
-            AddSkill(22, "", 1);
-            AddSkill(25, "");
+            AddSkill(22, "", 1); //Cerberus Form
+            AddSkill(25, ""); //Elemental Breath
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

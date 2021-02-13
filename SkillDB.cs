@@ -93,6 +93,20 @@ namespace TerraClasses
                     return new SkillList.Summoner.HauntingPresence();
                 case 39:
                     return new SkillList.Summoner.InvokeBats();
+                case 40:
+                    return new SkillList.Archer.Precision();
+                case 41:
+                    return new SkillList.Archer.SwiftStep();
+                case 42:
+                    return new SkillList.Berseker.Bully();
+                case 43:
+                    return new SkillList.Berseker.ThreateningPresence();
+                case 44:
+                    return new SkillList.Summoner.PiercingAttacks();
+                case 45:
+                    return new SkillList.Merchant.ThrowCoins();
+                case 46:
+                    return new SkillList.Mage.SpellResist();
             }
             return new SkillBase();
         }

@@ -17,6 +17,8 @@ namespace TerraClasses.ClassList
             AddSkill(31); //Constitution
             AddSkill(32); //Axe Power
             AddSkill(33); //Frenzy
+            AddSkill(42); //Bully
+            AddSkill(43); //Threatening Presence
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()
