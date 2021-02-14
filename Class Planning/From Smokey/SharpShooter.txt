@@ -21,7 +21,7 @@ SharpShooter Skill Concepts(Subject to change and or objection):
 ->6 second cooldown
 -> Slow dubuff effect and duration scale with level
 
->"Bear Trap"- Sets down a trap that roots/stuns enemies that come in contact additionally all projectile shot that hit stunned targets are considered headshots no matter how close or far the projectile went.
+>"Bear Trap"- Sets down a trap that roots/stuns enemies that come in contact additionally all projectiles shot that hit stunned targets are considered headshots no matter how close or far the projectile went.
 ->A unique active skill in which it goes on cooldown even while still being able to cast.
 ->cooldown is 5 seconds per trap, every 5 seconds 1 trap becomes available for use
 ->trap amount scales with rank at max rank 10 traps can be placed starting at 3 on first rank
