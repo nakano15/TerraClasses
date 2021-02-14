@@ -1,0 +1,268 @@
+TerraClassesMod Ideas/Suggestions (All of these are just suggestions and can be ignored if naka decides not to implement)
+Archer-Possibly need to add 1 more active skill
+Berseker-Done
+Cerberus-Not Finished 
+Cleric-Done
+Fighter-D
+Mage-Done
+Merchant-No ideas yet
+Sharpshooter d 
+Summoner-Done
+Terrarian-No editing necessary class is already done
+Assassin-Done
+
+-->ARCHER(Bow/Crossbow user that is nimble and is accurate with arrows)-
+ Passive:
+>Night Hunter- Archer turns invisible,invincible and loses aggro for 1 second when killing a enemy with a crit attack.
+->duration of invisibilty can scale with level so at max rank 5 seconds
+->This passive could be restricted to night time only possibly
+
+>Kill Confirmed- After killing a enemy the archer gains a 5-15% movement speed buff for 5 seconds.
+->movement speed scales with rank
+-
+ Attack skill:
+>Bullseye- attacking the same enemy 5 times applys stacks of Bullseye which deal bonus true damage/unresistable damage to target when hitting the fifth attack.
+(downside is that it can only be applied to one target at a time)(Also its a constant attack passive so it does not have a cooldown it resets everytime the player reaches the 5th attack)(Also if the target that first gets the stack of bullseye isnt attacked in the next 5 seconds the stacks disapear and can be applied to another enemy)
+->Skill only applies to arrow projectiles
+->The amount of true damage starts at 10 and scales to 50 at max rank.
+-
+ Active skill:
+>"Heavy arrow"- Sends out a arrow that has alot of knock back and stuns enemies if they are sent flying into a wall.
+->10-15 sec cooldown
+->30 mana cost
+
+>"Tactical BackFlip/Back Dodge"- Archer dodges backwards avoiding damage and gives player a 10-20% movement speed boost for 5 seconds.(Movement speed scales threw ranks/points invested)
+->6 sec cooldown
+->10 mana cost
+
+--
+--
+--
+
+-->MAGE(Magic user who uses powerful spells and abilites to destroy enemies)
+ Passive:
+>Mana Overload- Gain 5 bonus mana per 1% of current magic damage stat.
+
+>Spell Resist- Gain 35% projectile damage resistance at max rank.(only works for certain projectiles like beams, blast, and energy waves)
+-
+ Attack Skill:
+>MagicVamp- Occassionally decreases enemies magic defense and strenghtens players magic weapon damage by a percentage when attacking with weapons that deal magic damage only for 10 seconds.
+->Can only occur once per enemey every 15 seconds 
+->Enemy weakening effect does not stack
+-
+ Active Skill:
+>"Chain Lightining"- releases magic lightning bolts that target one enemey after another dealing magic damage.(At max rank can chain up to 8 enemies)
+->40sec-1:00 cooldown
+->100-300 mana cost scales with rank
+
+>"Levitate"- Allows the player to float around in all directions. Has a blue ring visual effect under the characters feet.
+->Could be a spell you hold that drains 2-5 mana per sec/a spell that last for 10 seconds with a 15 second cooldown and has a mana cost of 50-100
+
+>"ManaFlux"- A powerful discharge of magic that damages eneimes around the user.
+->Aoe spell that always uses 50% of characters max mana.
+->2:00 Cooldown
+
+--
+--
+--
+
+-->BERSERKER(Reckless warrior that gains tremendous power from pain):
+ Passive:
+>Merciless- The berserker gains bonus damage depending on how low their health gets.(Maximum damage bonus at 10% or less health is 250% extra damage)
+-> Pain threshold can scale with level so at max rank could be 20% health gives maximum damage boost
+
+>Blood Bath- The more enemies the berserker has killed the more attack speed they gain. Stacks to 20 kills and resets after 10 seconds of not killing.(Maximum attack speed boost at 20 kills is 20% increase) 
+->attack speed scales with level
+
+ Attack skill:
+>Armor Shredder-Attacking enemies grants stacks of armor shred at max stacks the enemies defense is cut by 50%.
+->Armor shred can scale with level so at max rank it could be 50% defense ignored
+-
+ Active skill:
+>"Death Refusal"- The berserker cannot be brought down below 1% hp for 5 seconds.
+->at max rank threshold can be increased to 10% and duration can be increased to 10 seconds
+->15 sec cooldown
+
+>"Gruesome Execution"- The berserker jumps in the air and brings down a giant axe the executes enemies below 20% health.(Boss Killer Skill)(Execution meaning instantly kill anything below that threshold of health)
+->2:00 cooldown
+->Starts at 10% at rank 1 for execution and scales to 20% at max rank
+
+>"FearMonger"- After killing enemies other enemies run away in fear.
+->temporarary buff 20 seconds
+->30-40 second cooldown
+
+--
+--
+--
+
+-->FIGHTER(Close Combat Specilist who has a balance between offense and defense):
+ Passive:
+>Perserverance- Taking and dealing damage gives the fighter temperorary defense bonus that stacks to 20 at 10 hits/hits taken.(After 5 seconds of not taking or doing damage lose all stacks)
+->defense bonus scales with level
+
+>Courage- reduces all incoming damage by 5% when moving in any direction
+->damage reduction scales with level, at max rank 10% reduction 
+
+ Attack Skill:
+>Fighting Spirit- Every 5 attacks the fighter gains bonus melee damage that stacks to 20 extra melee damage at 20 strikes vanishes after 6 seconds of not attacking
+->bonus melee damage scales with rank 
+
+ Active skill:
+>"Tenacity"- The fighter removes all debuffs currently on player and is immune to the next debuffs for 5 seconds
+->20 second cooldown
+->30 mana cost
+
+>"Last Stand"- The Fighter takes 10% reduced damage from all sources but movement speed is slowed by 30% 
+->Damage reduction and movementspeed debuff scales with level
+->30 second cooldown
+->50 mana cost
+
+--
+--
+--
+
+-->ASSASSIN(Stealthy Killer that thrives on kills to reset cooldowns)-
+ Passive:
+>Dreadful Chase- Gain bonus movement speed when moving towards a enemy 5-20% scaling through ranks.
+
+>Clean Kills- The Assassin's crit attack damage is enhanced up to 20% and additionally the assassins active skill cooldowns get reduced by 1-5 seconds per kill. 
+->cooldown reduction scales with level(starting at 1 and scaling to 5 sec at max rank)
+
+>Attack From the Shadows- Assassin has a inate crit chance starting at 5% scaling to 20% at max rank additionally if attacking from stealth(Invisibilty)Crit attack damage enhanced by 50%.
+
+ Attack skill:
+>Surprise Attack- The assassin's first attack on any enemy is always crit attack.(Can only occur once per enemy 30 second cooldown per enemy)
+->Can possibly be applied to throwing weapons,shortswords,broadswords,bows/crossbows,certain guns
+-> Does not apply to big swords,axes, flails, all magic weapons 
+
+ Active skill:
+>"Back stabber"- Assassin gains a damage boost on 1st attack after casting skill.(Cooldown goes down by 5 seconds if the assassin kills a enemy while the skill is active)
+->20 second cooldown
+->25-50% damage boost scaling with rank
+
+>"Piercing dagger"(15 second cooldown)- Assassin throws a dagger dealing throwing damage that peirces enemies. (Amount of enemies pierced scales with rank,starts at 2 then at max rank pierces 6 enemies)
+->15 sec cooldown
+->20 mana cost
+
+>"Invisibilty Cloak"- makes the player character invisible and greatly lowers enemy aggro for a set amount of time.
+->Temporary buff 5-15 second duration scales with rank
+->30 sec cooldown
+->100 mana cost
+
+--
+--
+--
+
+-->CLERIC(A aider in combat most useful with companions)
+ Passive:
+>Holy Presence- The cleric has a inate healing factor of 1hp per second in and out of combat(Applies to friendly npcs around the cleric)
+->Hp regen scales with level max rank 5hp per second
+
+>Avenging Waves-After being struck for the first time the cleric starts emitting light waves that do magic damage to enemies close to cleric. 
+->cooldown for effect is 3-5 seconds
+-> damage of waves scales with rank
+
+ Attack Skill:
+>Blessed Weapon-Clerics weapon attacks do additional magic damage on top of whatever weapon they use and the weapons hits restore 10 hp per hit but the clerics overall damage goes down by -10%-15%(Applies to companions also but not the negative damage).
+->Magic damage and healing scales with level 
+
+Active skill:
+>"Aura Restoration"- gives cleric and companions extra mana regen and hp regen while inside effected area
+->1:00 cooldown
+->10-20 sec duration scaling with level
+->10-20 mana and hp regen scaling with level
+
+>"Prismatic barrier"- cleric summons a large prism barrier that follows the player, friendly npcs inside its radius are immune to debuffs and projectiles for a set duration
+->5-10 sec duration scaling with level
+->1:00 cooldown
+
+--
+--
+--
+
+-->SUMMONER(A being who specializes in summoning powerful creatures to aid in combat)
+ Passive:
+>Shepard of minions- Summoner gains 1% bonus max health per minion spawned
+->bonus max health scales with level at max rank 5% bonus max health per minion
+
+>Spawner- Grants +1 minion summon per 100 mana
+->nothing scales with level this passive only takes 1 skill point
+
+ Attack skill:
+>Infestation- Causes bleeding or poisoned debuff for 10 seconds if minions attack the same target 5-10 times
+-> Can only happen every 20 seconds per enemy
+-> Duration of debuff scales with level at max rank 20 seconds(Completely cancels out the cooldown)
+
+ Active:
+>"Power Exchange"- Summoner sacrifices 20% of max health to give a 50% damage boost to summon damage (Can cause player death if used at very low health)
+->Health Sacrifice and summon damage boost both scale with rank, 50% health sacrifice at max level and 100% boost in summon damage at max level
+->30 second cool down
+->10-20 sec duration scale with rank
+
+>"Pain Disperse"- Minions take .5% damage per summon that was intended for the summoner.(Basic Terms: Summoner completely ignores a percentage of damage that would normally hit(Example:Fire ball that does 10 damage would do 7.5 damage if summoner has 50 minions. Thats a 25% reduciton to all damage))
+->Damage dispersed scales with level at max rank 1.5% per minion
+->1:00 cooldown
+->30 sec duration(does NOT scale with level)
+
+--
+--
+--
+
+-->SHARP SHOOTER
+ Passive:
+>HeadShot- Hitting a projectile from a distance of 10 blocks automatically grants a Crit attack and deals 80% bonus crit damage
+->Crit Damage scales with rank
+->2-5 Cooldown
+->Could only apply to guns or weapons that use bullets
+
+>Contract Completionist- Killing a target with a headshot grants additional gold
+->gold gained scales with level starting at 1 gold and scaling to 10
+->30 second cool down
+
+ Attack skill:
+>Precise Shots- Gain 20% increased ranged damage but your attack speed is lowered by -50%
+->Range damage increase scales with level at max rank deals 50% bonus ranged damage
+->attack speed debuff stays at -50% doesnt scale lower or higher
+
+ Active skill:
+>"LegShot"- The characters next projectile attack slows movement speed of all enemies hit by 25% for 5 seconds.
+->6 second cooldown
+-> Slow dubuff effect and duration scale with level
+
+>"Bear Trap"- Sets down a trap that roots/stuns enemies that come in contact additionally all projectile shot that hit stunned targets are considered headshots no matter how close or far the projectile went.
+->A unique active skill in which it goes on cooldown even while still being able to cast.
+->cooldown is 5 seconds per trap, every 5 seconds 1 trap becomes available for use
+->trap amount scales with rank at max rank 10 traps can be placed starting at 3 on first rank
+
+>"Get in Position"- Sharpshooter gains +50% movement speed for 2-3 seconds
+->Movement speed bonus scales with level, max rank +100% speed boost
+->10 sec cooldown
+
+--
+--
+--
+
+-->CERBERUS(Three headed beast that has devasting attacks)
+ Passive:
+>Hell Spawn(5 points to max)- Cerberus periodically summons flaming wisp that apply Cursed Inferno debuff and auto target enemies
+-> Amount of wisp scale with rank, starting at 1 wisp and scaling to 5 wisp
+->Cursed inferno debuff last 5 seconds per wisp
+->can only occur every 20 seconds
+
+>Hellborne(10 points to max)-Cerberus is completely immune to fire additonally fire attacks inflicted by cerberus are enhanced by a percentage(Includes cursed inferno and its debuff)
+->Enhanced fire damage scales with rank
+
+ Attack Skill:
+>?
+
+ Active Skill:
+>?
+
+
+
+
+
+
+
+
+
