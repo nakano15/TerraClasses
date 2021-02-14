@@ -1,5 +1,5 @@
 displayName = TerraClasses
 author = Nakano15
-version = 0.2.1
+version = 0.2.2.1
 buildIgnore = Sprites\*, TerraClasses.XNA.dll
 homepage = https://forums.terraria.org/index.php?threads/terraclasses-mod-but-i-need-your-help.98221/

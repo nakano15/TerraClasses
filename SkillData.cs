@@ -26,7 +26,9 @@ namespace TerraClasses
         private Dictionary<byte, float> FloatVariables = new Dictionary<byte, float>();
         private Dictionary<byte, int> NpcDamageCooldown = new Dictionary<byte, int>(), 
             PlayerDamageCooldown = new Dictionary<byte, int>();
+        private Dictionary<TargetTranslator.Translator, int> ExtraTargetDamageCooldown = new Dictionary<TargetTranslator.Translator, int>();
         private List<int> PlayerInteraction = new List<int>(), NpcInteraction = new List<int>();
+        private List<TargetTranslator.Translator> OtherInteraction = new List<TargetTranslator.Translator>();
         private int Owner = 0;
         private static bool StepChanged = false;
 
@@ -253,6 +255,57 @@ namespace TerraClasses
             return NewDamage;
         }
 
+        public int HurtTarget(TargetTranslator.Translator target, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false)
+        {
+            if (ExtraTargetDamageCooldown.ContainsKey(target) || target.Immunity)
+                return 0;
+            int NewDamage = Damage - target.Defense / 2;
+            if (NewDamage < 1)
+                NewDamage = 1;
+            if (Critical)
+                NewDamage *= 2;
+            target.Health -= NewDamage;
+            if (target.Health <= 0)
+                target.Kill(NewDamage, DamageDirection, true, " was slain...");
+            else
+            {
+                target.PlayHurtSound();
+                target.ApplyKnockback(Knockback, DamageDirection);
+                target.HitEffect(NewDamage, DamageDirection);
+            }
+            CombatText.NewText(target.GetRectangle, Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            ApplyCooldownToTarget(target, Cooldown);
+            return NewDamage;
+        }
+
+        /// <summary>
+        /// This is actually to get possible targets from Terraria, includding also targets from other mods.
+        /// </summary>
+        public TargetTranslator.Translator[] GetPossibleTargets(bool Allies, bool SelfIncluded = false)
+        {
+            List<TargetTranslator.Translator> Targets = new List<TargetTranslator.Translator>();
+            Player me = Main.player[Owner];
+            for(int i = 0; i < 255; i++)
+            {
+                if(Main.player[i].active && (SelfIncluded || i != Owner))
+                {
+                    bool IsAlly = !Main.player[i].hostile || (me.team != 0 && me.team == Main.player[i].team);
+                    if((Allies && IsAlly) || (!Allies && !IsAlly))
+                        Targets.Add(new TargetTranslator.PlayerTarget(Main.player[i]));
+                }
+                if(i < 200 && Main.npc[i].active)
+                {
+                    bool IsAlly = (Main.npc[i].townNPC || Main.npc[i].friendly);
+                    if ((Allies && IsAlly) || (!Allies && !IsAlly))
+                    {
+                        Targets.Add(new TargetTranslator.NpcTarget(Main.npc[i]));
+                    }
+                }
+            }
+            MainMod.GetOtherModTargets(me, Allies);
+            return Targets.ToArray();
+        }
+
         public void ApplyPlayerInteraction(Player player)
         {
             if (!PlayerInteraction.Contains(player.whoAmI))
@@ -263,6 +316,12 @@ namespace TerraClasses
         {
             if (!NpcInteraction.Contains(npc.whoAmI))
                 NpcInteraction.Add(npc.whoAmI);
+        }
+
+        public void ApplyTargetInteraction(TargetTranslator.Translator target)
+        {
+            if (!OtherInteraction.Contains(target))
+                OtherInteraction.Add(target);
         }
 
         public Player[] GetPlayersInteractedWith()
@@ -285,6 +344,16 @@ namespace TerraClasses
             return npc.ToArray();
         }
 
+        public TargetTranslator.Translator[] GetTargetsInteractedWith()
+        {
+            List<TargetTranslator.Translator> targets = new List<TargetTranslator.Translator>();
+            foreach(TargetTranslator.Translator t in OtherInteraction)
+            {
+                targets.Add(t);
+            }
+            return targets.ToArray();
+        }
+
         public bool ContainsPlayerInteraction(Player player)
         {
             return PlayerInteraction.Contains(player.whoAmI);
@@ -293,6 +362,11 @@ namespace TerraClasses
         public bool ContainsNpcInteraction(NPC npc)
         {
             return NpcInteraction.Contains(npc.whoAmI);
+        }
+
+        public bool ContainsTargetInteraction(TargetTranslator.Translator target)
+        {
+            return OtherInteraction.Contains(target);
         }
 
         public void RemovePlayerInteraction(Player player)
@@ -305,6 +379,12 @@ namespace TerraClasses
         {
             if (NpcInteraction.Contains(npc.whoAmI))
                 NpcInteraction.Remove(npc.whoAmI);
+        }
+
+        public void RemoveTargetInteraction(TargetTranslator.Translator target)
+        {
+            if (OtherInteraction.Contains(target))
+                OtherInteraction.Remove(target);
         }
 
         public void ApplyCooldownToPlayer(Player player, int CooldownTime)
@@ -331,6 +411,18 @@ namespace TerraClasses
             }
         }
 
+        public void ApplyCooldownToTarget(TargetTranslator.Translator target, int CooldownTime)
+        {
+            if (!ExtraTargetDamageCooldown.ContainsKey(target))
+            {
+                ExtraTargetDamageCooldown.Add(target, CooldownTime);
+            }
+            else
+            {
+                ExtraTargetDamageCooldown[target] = CooldownTime;
+            }
+        }
+
         public bool ContainsPlayerCooldown(Player player)
         {
             return PlayerDamageCooldown.ContainsKey((byte)player.whoAmI);
@@ -339,6 +431,11 @@ namespace TerraClasses
         public bool ContainsNpcCooldown(NPC npc)
         {
             return NpcDamageCooldown.ContainsKey((byte)npc.whoAmI);
+        }
+
+        public bool ContainsTargetCooldown(TargetTranslator.Translator target)
+        {
+            return ExtraTargetDamageCooldown.ContainsKey(target);
         }
 
         public void RemovePlayerCooldown(Player player)
@@ -351,6 +448,12 @@ namespace TerraClasses
         {
             if (NpcDamageCooldown.ContainsKey((byte)npc.whoAmI))
                 NpcDamageCooldown.Remove((byte)npc.whoAmI);
+        }
+
+        public void RemoveTargetCooldown(TargetTranslator.Translator target)
+        {
+            if (ExtraTargetDamageCooldown.ContainsKey(target))
+                ExtraTargetDamageCooldown.Remove(target);
         }
 
         public void UpdateSkill(Player player)
@@ -385,6 +488,10 @@ namespace TerraClasses
             Time = 0;
             if (Fail)
                 Cooldown = 60;
+            if (MainMod.DebugMode)
+            {
+                Cooldown = 0;
+            }
         }
     }
 }

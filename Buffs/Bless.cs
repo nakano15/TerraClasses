@@ -20,7 +20,7 @@ namespace TerraClasses.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            int SkillLevel = player.GetModPlayer<PlayerMod>().GetSkillBuffLevel(Type);
+            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, buffIndex);
             float DamBonus = 0.04f * SkillLevel, DefBonus = 0.02f * SkillLevel;
             player.meleeDamage += player.meleeDamage * DamBonus;
             player.rangedDamage += player.rangedDamage * DamBonus;

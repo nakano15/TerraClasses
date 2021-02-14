@@ -29,6 +29,7 @@ namespace TerraClasses
         public static bool NExperienceLoaded = false;
         public static string UnlockedClassedSaveFileName = Main.SavePath + "/unlockedclasses.sav";
         public static string ClassLoreDataSaveFileName = Main.SavePath + "/classloredatas.sav";
+        public const string ModGetTargetListCallName = "getothermodtargets";
 
         /// <summary>
         /// To add a kind of support to other things having classes too, maybe 
@@ -87,7 +88,10 @@ namespace TerraClasses
         public static void SaveLoreDatas()
         {
             if (DebugMode)
+            {
+                LoreDatas.Clear();
                 return;
+            }
             if (File.Exists(ClassLoreDataSaveFileName))
             {
                 File.Delete(ClassLoreDataSaveFileName);
@@ -111,7 +115,10 @@ namespace TerraClasses
         public static void LoadLoreDatas()
         {
             if (DebugMode)
+            {
+                LoreDatas.Clear();
                 return;
+            }
             if (File.Exists(ClassLoreDataSaveFileName))
             {
                 using (FileStream stream = new FileStream(ClassLoreDataSaveFileName, FileMode.Open))
@@ -253,7 +260,23 @@ namespace TerraClasses
                 catch { }
             }
         }
-        
+
+        public static List<TargetTranslator.Translator> GetOtherModTargets(Player caster, bool Allies)
+        {
+            List<TargetTranslator.Translator> targets = new List<TargetTranslator.Translator>();
+            foreach (Mod mod in ModLoader.Mods)
+            {
+                try
+                {
+                    object returned = mod.Call(new object[] { ModGetTargetListCallName, caster, Allies });
+                    if (returned is List<TargetTranslator.Translator>)
+                        targets.AddRange((List<TargetTranslator.Translator>)returned);
+                }
+                catch { }
+            }
+            return targets;
+        }
+
         public void AddModContent(Mod mod, ModContentContainer container)
         {
             ModContentList.Add(mod.Name, container);

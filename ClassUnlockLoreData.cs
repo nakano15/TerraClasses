@@ -17,6 +17,7 @@ namespace TerraClasses
         public bool IsComplete = false;
         public int LastLoreStep = -1;
         public bool LoreAlreadyUnlocked { get { return MainMod.HasClassUnlocked(ClassID, ClassModID); } }
+        public string GetClassName { get { return MainMod.GetClass(ClassID, ClassModID).Name; } }
 
         public ClassUnlockLoreData(int ClassID, string ClassModID)
         {
@@ -91,11 +92,11 @@ namespace TerraClasses
                 {
                     if (LastLoreStep == ClassBase.Objectives.Count - 1)
                     {
-                        Main.NewText("You unveiled [" + MainMod.GetClass(ClassID, ClassModID).Name + "] class knowledge.", Microsoft.Xna.Framework.Color.Green);
+                        Main.NewText("You unveiled [" + GetClassName + "] class knowledge.", Microsoft.Xna.Framework.Color.Green);
                     }
                     else
                     {
-                        Main.NewText("Part of [" + MainMod.GetClass(ClassID, ClassModID).Name + "] class knowledge unlocked.", Microsoft.Xna.Framework.Color.Orange);
+                        Main.NewText("Part of [" + GetClassName + "] class knowledge unlocked.", Microsoft.Xna.Framework.Color.Orange);
                     }
                 }
                 LastLoreStep = HighestCompletedObjective;
@@ -166,7 +167,7 @@ namespace TerraClasses
         {
             string Lore = "";
             ClassUnlockLoreBase ClassBase = GetBase;
-            bool LoreUnlocked = LoreAlreadyUnlocked;
+            bool LoreUnlocked = LoreAlreadyUnlocked || MainMod.DebugMode;
             for (int i = 0; i < ClassBase.Objectives.Count; i++)
             {
                 if (!LoreInternalProgress[i].Complete && !LoreUnlocked)
@@ -209,7 +210,11 @@ namespace TerraClasses
                     Lore += ClassBase.Objectives[i].LorePiece;
                 }
             }
-            if (LoreAlreadyUnlocked)
+            if (MainMod.DebugMode)
+            {
+                Lore += "'\n'For debugging, you can unlock this class freely by using the book.'";
+            }
+            else if (LoreAlreadyUnlocked)
             {
                 Lore += "'\nYou have already unlocked this class.";
             }
@@ -223,6 +228,15 @@ namespace TerraClasses
             if (player.whoAmI != Main.myPlayer || LoreAlreadyUnlocked)
                 return;
             ClassUnlockLoreBase ClassBase = GetBase;
+            if (IsComplete || MainMod.DebugMode)
+            {
+                if(!LoreAlreadyUnlocked)
+                {
+                    MainMod.AddClassUnlocked(ClassID, ClassModID);
+                    Main.NewText("You unlocked [" + GetClassName + "] class.", Microsoft.Xna.Framework.Color.LightBlue);
+                }
+                return;
+            }
             for (int o = 0; o < ClassBase.Objectives.Count; o++)
             {
                 if (!LoreInternalProgress[o].Complete)

@@ -92,7 +92,14 @@ namespace TerraClasses
                         color = Color.Yellow;
                         if (CanChangeClass && Main.mouseLeft && Main.mouseLeftRelease)
                         {
-                            Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().AddClass(CheckedClassID, CheckedClassModID);
+                            /*if (cb.ClassType == ClassBase.ClassTypes.Aspect)
+                            {
+                                Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes[0].ChangeClass(CheckedClassID, CheckedClassModID);
+                            }
+                            else
+                            {*/
+                                Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().AddClass(CheckedClassID, CheckedClassModID);
+                            //}
                             Main.NewText("You changed into " + cb.Name + " class!");
                             CheckedClassID = -1;
                             CheckedClassModID = "";

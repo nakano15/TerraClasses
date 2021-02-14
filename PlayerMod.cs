@@ -36,7 +36,7 @@ namespace TerraClasses
         public bool CombatSkillsUnlocked { get { return BasicTrainingLevel >= 6; } }
         public bool ClassChangeUnlocked { get { return BasicTrainingLevel >= 10; } }
         public SkillSlot SkillBeingUsed = new SkillSlot();
-        private Dictionary<int, int> SkillBuffLevelLogger = new Dictionary<int, int>();
+        private Dictionary<int, SkillBuffInfo> SkillBuffLevelLogger = new Dictionary<int, SkillBuffInfo>();
         public float BuyValue = 1f, SellValue = 1f, ReforgeValue = 1f, HealValue = 1f;
 
         public override void Initialize()
@@ -51,19 +51,39 @@ namespace TerraClasses
             return Classes.Any(x => x.ClassID == ClassID && x.ClassModID == ClassModID);
         }
 
+        public static int GetPlayerSkillBuffLevel(Player player, int BuffID)
+        {
+            return player.GetModPlayer<PlayerMod>().GetSkillBuffLevel(BuffID);
+        }
+
         public int GetSkillBuffLevel(int BuffID)
         {
             if (!SkillBuffLevelLogger.ContainsKey(BuffID))
                 return 0;
+            return SkillBuffLevelLogger[BuffID].BuffLevel;
+        }
+
+        public static SkillBuffInfo GetPlayerSkillBuffInfo(Player player, int BuffID)
+        {
+            return player.GetModPlayer<PlayerMod>().GetSkillBuffInfo(BuffID);
+        }
+
+        public SkillBuffInfo GetSkillBuffInfo(int BuffID)
+        {
+            if (!SkillBuffLevelLogger.ContainsKey(BuffID))
+                return null;
             return SkillBuffLevelLogger[BuffID];
         }
 
         public void UpdateSkillBuffLevel(int BuffID, int SkillLevel)
         {
             if (!SkillBuffLevelLogger.ContainsKey(BuffID))
-                SkillBuffLevelLogger.Add(BuffID, SkillLevel);
+                SkillBuffLevelLogger.Add(BuffID, new SkillBuffInfo() { BuffLevel = SkillLevel });
             else
-                SkillBuffLevelLogger[BuffID] = SkillLevel;
+            {
+                if(SkillBuffLevelLogger[BuffID].BuffLevel < SkillLevel)
+                    SkillBuffLevelLogger[BuffID].BuffLevel = SkillLevel;
+            }
         }
 
         public SkillData GetSkillInfo(SkillSlot slot)

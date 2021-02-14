@@ -32,4 +32,25 @@ namespace TerraClasses
         [Increment(0.01f)]
         public Vector2 ExpBarOffset { get { return MainMod.ExpBarOffset; } set { MainMod.ExpBarOffset = value; } }
     }
+
+    [Label("Debugging Settings")]
+    public class DebugConfig : ModConfig
+    {
+        public override ConfigScope Mode => ConfigScope.ServerSide;
+
+        [Label("Enable Debug Mode")]
+        [Tooltip("Turns on debug mode, giving access to all classes and skills. Can only be turned on in the main menu.")]
+        public bool DebugMode
+        {
+            get
+            {
+                return MainMod.DebugMode;
+            }
+            set
+            {
+                if (Main.gameMenu)
+                    MainMod.DebugMode = value;
+            }
+        }
+    }
 }

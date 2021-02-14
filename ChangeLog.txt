@@ -1,23 +1,31 @@
 ﻿Class lore books arrives!
-	You must unlock the book knowledge before you be able to change to that class.
-	Once you unlock a class, any character that can change class will be able to pick that class.
-	Progress of the Class lore book is shared between all characters, regardless of world.
-	They can be found in a variety of ways. Starter classes comes from town npcs shops.
+-> You must unlock the book knowledge before you be able to change to that class.
+-> Once you unlock a class, any character that can change class will be able to pick that class.
+-> Progress of the Class lore book is shared between all characters, regardless of world.
+-> They can be found in a variety of ways. Starter classes comes from town npcs shops.
 Everyone's classes selected were wiped, so everyone returned to Terrarian level 1 class.
-	Classes acquired before the wipe will not be unlocked.
+-> Classes acquired before the wipe will not be unlocked.
 -Cerberus Class
-	-Cerberus Form
-		Now makes demons passive to your character.
-		Gained some animation changes, from breathing animation to tail animation.
-		Reduced the number of sparks that spawns on the feet.
-	Added Elemental Breath combat skill.
+-> -Cerberus Form
+-> -> Now makes demons passive to your character.
+-> -> Gained some animation changes, from breathing animation to tail animation.
+-> -> Reduced the number of sparks that spawns on the feet.
+-> -Added Elemental Breath combat skill.
+-> -Added Fire Breath skill.
 -Merchant Class
-	-Added Discount skill.
-	-Avarice
-		Now has a delay before It tries finding a nearby chest.
+-> -Added Discount skill.
+-> -Avarice
+-> -> Now has a delay before It tries finding a nearby chest.
+-Archer Class
+-> -Added Swift Step skill.
+-> -Added Precision skill.
+-Mage Class
+-> -Added Spell Resist skill.
 Added the Sharpshooter class.
-	This is not a beginner class, but It's still buyable.
+-> This is not a beginner class, but It's still buyable.
 Added the Berseker class.
-	Not a begginer class either. You can find it in a place where monsters surges from every hallway you go.
+-> Not a begginer class either. You can find it in a place where monsters surges from every hallway you go.
 Added the Summoner class.
-	You can buy this book, you can even get It before hard mode.
+-> You can buy this book, you can even get It before hard mode.
+You can toggle on the Debug mode on the mod settings.
+-> That will help you test classes and stuff.

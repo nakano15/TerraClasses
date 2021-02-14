@@ -71,6 +71,10 @@
     <Compile Include="ClassUnlockLoreData.cs" />
     <Compile Include="ConfigMod.cs" />
     <Compile Include="Enum\SkillTypes.cs" />
+    <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
+    <Compile Include="TargetTranslator\NpcTarget.cs" />
+    <Compile Include="TargetTranslator\PlayerTarget.cs" />
+    <Compile Include="TargetTranslator\Translator.cs" />
     <Compile Include="ItemMod.cs" />
     <Compile Include="Items\ClassBooks\CerberusBook.cs" />
     <Compile Include="Items\ClassBooks\ClassLoreBookPrefab.cs" />
@@ -89,6 +93,7 @@
     <Compile Include="PlayerMod.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="SkillBase.cs" />
+    <Compile Include="SkillBuffInfo.cs" />
     <Compile Include="SkillData.cs" />
     <Compile Include="SkillDB.cs" />
     <Compile Include="SkillList\Archer\ArrowBarrage.cs" />

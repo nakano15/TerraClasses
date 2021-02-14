@@ -30,8 +30,9 @@ namespace TerraClasses.SkillList.Archer
 
         public override void Update(Player player, SkillData data)
         {
-            float ChargeValue = ((float)Math.Abs(player.velocity.X) / 5f - 1f) * -0.25f;
-            float Boost = data.GetFloat(ChargePercentageVar) * ChargeValue;
+            float ChargeValue = ((float)Math.Abs(player.velocity.X) / 1.5f - 1f) * -0.25f;
+            ChargeValue *= 0.5f;
+            float Boost = data.GetFloat(ChargePercentageVar) + ChargeValue;
             if (Boost > 100) Boost = 100;
             if (Boost < 0) Boost = 0;
             data.SetFloat(ChargePercentageVar, Boost);

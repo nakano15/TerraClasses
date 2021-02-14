@@ -9,13 +9,13 @@ namespace TerraClasses.SkillList.Cerberus
 {
     public class ElementalBreath : SkillBase
     {
-        public const byte AttackTurnVar = 0, FireDelayVar = 1;
+        public const byte AttackTurnVar = 0, FireDelayVar = 1, OverdriveCounterVar = 2;
         public const int FireDelayMax = 60;
 
         public ElementalBreath()
         {
             Name = "Elemental Breath";
-            Description = "Breathes elemental attacks from the mouth every 1 second.\nAlternates between mouths while spitting, launching different elements.\nInflicts 80% + 4% per level damage.\nEach mouth damage is related to a attack type.\n1/4 chance of spitting based on Summon damage, instead of Melee, ranged or magic damage.";
+            Description = "Breathes elemental attacks from the mouth every 1 second.\nAlternates between mouths while spitting, launching different elements.\nInflicts 80% + 4% per level damage.\nEach mouth damage is related to a attack type.\n1/4 chance of spitting based on Summon damage, instead of Melee, ranged or magic damage.\nAfter 4 shots, It enters a overdrive mode for 8 shots, and then resets.\nFire delay is lower when with lower than half health.";
             skillType = Enum.SkillTypes.Attack;
             MaxLevel = 10;
         }
@@ -31,7 +31,7 @@ namespace TerraClasses.SkillList.Cerberus
         {
             if (JustUsed)
             {
-                int AttackTurn = data.GetInteger(AttackTurnVar), FireDelay = data.GetInteger(FireDelayVar);
+                int AttackTurn = data.GetInteger(AttackTurnVar), FireDelay = data.GetInteger(FireDelayVar), OverdriveValue = data.GetInteger(OverdriveCounterVar);
                 if (FireDelay <= 0)
                 {
                     SkillData sd = PlayerMod.GetPlayerSkillData(player, 22);
@@ -71,8 +71,19 @@ namespace TerraClasses.SkillList.Cerberus
                     AttackTurn++;
                     if (AttackTurn > 2)
                         AttackTurn = 0;
+                    OverdriveValue++;
                     data.SetInteger(AttackTurnVar, AttackTurn);
-                    data.SetInteger(FireDelayVar, FireDelayMax);
+                    FireDelay = FireDelayMax;
+                    if (OverdriveValue >= 4)
+                    {
+                        FireDelay /= 2;
+                        if (OverdriveValue >= 12)
+                            OverdriveValue -= 12;
+                    }
+                    if (player.statLife < player.statLifeMax2 * 0.5f)
+                        FireDelay /= 2;
+                    data.SetInteger(FireDelayVar, FireDelay);
+                    data.SetInteger(OverdriveCounterVar, OverdriveValue);
                 }
             }
         }

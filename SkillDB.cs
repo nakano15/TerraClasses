@@ -107,6 +107,8 @@ namespace TerraClasses
                     return new SkillList.Merchant.ThrowCoins();
                 case 46:
                     return new SkillList.Mage.SpellResist();
+                case 47:
+                    return new SkillList.Cerberus.Fire_Breath();
             }
             return new SkillBase();
         }
