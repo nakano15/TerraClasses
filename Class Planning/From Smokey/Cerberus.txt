@@ -1,0 +1,17 @@
+Cerberus Skill Concepts(Subject to change and or objection):
+
+-->CERBERUS(Three headed beast that has devasting attacks)
+ Passive:
+>Hell Spawn(5 points to max)- Cerberus periodically summons flaming wisp that apply Cursed Inferno debuff and auto target enemies
+-> Amount of wisp scale with rank, starting at 1 wisp and scaling to 5 wisp
+->Cursed inferno debuff last 5 seconds per wisp
+->can only occur every 20 seconds
+
+>Hellborne(10 points to max)-Cerberus is completely immune to fire additonally fire attacks inflicted by cerberus are enhanced by a percentage(Includes cursed inferno and its debuff)
+->Enhanced fire damage scales with rank
+
+ Attack Skill:
+>?
+
+ Active Skill:
+>?

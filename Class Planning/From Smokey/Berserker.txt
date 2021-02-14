@@ -1,0 +1,26 @@
+Berserker Skill Concepts(Subject to change and or objection):
+
+-->BERSERKER(Reckless warrior that gains tremendous power from pain):
+ Passive:
+>Merciless- The berserker gains bonus damage depending on how low their health gets.(Maximum damage bonus at 10% or less health is 250% extra damage)
+-> Pain threshold can scale with level so at max rank could be 20% health gives maximum damage boost
+
+>Blood Bath- The more enemies the berserker has killed the more attack speed they gain. Stacks to 20 kills and resets after 10 seconds of not killing.(Maximum attack speed boost at 20 kills is 20% increase) 
+->attack speed scales with level
+
+ Attack skill:
+>Armor Shredder-Attacking enemies grants stacks of armor shred at max stacks the enemies defense is cut by 50%.
+->Armor shred can scale with level so at max rank it could be 50% defense ignored
+-
+ Active skill:
+>"Death Refusal"- The berserker cannot be brought down below 1% hp for 5 seconds.
+->at max rank threshold can be increased to 10% and duration can be increased to 10 seconds
+->15 sec cooldown
+
+>"Gruesome Execution"- The berserker jumps in the air and brings down a giant axe the executes enemies below 20% health.(Boss Killer Skill)(Execution meaning instantly kill anything below that threshold of health)
+->2:00 cooldown
+->Starts at 10% at rank 1 for execution and scales to 20% at max rank
+
+>"FearMonger"- After killing enemies other enemies run away in fear.
+->temporarary buff 20 seconds
+->30-40 second cooldown

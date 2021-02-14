@@ -1,0 +1,23 @@
+Fighter Skill Concepts(Subject to change and or objection):
+
+-->FIGHTER(Close Combat Specilist who has a balance between offense and defense):
+ Passive:
+>Perserverance- Taking and dealing damage gives the fighter temperorary defense bonus that stacks to 20 at 10 hits/hits taken.(After 5 seconds of not taking or doing damage lose all stacks)
+->defense bonus scales with level
+
+>Courage- reduces all incoming damage by 5% when moving in any direction
+->damage reduction scales with level, at max rank 10% reduction 
+
+ Attack Skill:
+>Fighting Spirit- Every 5 attacks the fighter gains bonus melee damage that stacks to 20 extra melee damage at 20 strikes vanishes after 6 seconds of not attacking
+->bonus melee damage scales with rank 
+
+ Active skill:
+>"Tenacity"- The fighter removes all debuffs currently on player and is immune to the next debuffs for 5 seconds
+->20 second cooldown
+->30 mana cost
+
+>"Last Stand"- The Fighter takes 10% reduced damage from all sources but movement speed is slowed by 30% 
+->Damage reduction and movementspeed debuff scales with level
+->30 second cooldown
+->50 mana cost

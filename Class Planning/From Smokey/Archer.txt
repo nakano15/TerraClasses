@@ -1,0 +1,25 @@
+Archer Skill Concepts(Subject to change and or objection):
+
+-->ARCHER(Bow/Crossbow user that is nimble and is accurate with arrows)-
+ Passive:
+>Night Hunter- Archer turns invisible,invincible and loses aggro for 1 second when killing a enemy with a crit attack.
+->duration of invisibilty can scale with level so at max rank 5 seconds
+->This passive could be restricted to night time only possibly
+
+>Kill Confirmed- After killing a enemy the archer gains a 5-15% movement speed buff for 5 seconds.
+->movement speed scales with rank
+-
+ Attack skill:
+>Bullseye- attacking the same enemy 5 times applys stacks of Bullseye which deal bonus true damage/unresistable damage to target when hitting the fifth attack.
+(downside is that it can only be applied to one target at a time)(Also its a constant attack passive so it does not have a cooldown it resets everytime the player reaches the 5th attack)(Also if the target that first gets the stack of bullseye isnt attacked in the next 5 seconds the stacks disapear and can be applied to another enemy)
+->Skill only applies to arrow projectiles
+->The amount of true damage starts at 10 and scales to 50 at max rank.
+-
+ Active skill:
+>"Heavy arrow"- Sends out a arrow that has alot of knock back and stuns enemies if they are sent flying into a wall.
+->10-15 sec cooldown
+->30 mana cost
+
+>"Tactical BackFlip/Back Dodge"- Archer dodges backwards avoiding damage and gives player a 10-20% movement speed boost for 5 seconds.(Movement speed scales threw ranks/points invested)
+->6 sec cooldown
+->10 mana cost

@@ -1,0 +1,25 @@
+Summoner Skill Concepts(Subject to change and or objection):
+
+-->SUMMONER(A being who specializes in summoning powerful creatures to aid in combat)
+ Passive:
+>Shepard of minions- Summoner gains 1% bonus max health per minion spawned
+->bonus max health scales with level at max rank 5% bonus max health per minion
+
+>Spawner- Grants +1 minion summon per 100 mana
+->nothing scales with level this passive only takes 1 skill point
+
+ Attack skill:
+>Infestation- Causes bleeding or poisoned debuff for 10 seconds if minions attack the same target 5-10 times
+-> Can only happen every 20 seconds per enemy
+-> Duration of debuff scales with level at max rank 20 seconds(Completely cancels out the cooldown)
+
+ Active:
+>"Power Exchange"- Summoner sacrifices 20% of max health to give a 50% damage boost to summon damage (Can cause player death if used at very low health)
+->Health Sacrifice and summon damage boost both scale with rank, 50% health sacrifice at max level and 100% boost in summon damage at max level
+->30 second cool down
+->10-20 sec duration scale with rank
+
+>"Pain Disperse"- Minions take .5% damage per summon that was intended for the summoner.(Basic Terms: Summoner completely ignores a percentage of damage that would normally hit(Example:Fire ball that does 10 damage would do 7.5 damage if summoner has 50 minions. Thats a 25% reduciton to all damage))
+->Damage dispersed scales with level at max rank 1.5% per minion
+->1:00 cooldown
+->30 sec duration(does NOT scale with level)

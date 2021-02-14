@@ -1,0 +1,24 @@
+ Skill Concepts(Subject to change and or objection):
+
+-->MAGE(Magic user who uses powerful spells and abilites to destroy enemies)
+ Passive:
+>Mana Overload- Gain 5 bonus mana per 1% of current magic damage stat.
+
+>Spell Resist- Gain 35% projectile damage resistance at max rank.(only works for certain projectiles like beams, blast, and energy waves)
+-
+ Attack Skill:
+>MagicVamp- Occassionally decreases enemies magic defense and strenghtens players magic weapon damage by a percentage when attacking with weapons that deal magic damage only for 10 seconds.
+->Can only occur once per enemey every 15 seconds 
+->Enemy weakening effect does not stack
+-
+ Active Skill:
+>"Chain Lightining"- releases magic lightning bolts that target one enemey after another dealing magic damage.(At max rank can chain up to 8 enemies)
+->40sec-1:00 cooldown
+->100-300 mana cost scales with rank
+
+>"Levitate"- Allows the player to float around in all directions. Has a blue ring visual effect under the characters feet.
+->Could be a spell you hold that drains 2-5 mana per sec/a spell that last for 10 seconds with a 15 second cooldown and has a mana cost of 50-100
+
+>"ManaFlux"- A powerful discharge of magic that damages eneimes around the user.
+->Aoe spell that always uses 50% of characters max mana.
+->2:00 Cooldown

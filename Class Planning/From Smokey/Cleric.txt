@@ -1,0 +1,24 @@
+Cleric Skill Concepts(Subject to change and or objection):
+
+-->CLERIC(A aider in combat most useful with companions)
+ Passive:
+>Holy Presence- The cleric has a inate healing factor of 1hp per second in and out of combat(Applies to friendly npcs around the cleric)
+->Hp regen scales with level max rank 5hp per second
+
+>Avenging Waves-After being struck for the first time the cleric starts emitting light waves that do magic damage to enemies close to cleric. 
+->cooldown for effect is 3-5 seconds
+-> damage of waves scales with rank
+
+ Attack Skill:
+>Blessed Weapon-Clerics weapon attacks do additional magic damage on top of whatever weapon they use and the weapons hits restore 10 hp per hit but the clerics overall damage goes down by -10%-15%(Applies to companions also but not the negative damage).
+->Magic damage and healing scales with level 
+
+Active skill:
+>"Aura Restoration"- gives cleric and companions extra mana regen and hp regen while inside effected area
+->1:00 cooldown
+->10-20 sec duration scaling with level
+->10-20 mana and hp regen scaling with level
+
+>"Prismatic barrier"- cleric summons a large prism barrier that follows the player, friendly npcs inside its radius are immune to debuffs and projectiles for a set duration
+->5-10 sec duration scaling with level
+->1:00 cooldown

@@ -1,0 +1,31 @@
+SharpShooter Skill Concepts(Subject to change and or objection):
+
+-->SHARP SHOOTER
+ Passive:
+>HeadShot- Hitting a projectile from a distance of 10 blocks automatically grants a Crit attack and deals 80% bonus crit damage
+->Crit Damage scales with rank
+->2-5 Cooldown
+->Could only apply to guns or weapons that use bullets
+
+>Contract Completionist- Killing a target with a headshot grants additional gold
+->gold gained scales with level starting at 1 gold and scaling to 10
+->30 second cool down
+
+ Attack skill:
+>Precise Shots- Gain 20% increased ranged damage but your attack speed is lowered by -50%
+->Range damage increase scales with level at max rank deals 50% bonus ranged damage
+->attack speed debuff stays at -50% doesnt scale lower or higher
+
+ Active skill:
+>"LegShot"- The characters next projectile attack slows movement speed of all enemies hit by 25% for 5 seconds.
+->6 second cooldown
+-> Slow dubuff effect and duration scale with level
+
+>"Bear Trap"- Sets down a trap that roots/stuns enemies that come in contact additionally all projectile shot that hit stunned targets are considered headshots no matter how close or far the projectile went.
+->A unique active skill in which it goes on cooldown even while still being able to cast.
+->cooldown is 5 seconds per trap, every 5 seconds 1 trap becomes available for use
+->trap amount scales with rank at max rank 10 traps can be placed starting at 3 on first rank
+
+>"Get in Position"- Sharpshooter gains +50% movement speed for 2-3 seconds
+->Movement speed bonus scales with level, max rank +100% speed boost
+->10 sec cooldown
