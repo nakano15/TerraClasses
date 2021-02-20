@@ -33,6 +33,16 @@ namespace TerraClasses.TargetTranslator
 
         }
 
+        public virtual bool IsActive()
+        {
+            return false;
+        }
+
+        public virtual bool IsDead()
+        {
+            return false;
+        }
+
         public virtual void ApplyKnockback(float Knockback, int Direction)
         {
 

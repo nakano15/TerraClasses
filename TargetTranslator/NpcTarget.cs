@@ -44,6 +44,16 @@ namespace TerraClasses.TargetTranslator
             }
         }
 
+        public override bool IsActive()
+        {
+            return npc.active;
+        }
+
+        public override bool IsDead()
+        {
+            return !npc.active;
+        }
+
         public override void HitEffect(double Damage, int Direction)
         {
             npc.HitEffect(Direction, Damage);
@@ -67,6 +77,11 @@ namespace TerraClasses.TargetTranslator
         public override double Hurt(int Damage, float Knockback, bool Critical = false, bool Pvp = false, string HitText = " was slain...")
         {
             return npc.StrikeNPC(Damage, Knockback, (Knockback > 0 ? 1 : -1), Critical);
+        }
+
+        public override void Kill(int Damage, int HitDirection, bool Pvp = false, string KillText = " was slain...")
+        {
+            npc.HitEffect(HitDirection, Damage);
         }
     }
 }

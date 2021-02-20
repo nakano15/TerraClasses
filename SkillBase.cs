@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Terraria;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TerraClasses
 {
@@ -16,10 +17,37 @@ namespace TerraClasses
         public int Cooldown = 0;
         public bool UnnallowAttacksWhileCasting = false;
         public Enum.SkillTypes skillType = Enum.SkillTypes.Passive;
+        public virtual SkillData GetSkillData { get { return new SkillData(); } }
 
         public int GetCooldown(int Seconds, int Minutes = 0, int Hours = 0)
         {
             return Seconds * 60 + Minutes * 3600 + Hours * 216000;
+        }
+
+        public Texture2D GetProjectileTexture(int ID)
+        {
+            if (!Main.projectileLoaded[ID])
+                Main.instance.LoadProjectile(ID);
+            return Main.projectileTexture[ID];
+        }
+
+        public Texture2D GetNPCTexture(int ID)
+        {
+            if (!Main.NPCLoaded[ID])
+                Main.instance.LoadNPC(ID);
+            return Main.npcTexture[ID];
+        }
+
+        public Texture2D GetItemTexture(int ID)
+        {
+            return Main.itemTexture[ID];
+        }
+
+        public Texture2D GetGoreTexture(int ID)
+        {
+            if (!Main.goreLoaded[ID])
+                Main.instance.LoadGore(ID);
+            return Main.goreTexture[ID];
         }
 
         public virtual void Update(Player player, SkillData data)

@@ -30,7 +30,7 @@ namespace TerraClasses
             Skills.Clear();
             foreach (ClassSkillInfo skill in GetClass.SkillList)
             {
-                SkillData sd = new SkillData();
+                SkillData sd = MainMod.GetSkill(skill.SkillID, skill.SkillMod).GetSkillData;
                 sd.ID = skill.SkillID;
                 sd.ModID = skill.SkillMod;
                 sd.Level = skill.FreeLevel;

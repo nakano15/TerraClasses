@@ -61,6 +61,16 @@ namespace TerraClasses.TargetTranslator
             }
         }
 
+        public override bool IsActive()
+        {
+            return player.active;
+        }
+
+        public override bool IsDead()
+        {
+            return player.dead || player.ghost;
+        }
+
         public override void ApplyKnockback(float Knockback, int Direction)
         {
             //player.velocity += 

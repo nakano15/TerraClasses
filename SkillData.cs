@@ -179,8 +179,10 @@ namespace TerraClasses
             Cooldown = GetBase.Cooldown;
             PlayerDamageCooldown.Clear();
             NpcDamageCooldown.Clear();
+            ExtraTargetDamageCooldown.Clear();
             PlayerInteraction.Clear();
             NpcInteraction.Clear();
+            OtherInteraction.Clear();
         }
 
         public int HurtPlayer(Player player, int Damage, int DamageDirection, int Cooldown = 8, bool Critical = false)
@@ -479,6 +481,13 @@ namespace TerraClasses
                 NpcDamageCooldown[key]--;
                 if (NpcDamageCooldown[key] <= 0)
                     NpcDamageCooldown.Remove(key);
+            }
+            TargetTranslator.Translator[] Keys2 = ExtraTargetDamageCooldown.Keys.ToArray();
+            foreach (TargetTranslator.Translator target in Keys2)
+            {
+                ExtraTargetDamageCooldown[target]--;
+                if (ExtraTargetDamageCooldown[target] <= 0)
+                    ExtraTargetDamageCooldown.Remove(target);
             }
         }
 
