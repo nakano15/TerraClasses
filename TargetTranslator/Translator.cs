@@ -8,6 +8,7 @@ namespace TerraClasses.TargetTranslator
 {
     public abstract class Translator //What kind of info would be useful to get from the target?
     {
+        public virtual object Target { get; }
         public virtual string Name { get; }
         public virtual string CharacterIdentifier { get; }
         public virtual bool Male { get; set; }

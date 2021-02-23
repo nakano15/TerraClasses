@@ -47,8 +47,10 @@ namespace TerraClasses
             {
                 if (!ShowHud)
                     ShowHud = true;
-                if(Active)
-                    Active = false;
+                if (Active)
+                {
+                    Close();
+                }
                 return;
             }
             if (!ShowHud)

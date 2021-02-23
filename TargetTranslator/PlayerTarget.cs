@@ -17,6 +17,8 @@ namespace TerraClasses.TargetTranslator
             player = owner;
         }
 
+        public override object Target => player;
+
         public override string CharacterIdentifier => "pl" + player.whoAmI;
         public override string Name => player.name;
         public override bool Male { get => player.Male; set => player.Male = value; }

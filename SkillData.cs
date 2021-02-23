@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Terraria;
+using Microsoft.Xna.Framework;
 
 namespace TerraClasses
 {
@@ -12,6 +13,7 @@ namespace TerraClasses
         public int ID = 0;
         public string ModID = "";
         public int Cooldown = 0;
+        public float CastTime = 0;
         public int Level = 0;
         public int Step = 0;
         public int Time = 0;
@@ -31,6 +33,7 @@ namespace TerraClasses
         private List<TargetTranslator.Translator> OtherInteraction = new List<TargetTranslator.Translator>();
         private int Owner = 0;
         private static bool StepChanged = false;
+        public Vector2 CastPosition = Vector2.Zero;
 
         public void ChangeStep()
         {
@@ -173,8 +176,11 @@ namespace TerraClasses
         {
             if (Active || Cooldown > 0)
                 return;
+            if (player.GetModPlayer<PlayerMod>().UsingPrivilegedSkill)
+                return;
             Time = 0;
             Step = 0;
+            CastTime = 0;
             Active = true;
             Cooldown = GetBase.Cooldown;
             PlayerDamageCooldown.Clear();
@@ -183,6 +189,15 @@ namespace TerraClasses
             PlayerInteraction.Clear();
             NpcInteraction.Clear();
             OtherInteraction.Clear();
+            switch (GetBase.PositionToTake)
+            {
+                case SkillBase.PositionToTakeOnCastEnum.Mouse:
+                    CastPosition = SkillBase.GetMousePositionInTheWorld;
+                    break;
+                case SkillBase.PositionToTakeOnCastEnum.Player:
+                    CastPosition = player.Center;
+                    break;
+            }
         }
 
         public int HurtPlayer(Player player, int Damage, int DamageDirection, int Cooldown = 8, bool Critical = false)
@@ -283,7 +298,7 @@ namespace TerraClasses
         /// <summary>
         /// This is actually to get possible targets from Terraria, includding also targets from other mods.
         /// </summary>
-        public TargetTranslator.Translator[] GetPossibleTargets(bool Allies, bool SelfIncluded = false)
+        public TargetTranslator.Translator[] GetPossibleTargets(bool Allies, bool SelfIncluded = false, Vector2 Position = default(Vector2), float Distance = 0f, int MaxTargets = 0)
         {
             List<TargetTranslator.Translator> Targets = new List<TargetTranslator.Translator>();
             Player me = Main.player[Owner];
@@ -292,8 +307,10 @@ namespace TerraClasses
                 if(Main.player[i].active && (SelfIncluded || i != Owner))
                 {
                     bool IsAlly = !Main.player[i].hostile || (me.team != 0 && me.team == Main.player[i].team);
-                    if((Allies && IsAlly) || (!Allies && !IsAlly))
+                    if ((Allies && IsAlly) || (!Allies && !IsAlly))
+                    {
                         Targets.Add(new TargetTranslator.PlayerTarget(Main.player[i]));
+                    }
                 }
                 if(i < 200 && Main.npc[i].active)
                 {
@@ -304,7 +321,22 @@ namespace TerraClasses
                     }
                 }
             }
-            MainMod.GetOtherModTargets(me, Allies);
+            Targets.AddRange(MainMod.GetOtherModTargets(me, Allies));
+            if (Position != default(Vector2) && Distance > 0)
+            {
+                for (int t = 0; t < Targets.Count; t++)
+                {
+                    if ((Targets[t].Center - Position).Length() >= Distance)
+                    {
+                        Targets.RemoveAt(t);
+                    }
+                }
+            }
+            if (MaxTargets > 0)
+            {
+                while (Targets.Count > MaxTargets)
+                    Targets.RemoveAt(MaxTargets);
+            }
             return Targets.ToArray();
         }
 
@@ -467,7 +499,19 @@ namespace TerraClasses
                     Cooldown--;
                 return;
             }
-            //Time++;
+            if(CastTime < GetBase.CastTime)
+            {
+                switch (GetBase.PositionToTake)
+                {
+                    case SkillBase.PositionToTakeOnCastEnum.Mouse:
+                        CastPosition = SkillBase.GetMousePositionInTheWorld;
+                        break;
+                    case SkillBase.PositionToTakeOnCastEnum.Player:
+                        CastPosition = player.Center;
+                        break;
+                }
+                return;
+            }
             byte[] Keys = PlayerDamageCooldown.Keys.ToArray();
             foreach (byte key in Keys)
             {

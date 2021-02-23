@@ -12,9 +12,9 @@ namespace TerraClasses.SkillList.Mage
         public MeteorBarrage()
         {
             Name = "Meteor Barrage";
-            Description = "Invokes a meteor barrage at the\ntargetted position.\nEach meteor causes 140% + 30% * Level of magic damage.";
+            Description = "Invokes a meteor barrage at the\ntargetted position.\nEach meteor causes 140% + 12% * Level of magic damage.";
             MaxLevel = 10;
-            Cooldown = GetCooldown(45);
+            Cooldown = GetCooldown(25, 1);
             skillType = Enum.SkillTypes.Active;
         }
 
@@ -35,7 +35,7 @@ namespace TerraClasses.SkillList.Mage
                 SpawnX += Main.rand.Next(-300, 301);
                 Vector2 ShotDir = new Vector2(CenterX - SpawnX, CenterY - SpawnY);
                 ShotDir.Normalize();
-                Projectile.NewProjectile(new Vector2(SpawnX, SpawnY), ShotDir * ShotSpeed, Terraria.ID.ProjectileID.Meteor1 + Main.rand.Next(3), data.GetMagicDamage(0, 1.4f + 0.3f * data.Level, player), 4f, player.whoAmI);
+                Projectile.NewProjectile(new Vector2(SpawnX, SpawnY), ShotDir * ShotSpeed, Terraria.ID.ProjectileID.Meteor1 + Main.rand.Next(3), data.GetMagicDamage(0, 1.4f + 0.12f * data.Level, player), 4f, player.whoAmI);
             }
             if (data.Time / 10 >= data.Level)
                 data.EndUse();

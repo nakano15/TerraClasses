@@ -15,9 +15,16 @@ namespace TerraClasses
         public int MaxLevel = 1;
         public int ManaCost = 0;
         public int Cooldown = 0;
-        public bool UnnallowAttacksWhileCasting = false;
+        public int CastTime = 0;
+        public bool UnnallowAttacksWhileCasting = false, UnallowOtherSkillUsage = false;
         public Enum.SkillTypes skillType = Enum.SkillTypes.Passive;
+        public PositionToTakeOnCastEnum PositionToTake = PositionToTakeOnCastEnum.Mouse;
         public virtual SkillData GetSkillData { get { return new SkillData(); } }
+
+        public virtual float GetEffectRange(SkillData sd)
+        {
+            return 0;
+        }
 
         public int GetCooldown(int Seconds, int Minutes = 0, int Hours = 0)
         {
@@ -130,6 +137,24 @@ namespace TerraClasses
         {
             Vector2 Result = GetDirection(ShotSpawn, ShotDestination);
             return (float)Math.Atan2(Result.Y, Result.X);
+        }
+
+        public static Vector2 GetMousePositionInTheWorld { get { return new Vector2(Main.mouseX, Main.mouseY) + Main.screenPosition; } }
+
+        public void FakeWeaponUsage(Player player, int WeaponPosition, float ItemRotation, int Duration = 8)
+        {
+            player.GetModPlayer<PlayerMod>().FakeWeaponUsage(WeaponPosition, ItemRotation, Duration);
+        }
+
+        public void FakeWeaponUsage(Player player, int WeaponPosition, Vector2 AimDirection, int Duration = 8)
+        {
+            player.GetModPlayer<PlayerMod>().FakeWeaponUsage(WeaponPosition, AimDirection, Duration);
+        }
+
+        public enum PositionToTakeOnCastEnum : byte
+        {
+            Mouse,
+            Player
         }
     }
 }

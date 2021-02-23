@@ -59,6 +59,7 @@
     <Compile Include="ClassList\Cerberus.cs" />
     <Compile Include="ClassList\Cleric.cs" />
     <Compile Include="ClassList\Archer.cs" />
+    <Compile Include="ClassList\Knight.cs" />
     <Compile Include="ClassList\Sharpshooter.cs" />
     <Compile Include="ClassList\Fighter.cs" />
     <Compile Include="ClassList\Mage.cs" />
@@ -72,6 +73,7 @@
     <Compile Include="ConfigMod.cs" />
     <Compile Include="Enum\SkillTypes.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
+    <Compile Include="SkillList\Knight\Cavalry.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
     <Compile Include="TargetTranslator\Translator.cs" />
@@ -156,8 +158,11 @@
   <ItemGroup>
     <Content Include="Buffs\Bless.png" />
     <Content Include="ChangeLog.txt" />
+    <Content Include="Content\CastBar.png" />
     <Content Include="Content\Effects\cerberus.png" />
+    <Content Include="Content\Effects\Electricity.png" />
     <Content Include="Content\Effects\longsword.png" />
+    <Content Include="Content\MagicCircle.png" />
     <Content Include="Interface\Border.png" />
     <Content Include="Interface\ClassBtn.png" />
     <Content Include="Interface\LevelArrow.png" />

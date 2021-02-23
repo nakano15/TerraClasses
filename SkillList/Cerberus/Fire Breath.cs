@@ -16,6 +16,7 @@ namespace TerraClasses.SkillList.Cerberus
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
             Cooldown = GetCooldown(40);
+            UnallowOtherSkillUsage = true;
         }
 
         public override void UpdateStatus(Player player, SkillData data)

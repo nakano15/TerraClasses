@@ -12,6 +12,8 @@ namespace TerraClasses.TargetTranslator
             npc = owner;
         }
 
+        public override object Target => npc;
+
         public override string CharacterIdentifier => "npc" + npc.whoAmI;
         public override string Name => npc.GivenOrTypeName;
         public override bool Male { get => false; }
@@ -82,6 +84,9 @@ namespace TerraClasses.TargetTranslator
         public override void Kill(int Damage, int HitDirection, bool Pvp = false, string KillText = " was slain...")
         {
             npc.HitEffect(HitDirection, Damage);
+            if (npc.life > 0)
+                npc.life = 0;
+            npc.checkDead();
         }
     }
 }

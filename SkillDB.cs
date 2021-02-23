@@ -109,6 +109,10 @@ namespace TerraClasses
                     return new SkillList.Mage.SpellResist();
                 case 47:
                     return new SkillList.Cerberus.Fire_Breath();
+                case 48:
+                    return new SkillList.Mage.ChainLightning();
+                case 49:
+                    return new SkillList.Knight.Cavalry();
             }
             return new SkillBase();
         }

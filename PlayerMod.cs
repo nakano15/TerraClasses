@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Terraria;
 using Terraria.ModLoader;
+using Microsoft.Xna.Framework;
 
 namespace TerraClasses
 {
@@ -38,10 +39,291 @@ namespace TerraClasses
         public SkillSlot SkillBeingUsed = new SkillSlot();
         private Dictionary<int, SkillBuffInfo> SkillBuffLevelLogger = new Dictionary<int, SkillBuffInfo>();
         public float BuyValue = 1f, SellValue = 1f, ReforgeValue = 1f, HealValue = 1f;
+        public int BackUpWeapon = -1;
+        public bool FakeWeapon = false;
+        public bool UsingPrivilegedSkill = false;
+        public SkillData SkillBeingCasted = null;
 
         public override void Initialize()
         {
             AddClass(0, "");
+        }
+
+        public void FakeWeaponUsage(int WeaponPosition, Vector2 Direction, int Duration = 8)
+        {
+            Vector2 AimDir = Direction - player.Center;
+            FakeWeaponUsage(WeaponPosition, (float)Math.Atan2(AimDir.Y, AimDir.X), Duration);
+            if((Direction.X < player.Center.X && player.direction > 0) ||
+                (Direction.X > player.Center.X && player.direction < 0))
+            {
+                player.direction *= -1;
+            }
+        }
+
+        public void FakeWeaponUsage(int WeaponPosition, float ItemRotation, int Duration = 8)
+        {
+            if (BackUpWeapon == -1)
+                BackUpWeapon = player.selectedItem;
+            FakeWeapon = true;
+            player.selectedItem = WeaponPosition;
+            if (ItemRotation < -1.570796f)
+            {
+                ItemRotation += 3.141593f;
+            }
+            if (ItemRotation > 1.570796f)
+            {
+                ItemRotation -= 3.141593f;
+            }
+            player.itemRotation = ItemRotation;
+            player.itemAnimation = player.itemAnimationMax = Duration;
+            Main.PlaySound(player.inventory[player.selectedItem].UseSound, player.Center);
+        }
+
+        public void SetItemOrientation()
+        {
+            Item item = player.inventory[player.selectedItem];
+            float num = player.mount.PlayerOffsetHitbox;
+            if (item.useStyle == 1)
+            {
+                if (item.type > -1 && Item.claw[item.type])
+                {
+                    if ((double)player.itemAnimation < (double)player.itemAnimationMax * 0.333)
+                    {
+                        float num30 = 10f;
+                        player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - num30) * (float)player.direction;
+                        player.itemLocation.Y = player.position.Y + 26f + num;
+                    }
+                    else if ((double)player.itemAnimation < (double)player.itemAnimationMax * 0.666)
+                    {
+                        float num31 = 8f;
+                        player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - num31) * (float)player.direction;
+                        num31 = 24f;
+                        player.itemLocation.Y = player.position.Y + num31 + num;
+                    }
+                    else
+                    {
+                        float num32 = 6f;
+                        player.itemLocation.X = player.position.X + (float)player.width * 0.5f - ((float)Main.itemTexture[item.type].Width * 0.5f - num32) * (float)player.direction;
+                        num32 = 20f;
+                        player.itemLocation.Y = player.position.Y + num32 + num;
+                    }
+                    player.itemRotation = ((float)player.itemAnimation / (float)player.itemAnimationMax - 0.5f) * (float)(-player.direction) * 3.5f - (float)player.direction * 0.3f;
+                }
+                else
+                {
+                    if ((double)player.itemAnimation < (double)player.itemAnimationMax * 0.333)
+                    {
+                        float num33 = 10f;
+                        if (Main.itemTexture[item.type].Width > 32)
+                        {
+                            num33 = 14f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 52)
+                        {
+                            num33 = 24f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 64)
+                        {
+                            num33 = 28f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 92)
+                        {
+                            num33 = 38f;
+                        }
+                        if (item.type == 2330 || item.type == 2320 || item.type == 2341)
+                        {
+                            num33 += 8f;
+                        }
+                        player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - num33) * (float)player.direction;
+                        player.itemLocation.Y = player.position.Y + 24f + num;
+                    }
+                    else if ((double)player.itemAnimation < (double)player.itemAnimationMax * 0.666)
+                    {
+                        float num34 = 10f;
+                        if (Main.itemTexture[item.type].Width > 32)
+                        {
+                            num34 = 18f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 52)
+                        {
+                            num34 = 24f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 64)
+                        {
+                            num34 = 28f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 92)
+                        {
+                            num34 = 38f;
+                        }
+                        if (item.type == 2330 || item.type == 2320 || item.type == 2341)
+                        {
+                            num34 += 4f;
+                        }
+                        player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - num34) * (float)player.direction;
+                        num34 = 10f;
+                        if (Main.itemTexture[item.type].Height > 32)
+                        {
+                            num34 = 8f;
+                        }
+                        if (Main.itemTexture[item.type].Height > 52)
+                        {
+                            num34 = 12f;
+                        }
+                        if (Main.itemTexture[item.type].Height > 64)
+                        {
+                            num34 = 14f;
+                        }
+                        if (item.type == 2330 || item.type == 2320 || item.type == 2341)
+                        {
+                            num34 += 4f;
+                        }
+                        player.itemLocation.Y = player.position.Y + num34 + num;
+                    }
+                    else
+                    {
+                        float num35 = 6f;
+                        if (Main.itemTexture[item.type].Width > 32)
+                        {
+                            num35 = 14f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 48)
+                        {
+                            num35 = 18f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 52)
+                        {
+                            num35 = 24f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 64)
+                        {
+                            num35 = 28f;
+                        }
+                        if (Main.itemTexture[item.type].Width >= 92)
+                        {
+                            num35 = 38f;
+                        }
+                        if (item.type == 2330 || item.type == 2320 || item.type == 2341)
+                        {
+                            num35 += 4f;
+                        }
+                        player.itemLocation.X = player.position.X + (float)player.width * 0.5f - ((float)Main.itemTexture[item.type].Width * 0.5f - num35) * (float)player.direction;
+                        num35 = 10f;
+                        if (Main.itemTexture[item.type].Height > 32)
+                        {
+                            num35 = 10f;
+                        }
+                        if (Main.itemTexture[item.type].Height > 52)
+                        {
+                            num35 = 12f;
+                        }
+                        if (Main.itemTexture[item.type].Height > 64)
+                        {
+                            num35 = 14f;
+                        }
+                        if (item.type == 2330 || item.type == 2320 || item.type == 2341)
+                        {
+                            num35 += 4f;
+                        }
+                        player.itemLocation.Y = player.position.Y + num35 + num;
+                    }
+                    player.itemRotation = ((float)player.itemAnimation / (float)player.itemAnimationMax - 0.5f) * (float)(-player.direction) * 3.5f - (float)player.direction * 0.3f;
+                }
+                if (player.gravDir == -1f)
+                {
+                    player.itemRotation = 0f - player.itemRotation;
+                    player.itemLocation.Y = player.position.Y + (float)player.height + (player.position.Y - player.itemLocation.Y);
+                }
+            }
+            else if (item.useStyle == 2)
+            {
+                player.itemRotation = (float)player.itemAnimation / (float)player.itemAnimationMax * (float)player.direction * 2f + -1.4f * (float)player.direction;
+                if ((double)player.itemAnimation < (double)player.itemAnimationMax * 0.5)
+                {
+                    player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - 9f - player.itemRotation * 12f * (float)player.direction) * (float)player.direction;
+                    player.itemLocation.Y = player.position.Y + 38f + player.itemRotation * (float)player.direction * 4f + num;
+                }
+                else
+                {
+                    player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - 9f - player.itemRotation * 16f * (float)player.direction) * (float)player.direction;
+                    player.itemLocation.Y = player.position.Y + 38f + player.itemRotation * (float)player.direction + num;
+                }
+                if (player.gravDir == -1f)
+                {
+                    player.itemRotation = 0f - player.itemRotation;
+                    player.itemLocation.Y = player.position.Y + (float)player.height + (player.position.Y - player.itemLocation.Y);
+                }
+            }
+            else if (item.useStyle == 3)
+            {
+                if ((double)player.itemAnimation > (double)player.itemAnimationMax * 0.666)
+                {
+                    player.itemLocation.X = -1000f;
+                    player.itemLocation.Y = -1000f;
+                    player.itemRotation = -1.3f * (float)player.direction;
+                }
+                else
+                {
+                    player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - 4f) * (float)player.direction;
+                    player.itemLocation.Y = player.position.Y + 24f + num;
+                    float num36 = (float)player.itemAnimation / (float)player.itemAnimationMax * (float)Main.itemTexture[item.type].Width * (float)player.direction * item.scale * 1.2f - (float)(10 * player.direction);
+                    if (num36 > -4f && player.direction == -1)
+                    {
+                        num36 = -8f;
+                    }
+                    if (num36 < 4f && player.direction == 1)
+                    {
+                        num36 = 8f;
+                    }
+                    player.itemLocation.X -= num36;
+                    player.itemRotation = 0.8f * (float)player.direction;
+                }
+                if (player.gravDir == -1f)
+                {
+                    player.itemRotation = 0f - player.itemRotation;
+                    player.itemLocation.Y = player.position.Y + (float)player.height + (player.position.Y - player.itemLocation.Y);
+                }
+            }
+            else if (item.useStyle == 4)
+            {
+                int num37 = 0;
+                if (item.type == 3601)
+                {
+                    num37 = 10;
+                }
+                player.itemRotation = 0f;
+                player.itemLocation.X = player.position.X + (float)player.width * 0.5f + ((float)Main.itemTexture[item.type].Width * 0.5f - 9f - player.itemRotation * 14f * (float)player.direction - 4f - (float)num37) * (float)player.direction;
+                player.itemLocation.Y = player.position.Y + (float)Main.itemTexture[item.type].Height * 0.5f + 4f + num;
+                if (player.gravDir == -1f)
+                {
+                    player.itemRotation = 0f - player.itemRotation;
+                    player.itemLocation.Y = player.position.Y + (float)player.height + (player.position.Y - player.itemLocation.Y);
+                }
+            }
+            else if (item.useStyle == 5)
+            {
+                if (item.type == 3779)
+                {
+                    player.itemRotation = 0f;
+                    player.itemLocation.X = player.Center.X + (float)(6 * player.direction);
+                    player.itemLocation.Y = player.MountedCenter.Y + 6f;
+                }
+                else if (Item.staff[item.type])
+                {
+                    float scaleFactor = 6f;
+                    if (item.type == 3476)
+                    {
+                        scaleFactor = 14f;
+                    }
+                    player.itemLocation = player.MountedCenter;
+                    player.itemLocation += player.itemRotation.ToRotationVector2() * scaleFactor * player.direction;
+                }
+                else
+                {
+                    player.itemLocation.X = player.position.X + (float)player.width * 0.5f - (float)Main.itemTexture[item.type].Width * 0.5f - (float)(player.direction * 2);
+                    player.itemLocation.Y = player.MountedCenter.Y - (float)Main.itemTexture[item.type].Height * 0.5f;
+                }
+            }
         }
 
         public bool HasClass(int ClassID, string ClassModID = "")
@@ -384,6 +666,26 @@ namespace TerraClasses
             }
         }
 
+        public override bool PreItemCheck()
+        {
+            if (FakeWeapon)
+            {
+                player.itemAnimation--;
+                if(player.itemAnimation <= 0)
+                {
+                    FakeWeapon = false;
+                    if(BackUpWeapon > -1)
+                    {
+                        player.selectedItem = BackUpWeapon;
+                        BackUpWeapon = -1;
+                    }
+                }
+                SetItemOrientation();
+                return false;
+            }
+            return base.PreItemCheck();
+        }
+
         public override void PostUpdate()
         {
             SkillBeingUsed.ClassPosition = -1;
@@ -393,11 +695,28 @@ namespace TerraClasses
                 ClassData cd = Classes[c];
                 cd.Update(player, c);
             }
+            UsingPrivilegedSkill = false;
+            SkillBeingCasted = null;
             foreach (SkillData sd in GetSkillsUnderEffect)
             {
-                sd.GetBase.Update(player, sd);
+                if (sd.CastTime >= sd.GetBase.CastTime)
+                {
+                    sd.GetBase.Update(player, sd);
+                }
                 if (sd.Active)
-                    sd.Time++;
+                {
+                    if (sd.GetBase.UnallowOtherSkillUsage)
+                        UsingPrivilegedSkill = true;
+                    if (sd.CastTime < sd.GetBase.CastTime)
+                    {
+                        sd.CastTime++;
+                        SkillBeingCasted = sd;
+                    }
+                    else
+                    {
+                        sd.Time++;
+                    }
+                }
             }
         }
 
@@ -405,9 +724,39 @@ namespace TerraClasses
         {
             PlayerLayer layer = new PlayerLayer(mod.Name, "NClasses: Skill Effect Layer", delegate(PlayerDrawInfo pdi)
             {
+                if (SkillBeingCasted != null)
+                {
+                    SkillBase Base = SkillBeingCasted.GetBase;
+                    float CastPercentage = (SkillBeingCasted.CastTime / Base.CastTime);
+                    float Scale = Base.GetEffectRange(SkillBeingCasted);
+                    Terraria.DataStructures.DrawData dd;
+                    if (Scale > 0)
+                    {
+                        Scale /= 64;
+                        Vector2 DrawPos = SkillBeingCasted.CastPosition - Main.screenPosition;
+                        dd =
+                        new Terraria.DataStructures.DrawData(MainMod.MagicCircle, DrawPos, null, Color.White * CastPercentage * Main.cursorAlpha, SkillBeingCasted.CastTime * 0.017f,
+                        new Vector2(48, 48), Scale, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0);
+                        dd.ignorePlayerRotation = true;
+                        Main.playerDrawData.Add(dd);
+                    }
+                    float BarScale = 1 + CastPercentage * 62;
+                    Vector2 CastBarPosition = player.Top - Main.screenPosition;
+                    CastBarPosition.X = (int)(CastBarPosition.X - 32);
+                    CastBarPosition.Y = (int)(CastBarPosition.Y - 12);
+                    dd =
+                    new Terraria.DataStructures.DrawData(MainMod.CastBar, CastBarPosition, new Rectangle(0, 0, 64, 8), Color.White);
+                    dd.ignorePlayerRotation = true;
+                    Main.playerDrawData.Add(dd);
+                    dd =
+                    new Terraria.DataStructures.DrawData(MainMod.CastBar, CastBarPosition, new Rectangle(0, 8, (int)BarScale, 8), Color.White * Main.cursorAlpha);
+                    dd.ignorePlayerRotation = true;
+                    Main.playerDrawData.Add(dd);
+                }
                 foreach (SkillData sd in GetSkillsUnderEffect)
                 {
-                    sd.GetBase.Draw(player, sd, pdi);
+                    if(sd.CastTime >= sd.GetBase.CastTime)
+                        sd.GetBase.Draw(player, sd, pdi);
                 }
             });
             layers.Add(layer);

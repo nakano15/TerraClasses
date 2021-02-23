@@ -21,7 +21,8 @@ namespace TerraClasses
         public static int SkillChangeSlot = -1;
         public static bool DebugMode = false;
         public static Mod mod;
-        public static SkillSprite Longsword, CerberusSprite;
+        public static SkillSprite Longsword, CerberusSprite, Electricity;
+        public static Texture2D MagicCircle, CastBar;
         public const int ModVersion = 1;
         public static bool LoadedCustomModClasses = false;
         public const string ModClassAndSkillListCallName = "modandskillclasslist";
@@ -296,8 +297,11 @@ namespace TerraClasses
                 BorderTexture = GetTexture("Interface/Border");
                 //for(int i = 1; i <= 6; i++)
                 //    AddClassUnlocked(i, this.Name);
+                MagicCircle = LoadTexture("Content/MagicCircle");
+                CastBar = LoadTexture("Content/CastBar");
                 Longsword = new SkillSprite("Content/Effects/longsword");
                 CerberusSprite = new SkillSprite("Content/Effects/cerberus");
+                Electricity = new SkillSprite("Content/Effects/Electricity");
                 if (ModLoader.GetMod("NExperience") != null)
                     NExperienceLoaded = true;
                 LoadUnlockedClasses();

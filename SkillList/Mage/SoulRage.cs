@@ -13,10 +13,17 @@ namespace TerraClasses.SkillList.Mage
         public SoulRage()
         {
             Name = "Soul Rage";
-            Description = "Launches vengeful spirits at the foes 150ft near the mouse.\nAffects 3 targets initially, number increases every 3 levels.\nNumber of souls spawned is 1 + Level / 2.\nSouls causes 120% + 22% damage per level.";
+            Description = "Launches vengeful spirits at the foes 150ft near the mouse.\nAffects 3 targets initially, number increases every 3 levels.\nNumber of souls spawned is 1 + Level / 2.\nSouls causes 120% + 22% magic damage per level.";
             MaxLevel = 10;
             Cooldown = GetCooldown(35);
+            CastTime = 30;
             skillType = Enum.SkillTypes.Active;
+            UnallowOtherSkillUsage = true;
+        }
+
+        public override float GetEffectRange(SkillData sd)
+        {
+            return 300f;
         }
 
         public override SkillData GetSkillData => new SoulRageData();
@@ -26,12 +33,11 @@ namespace TerraClasses.SkillList.Mage
             SoulRageData data = (SoulRageData)rawdata;
             if (rawdata.Step == 0 && rawdata.Time == 0)
             {
-                Vector2 CheckPosition = new Vector2(Main.mouseX, Main.mouseY) + Main.screenPosition;
-                TargetTranslator.Translator[] Targets = rawdata.GetPossibleTargets(false).ToArray();
-                int MaxTargets = 3 + data.Level / 3;
-                //if (Targets.Length > MaxTargets)
-                //    Targets = Targets.Take(MaxTargets).ToArray();
+                Vector2 CheckPosition = GetMousePositionInTheWorld;
+                data.targets.Clear();
                 const float Distance = 300f;
+                int MaxTargets = 3 + data.Level / 3;
+                TargetTranslator.Translator[] Targets = rawdata.GetPossibleTargets(false).ToArray();
                 foreach (TargetTranslator.Translator target in Targets)
                 {
                     float MyDistance = (target.Center - CheckPosition).Length();
@@ -42,6 +48,10 @@ namespace TerraClasses.SkillList.Mage
                             break;
                     }
                 }
+                /*foreach (TargetTranslator.Translator target in Targets)
+                {
+                    data.targets.Add(new SoulRageData.Victim() { Target = target });
+                }*/
                 if (data.targets.Count == 0)
                 {
                     rawdata.EndUse(true);
@@ -58,6 +68,8 @@ namespace TerraClasses.SkillList.Mage
                 {
                     foreach (SoulRageData.Victim victim in data.targets)
                     {
+                        if (victim.Target == null)
+                            continue;
                         Vector2 SpawnPosition = player.Center;
                         Vector2 ShotDirection = new Vector2(-30 * player.direction, (data.Step - (ShotCount * 0.5f)) * 20);
                         //ShotDirection.Normalize();
@@ -80,7 +92,7 @@ namespace TerraClasses.SkillList.Mage
                     Vector2 MoveDirection = Vector2.Zero;
                     shot.Velocity *= 0.9f;
                     if (victim.Target != null)
-                        MoveDirection = victim.Target.Center - shot.Position;
+                        MoveDirection = (victim.Target.Center + victim.Target.Velocity) - shot.Position;
                     MoveDirection.Normalize();
                     shot.Velocity += MoveDirection * ShotSpeed;
                     if (shot.Velocity.Length() > 12)
@@ -124,7 +136,7 @@ namespace TerraClasses.SkillList.Mage
                     }
                 }
             }            
-            if(data.Step > ShotCount && !HasSoulActive)
+            if(data.Step > 0 && !HasSoulActive)
                 data.EndUse();
         }
 

@@ -12,22 +12,24 @@ namespace TerraClasses.SkillList.Sharpshooter
         public SupressiveFire()
         {
             Name = "Supressive Fire";
-            Description = "Fires several shots at arrow direction.\nEach shot inflicts 50% + 6% per level of damage.\nAt level 6 and above, armor penetration increases by 10%.\nLevel increases precision.";
+            Description = "Fires several shots at arrow direction.\nEach shot inflicts 70% + 12% per level of damage.\nAt level 6 and above, armor penetration increases by 10%.\nLevel increases precision.";
             MaxLevel = 10;
             Cooldown = GetCooldown(20);
+            CastTime = 30;
             skillType = Enum.SkillTypes.Active;
+            UnallowOtherSkillUsage = true;
         }
 
         public override void Update(Terraria.Player player, SkillData data)
         {
-            if (data.Time == 0 && !player.inventory.Take(10).Any(x => x.useAmmo != Terraria.ID.AmmoID.Bullet))
+            if (data.Time == 0 && !player.inventory.Take(10).Any(x => x.useAmmo == Terraria.ID.AmmoID.Bullet))
             {
                 CombatText.NewText(player.getRect(), Color.Red, "You don't have a gun type weapon.");
                 data.EndUse(true);
                 return;
             }
             const int ShotType = Terraria.ID.ProjectileID.BulletHighVelocity;
-            const float FireDelay = 6;
+            const int FireDelay = 6;
             const float ShotSpeed = 17f;
             if (data.Time >= FireDelay)
             {
@@ -40,9 +42,16 @@ namespace TerraClasses.SkillList.Sharpshooter
                     ShotDestination.Y += Main.rand.Next(-MouseSwayMaxDistance, MouseSwayMaxDistance + 1);
                 }
                 Vector2 ShotDirection = GetDirection(ShotSpawnCenter, ShotDestination) * ShotSpeed;
-                int Damage = data.GetRangedDamage(0, 0.5f + 0.06f * data.Level, player);
+                int Damage = data.GetRangedDamage(0, 0.7f + 0.12f * data.Level, player);
                 Projectile.NewProjectile(ShotSpawnCenter, ShotDirection, ShotType, Damage, 0.4f, player.whoAmI);
-
+                for (int i = 0; i < 10; i++)
+                {
+                    if (player.inventory[i].useAmmo == Terraria.ID.AmmoID.Bullet)
+                    {
+                        FakeWeaponUsage(player, i, GetMousePositionInTheWorld, FireDelay);
+                        break;
+                    }
+                }
                 data.ChangeStep();
             }
             if (data.Step >= 16)
