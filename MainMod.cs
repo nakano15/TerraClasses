@@ -20,6 +20,7 @@ namespace TerraClasses
         public static List<ClassUnlockLoreData> LoreDatas = new List<ClassUnlockLoreData>();
         public static int SkillChangeSlot = -1;
         public static bool DebugMode = false;
+        public static bool SaySkillNameOnUse = false;
         public static Mod mod;
         public static SkillSprite Longsword, CerberusSprite, Electricity;
         public static Texture2D MagicCircle, CastBar;

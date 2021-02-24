@@ -16,7 +16,7 @@ namespace TerraClasses.SkillList.Cleric
             Description = "Increases the allies Damage by 4% per level.\nAllies defense increases by 2% per level.";
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
-            Cooldown = 1* 3600 + 30 * 60;
+            Cooldown = GetCooldown(30, 1);
         }
 
         public override void Update(Player player, SkillData data)

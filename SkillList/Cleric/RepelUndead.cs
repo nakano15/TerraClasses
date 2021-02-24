@@ -12,10 +12,17 @@ namespace TerraClasses.SkillList.Cleric
         public RepelUndead()
         {
             Name = "Repel Undead";
-            Description = "Inflicts confuse on nearby undead monsters.\nSkill is active for 20 seconds.\nRange of 70 + 5 per level pixels.\nFor every 2 levels, increases damage overtime on nearby undeads by 2.";
+            Description = "Confuses nearby undead monsters.\nSkill is active for 20 seconds.\nFor every 2 levels, increases damage overtime on nearby undeads by 2.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(30, 2);
+            CastTime = 30;
+            PositionToTake = PositionToTakeOnCastEnum.Player;
+        }
+
+        public override float GetEffectRange(SkillData sd)
+        {
+            return 70 + 5 * sd.Level;
         }
 
         public bool IsUndead(int MobID)
@@ -25,7 +32,7 @@ namespace TerraClasses.SkillList.Cleric
 
         public override void Update(Terraria.Player player, SkillData data)
         {
-            float Range = 70 + 5 * data.Level;
+            float Range = GetEffectRange(data);
             Vector2 PlayerCenter = player.Center;
             int DamageOvertimeInflicted = 0;
             bool InflictDamage = data.Time % 6 == 0;

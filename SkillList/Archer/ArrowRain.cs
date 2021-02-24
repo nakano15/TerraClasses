@@ -15,7 +15,7 @@ namespace TerraClasses.SkillList.Archer
             Description = "Shoot arrows to the sky, making them rain around.\nUpward shoot causes 120% damage, falling shoots causes 70%.\nAttack damage of 80% + 3% per level.\nArrows falls for 7 seconds.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = 12 * 60;
+            Cooldown = GetCooldown(22);
         }
 
         public int GetDamage(Player player, SkillData data, bool UpwardShot)

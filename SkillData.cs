@@ -178,6 +178,8 @@ namespace TerraClasses
                 return;
             if (player.GetModPlayer<PlayerMod>().UsingPrivilegedSkill)
                 return;
+            if (MainMod.SaySkillNameOnUse && player.whoAmI == Main.myPlayer)
+                player.chatOverhead.NewMessage(GetBase.Name + "!!", 300);
             Time = 0;
             Step = 0;
             CastTime = 0;

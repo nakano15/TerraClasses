@@ -9,11 +9,13 @@
 	Fireball
 		Max Level reduced to 10.
 		Gained cast time if 1/3 of a second.
+		Cooldown reduced to 16 seconds.
 	Meteor Shower
 		Changed the damage factor of It: Instead of 140% + 30% per level of damage, went to 140% + 12% per level of damage.
 		Cooldown went from 45 seconds to 1 minute and 25 seconds.
 	Chain Lightning
 		New Spell.
+		Electrocutes the targets at the range of the mouse position.
 -Archer
 	Bone Arrow Barrage
 		Renamed to Arrow Barrage.
@@ -21,16 +23,33 @@
 		Fixed a bug where the condition seems to require not to have a bow in your inventory?
 		Now shows your character using the bow to shot the arrows.
 		Arrows will no longer has the chance to drop items when they hit something.
+		Cooldown reduced to 18 seconds.
 	Arrow Rain
 		Fixed a bug where the condition seems to require not to have a bow in your inventory?
 		Now shows your character using the bow to shot the arrows.
 		The rain will no longer follow you horizontally.
+		Cooldown increased to 22 seconds.
+	Swift Step
+		New Skill
+		Boosts your movement speed by 20% for 30 seconds.
+	Precision
+		New Skill
+		Precision increases the slower you move. Higher precision, higher damages and critical hit rate.
 -Sharpshooter
 	Supressive Fire
 		Now shows your character actually using your gun to shot.
 		Gained a cast time of half a second.
+-Cleric
+	Heal
+		Now heals allies around the mouse position, instead of player position.
+		Cast time set to 1/3 of a second.
+		Now shows It's effect.
+	Repel Undead
+		Cast time set to half a second.
 Some skills will unallow you to use other skills while they are in use.
 Added Cast Time possibility to some skills.
 	The cast time will, as the name implies, need you to wait until the skill charges to launch It.
 	Depending on the skill, the area of effect will be shown while the skill is casting. Use It to make as many targets be inside the area of the effect as you can.
 	A cast bar will be shown above the head of your character, when casting a skill.
+Added an option to allow you to make your character say the name of the skill they just used.
+	That will make you a cooler hero.

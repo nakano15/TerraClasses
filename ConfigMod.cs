@@ -31,6 +31,10 @@ namespace TerraClasses
         [Range(-1f, 1f)]
         [Increment(0.01f)]
         public Vector2 ExpBarOffset { get { return MainMod.ExpBarOffset; } set { MainMod.ExpBarOffset = value; } }
+
+        [Label("Say Skill name upon use?")]
+        [Tooltip("Your character will say the skill name everytime It uses It when this option is active.")]
+        public bool SaySkillNameUponUse { get { return MainMod.SaySkillNameOnUse; } set { MainMod.SaySkillNameOnUse = value; } }
     }
 
     [Label("Debugging Settings")]
