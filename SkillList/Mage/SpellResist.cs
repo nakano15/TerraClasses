@@ -11,7 +11,8 @@ namespace TerraClasses.SkillList.Mage
         public SpellResist()
         {
             Name = "Spell Resist";
-            Description = "Gain 20% projectile damage resistance at max rank.\n(only works for certain projectiles like beams, blast, and energy waves)";
+            Description = "Gain 20% projectile damage resistance at max rank.\n" +
+                " Only works for certain projectiles like beams, blast, and energy waves.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

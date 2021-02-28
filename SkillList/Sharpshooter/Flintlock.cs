@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Sharpshooter
         public Flintlock()
         {
             Name = "Flintlock";
-            Description = "Takes on a stance to better use guns.\nRanged damage increases by 8% per level.\nRanged critical rate increased by 8%.\nKnockback increased by 15%.";
+            Description = "Takes on a stance to better use guns.\n" +
+                " Ranged damage increases by 8% per level.\n" +
+                " Ranged critical rate increased by 8%.\n" +
+                " Knockback increased by 15%.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

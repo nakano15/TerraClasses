@@ -12,7 +12,9 @@ namespace TerraClasses.SkillList.Cleric
         public RepelUndead()
         {
             Name = "Repel Undead";
-            Description = "Confuses nearby undead monsters.\nSkill is active for 20 seconds.\nFor every 2 levels, increases damage overtime on nearby undeads by 2.";
+            Description = "Confuses nearby undead monsters.\n" +
+                " Skill is active for 20 seconds.\n" +
+                " For every 2 levels, increases damage overtime on nearby undeads by 2.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(30, 2);

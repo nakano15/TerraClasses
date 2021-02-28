@@ -11,7 +11,8 @@ namespace TerraClasses.SkillList.Fighter
         public DoubleArrows()
         {
             Name = "Double Arrows";
-            Description = "Shots two arrows at once.\nArrows causes 60% + 2% per level of their damages.";
+            Description = "Shots two arrows at once.\n" +
+                " Arrows causes 60% + 2% per level of their damages.";
             skillType = Enum.SkillTypes.Attack;
             MaxLevel = 10;
         }

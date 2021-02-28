@@ -12,7 +12,8 @@ namespace TerraClasses.SkillList.Mage
         public MeteorBarrage()
         {
             Name = "Meteor Barrage";
-            Description = "Invokes a meteor barrage at the\ntargetted position.\nEach meteor causes 140% + 12% * Level of magic damage.";
+            Description = "Invokes a meteor barrage at the targetted position.\n" +
+                " Each meteor causes 140% + 12% * Level of magic damage.";
             MaxLevel = 10;
             Cooldown = GetCooldown(25, 1);
             skillType = Enum.SkillTypes.Active;

@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Archer
         public ArrowRain()
         {
             Name = "Arrow Rain";
-            Description = "Shoot arrows to the sky, making them rain around.\nUpward shoot causes 120% damage, falling shoots causes 70%.\nAttack damage of 80% + 3% per level.\nArrows falls for 7 seconds.";
+            Description = "Shoot arrows to the sky, making them rain around.\n" +
+                " Upward shoot causes 120% damage, falling shoots causes 70%.\n" +
+                " Attack damage of 80% + 3% per level.\n" +
+                " Arrows falls for 7 seconds.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(22);

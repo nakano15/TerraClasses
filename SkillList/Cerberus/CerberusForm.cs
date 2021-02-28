@@ -13,7 +13,8 @@ namespace TerraClasses.SkillList.Cerberus
         public CerberusForm()
         {
             Name = "Cerberus Form";
-            Description = "Unlocks Cerberus forms. Demons are friendly to you.";
+            Description = "Changes yourself to a Cerberus.\n" +
+                " Demons are friendly towards you, except Fire Imps.";
             skillType = Enum.SkillTypes.Passive;
             MaxLevel = 1;
         }
@@ -125,19 +126,8 @@ namespace TerraClasses.SkillList.Cerberus
                 }
                 else if ((!pdi.drawAltHair && Main.playerDrawData[t].texture == Main.playerHairTexture[pdi.drawPlayer.hair]) || Main.playerDrawData[t].texture == Main.playerHairAltTexture[pdi.drawPlayer.hair] || pdi.drawPlayer.head > 0 && Main.playerDrawData[t].texture == Main.armorHeadTexture[pdi.drawPlayer.head])
                 {
-                    /*Terraria.DataStructures.DrawData ndd;
-                    Rectangle rect;
-                    rect = new Rectangle(dd.sourceRect.Value.X, dd.sourceRect.Value.Y, dd.sourceRect.Value.Width, dd.sourceRect.Value.Height);
-                    rect.X += 3 * 40;
-                    Color c = dd.color;
-                    DarkenColor(ref c);
-                    ndd = new Terraria.DataStructures.DrawData(CerberusTexture, dd.position, rect, c, dd.rotation, dd.origin, dd.scale, dd.effect, 0);
-                    Main.playerDrawData.Insert(t + 1, ndd);
-                    t++;*/
                     Terraria.DataStructures.DrawData ndd = Main.playerDrawData[t];
                     Main.playerDrawData.RemoveAt(t);
-                    //if (HeadPosition > -1)
-                    //    Main.playerDrawData.Insert(HeadPosition, ndd);
                 }
                 else if (Main.playerDrawData[t].texture == Main.playerTextures[player.skinVariant, Terraria.ID.PlayerTextureID.Eyes])
                 {

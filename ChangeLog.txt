@@ -46,6 +46,9 @@
 		Now shows It's effect.
 	Repel Undead
 		Cast time set to half a second.
+-Summoner
+	Summon Potence
+		Your companions now gains a media of critical rate, based on your character overall critical rate.
 Some skills will unallow you to use other skills while they are in use.
 Added Cast Time possibility to some skills.
 	The cast time will, as the name implies, need you to wait until the skill charges to launch It.

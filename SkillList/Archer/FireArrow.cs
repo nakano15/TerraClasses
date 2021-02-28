@@ -10,7 +10,7 @@ namespace TerraClasses.SkillList.Archer
         public FireArrow()
         {
             Name = "Fire Arrow";
-            Description = "For 45 seconds, Wooden Arrows shoot are\nturned into Fire Arrows.";
+            Description = "For 45 seconds, Wooden Arrows shoot are turned into Fire Arrows.";
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(15);
         }

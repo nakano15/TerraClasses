@@ -12,7 +12,9 @@ namespace TerraClasses.SkillList.Mage
         public Fireball()
         {
             Name = "Fireball";
-            Description = "Launches Fireballs at the mouse direction.\nEach level increases the number of Fireballs.\nFireball causes 60% + 10% per level of damage.";
+            Description = "Launches Fireballs at the mouse direction.\n" +
+                " Each level increases the number of Fireballs.\n" +
+                " Fireball causes 60% + 10% per level of damage.";
             MaxLevel = 10;
             Cooldown = GetCooldown(16);
             CastTime = 20;

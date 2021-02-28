@@ -13,7 +13,10 @@ namespace TerraClasses.SkillList.Mage
         public SoulRage()
         {
             Name = "Soul Rage";
-            Description = "Launches vengeful spirits at the foes 150ft near the mouse.\nAffects 3 targets initially, number increases every 3 levels.\nNumber of souls spawned is 1 + Level / 2.\nSouls causes 120% + 22% magic damage per level.";
+            Description = "Launches vengeful spirits at the foes 150ft near the mouse.\n" +
+                " Affects 3 targets initially, number increases every 3 levels.\n" +
+                " Number of souls spawned is 1 + Level / 2.\n" +
+                " Souls causes 120% + 22% magic damage per level.";
             MaxLevel = 10;
             Cooldown = GetCooldown(35);
             CastTime = 30;

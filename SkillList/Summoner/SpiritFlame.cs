@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Summoner
         public SpiritFlame()
         {
             Name = "Spirit Flames";
-            Description = "Every summon you have invoked will spawn Spirit Flame to attak nearby foes.\nEach Spirit Flame inflicts 85% + 3% per level Summon Damage.\n 2nd Spirit Flame at level 5.\n 3rd Spirit Flame at level 9.";
+            Description = "Every summon you have invoked will spawn Spirit Flame to attak nearby foes.\n" +
+                " Each Spirit Flame inflicts 85% + 3% per level Summon Damage.\n" +
+                "  2nd Spirit Flame at level 5.\n" +
+                "  3rd Spirit Flame at level 9.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(45, 1);

@@ -10,7 +10,8 @@ namespace TerraClasses.SkillList.Berseker
         public Constitution()
         {
             Name = "Constitution";
-            Description = "Increases your maximum health by 4% per level.\nIf skill is level 6 or above, starts reducing Defense by 2% per level.";
+            Description = "Increases your maximum health by 4% per level.\n" +
+                " If skill is level 6 or above, starts reducing Defense by 2% per level.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

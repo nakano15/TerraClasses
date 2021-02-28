@@ -12,7 +12,9 @@ namespace TerraClasses.SkillList.Fighter
         public Endure()
         {
             Name = "Endure";
-            Description = "Rises defense by 15, and gives Knockback Immunity.\nPast level 5, starts giving 3% extra defense.\nLasts for 45 seconds.";
+            Description = "Rises defense by 15, and gives Knockback Immunity.\n" +
+                " Past level 5, starts giving 3% extra defense.\n" +
+                " Lasts for 45 seconds.";
             Cooldown = 35 * 60;
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;

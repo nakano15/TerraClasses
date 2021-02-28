@@ -13,7 +13,11 @@ namespace TerraClasses.SkillList.Archer
         public ExtraArrows()
         {
             Name = "Extra Arrows";
-            Description = "Shoots extra arrows rhythimically.\nOne, Two, Three, One, Two, Three.\nArrowDamage is of 60 + 8% per level.\nSecond Arrow inflicts 80% of damage, third 60%.\nOnly shoots arrows when using any arrow using weapons.";
+            Description = "Shoots extra arrows rhythimically.\n" +
+                " One, Two, Three, One, Two, Three.\n" +
+                " ArrowDamage is of 60 + 8% per level.\n" +
+                " Second Arrow inflicts 80% of damage, third 60%.\n" +
+                " Only shoots arrows when using any arrow using weapons.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Attack;
         }

@@ -12,7 +12,8 @@ namespace TerraClasses.SkillList.Archer
         public ArrowBarrage()
         {
             Name = "Arrow Barrage";
-            Description = "Shoots 10 arrows at the mouse direciton.\nEach arrow causes 60% + 10% per level of damage.";
+            Description = "Shoots 10 arrows at the mouse direciton.\n" +
+                " Each arrow causes 60% + 10% per level of damage.";
             MaxLevel = 10;
             Cooldown = GetCooldown(18);
             skillType = Enum.SkillTypes.Active;

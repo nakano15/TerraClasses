@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Cleric
         public Heal()
         {
             Name = "Heal";
-            Description = "Restores the health of all allies around mouse position.\nHealth restored is equal to 15% of your max health, plus\n40% + 8% per level of magic damage.\nHealing range increases with the level.";
+            Description = "Restores the health of all allies around mouse position.\n" +
+                " Health restored is equal to 15% of your max health, plus\n" +
+                " 40% + 8% per level of magic damage.\n" +
+                " Healing range increases with the level.";
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
             Cooldown = GetCooldown(45);

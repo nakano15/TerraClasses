@@ -10,18 +10,22 @@ namespace TerraClasses.SkillList.Summoner
     public class InvokeBats : SkillBase
     {
         private const byte ShotDirectionVar = 0;
-        private static List<int> BatPositions = new List<int>();
 
         public InvokeBats()
         {
             Name = "Invoke Bats";
-            Description = "Summon bats to attack your foes, as you attack.\nSummon Damage increases by 60% + 2% per level.\nYour character may recover some health when a bat hits a monster.";
+            Description = "Summon bats to attack your foes, as you attack.\n" +
+                " Summon Damage increases by 60% + 2% per level.\n" +
+                " Your character may recover some health when a bat hits a monster.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Attack;
         }
 
-        public override void Update(Terraria.Player player, SkillData data)
+        public override SkillData GetSkillData => new InvokeBatsSkillData();
+
+        public override void Update(Terraria.Player player, SkillData rawdata)
         {
+            InvokeBatsSkillData data = (InvokeBatsSkillData)rawdata;
             const float ShotDirectionVariation = 0.2f;
             if (data.Time == 0)
             {
@@ -34,9 +38,9 @@ namespace TerraClasses.SkillList.Summoner
                 int Damage = data.GetSummonDamage(0, 0.6f + 0.02f * data.Level, player);
                 Vector2 ShotDirection = new Vector2(player.direction * -2f, ShotDirectionY);
                 int ProjPos = Projectile.NewProjectile(player.Center, ShotDirection, 316, Damage, 0f, player.whoAmI);
-                if (!BatPositions.Contains(ProjPos))
+                if (!data.BatPositions.Contains(ProjPos))
                 {
-                    BatPositions.Add(ProjPos);
+                    data.BatPositions.Add(ProjPos);
                 }
                 ShotDirectionY += ShotDirectionVariation;
                 if (ShotDirectionY >= ShotDirectionVariation * 2)
@@ -45,11 +49,12 @@ namespace TerraClasses.SkillList.Summoner
             }
         }
 
-        public override void OnHitNPCWithProj(Player player, SkillData data, Projectile proj, NPC target, int damage, float knockback, bool crit)
+        public override void OnHitNPCWithProj(Player player, SkillData rawdata, Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            if (proj.type == 316 && BatPositions.Contains(proj.whoAmI) && Main.rand.Next(100) < data.Level)
+            InvokeBatsSkillData data = (InvokeBatsSkillData)rawdata;
+            if (proj.type == 316 && data.BatPositions.Contains(proj.whoAmI) && Main.rand.Next(100) < data.Level)
             {
-                BatPositions.Remove(proj.whoAmI);
+                data.BatPositions.Remove(proj.whoAmI);
                 int HealthChange = 1;
                 if (player.statLifeMax2 > player.statLifeMax)
                 {
@@ -58,6 +63,11 @@ namespace TerraClasses.SkillList.Summoner
                 player.statLife += HealthChange;
                 CombatText.NewText(player.getRect(), CombatText.HealLife, HealthChange, false, true);
             }
+        }
+
+        public class InvokeBatsSkillData : SkillData
+        {
+            public List<int> BatPositions = new List<int>();
         }
     }
 }

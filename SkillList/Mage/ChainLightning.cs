@@ -16,11 +16,11 @@ namespace TerraClasses.SkillList.Mage
         {
             Name = "Chain Lightning";
             Description = "Releases lightning bolts that target one enemy after another dealing magic damage.\n" +
-                "Can affect up to 3 + Level / 2 targets at once.\n" +
-                "Affects enemies at mouse position.\n" +
-                "Electricity hits targets 10 + Level / 2 times.\n" +
-                "Inflicts 80% + 2.5% per level Magic Damage per hit.\n" +
-                "Chain Lightning damage drops as It hits more targets, but gains a 10% damage bonus per extra target to compensate."; //(At max rank can chain up to 8 enemies)
+                " Can affect up to 3 + Level / 2 targets at once.\n" +
+                " Affects enemies at mouse position.\n" +
+                " Electricity hits targets 10 + Level / 2 times.\n" +
+                " Inflicts 80% + 2.5% per level Magic Damage per hit.\n" +
+                " Chain Lightning damage drops as It hits more targets, but gains a 10% damage bonus per extra target to compensate."; //(At max rank can chain up to 8 enemies)
             MaxLevel = 10;
             Cooldown = GetCooldown(40);
             CastTime = GetCooldown(1) + 20;

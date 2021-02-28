@@ -12,9 +12,9 @@ namespace TerraClasses.SkillList.Knight
         {
             Name = "Cavalry";
             Description = "Makes yourself stronger when doing mounted combat.\n" +
-                "Melee Damage increases based on speed. Damage increases with level.\n" +
-                "Ranged attacks increased by 1% per level.\n" +
-                "Defense increases by 2 per level.";
+                " Melee Damage increases based on speed. Damage increases with level.\n" +
+                " Ranged attacks increased by 1% per level.\n" +
+                " Defense increases by 2 per level.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

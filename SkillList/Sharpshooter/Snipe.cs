@@ -10,7 +10,8 @@ namespace TerraClasses.SkillList.Sharpshooter
         public Snipe()
         {
             Name = "Snipe";
-            Description = "Deliver a precise shot the next time you fire a gun.\nInflicts 320% + 16% per level of ranged damage.";
+            Description = "Deliver a precise shot the next time you fire a gun.\n" +
+                " Inflicts 320% + 16% per level of ranged damage.";
             MaxLevel = 10;
             Cooldown = GetCooldown(45, 1);
             skillType = Enum.SkillTypes.Active;

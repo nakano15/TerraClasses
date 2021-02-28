@@ -10,7 +10,9 @@ namespace TerraClasses.SkillList.Sharpshooter
         public GunKnowledge()
         {
             Name = "Gun Knowledge";
-            Description = "Gives you knowledge on how to use guns.\nWeapons using bullets will grant you 1% extra ranged damage.\nGains +6% Ranged Critical Rate when skill is level 6 or above.";
+            Description = "Gives you knowledge on how to use guns.\n" +
+                " Weapons using bullets will grant you 1% extra ranged damage.\n" +
+                " Gains +6% Ranged Critical Rate when skill is level 6 or above.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

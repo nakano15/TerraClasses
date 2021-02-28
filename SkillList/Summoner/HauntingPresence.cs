@@ -13,7 +13,12 @@ namespace TerraClasses.SkillList.Summoner
         public HauntingPresence()
         {
             Name = "Haunting Presence";
-            Description = "Whenever your character has foes nearby,\nyour minions will invoke Lost Souls too attack them.\nLost Soul inflicts 35% minion damage, ignoring defense.\n Defense ignore does not works on monsters with thousands defense\nSkill level and summon count increases how frequently they are shot.\n Summon count only impacts on this up to 10.";
+            Description = "Whenever your character has foes nearby,\n" +
+                "your minions will invoke Lost Souls too attack them.\n" +
+                " Lost Soul inflicts 35% minion damage, ignoring defense.\n" +
+                "  Defense ignore does not works on monsters with thousands defense\n" +
+                " Skill level and summon count increases how frequently they are shot.\n" +
+                "  Summon count only impacts on this up to 10.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

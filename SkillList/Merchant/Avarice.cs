@@ -14,7 +14,9 @@ namespace TerraClasses.SkillList.Merchant
         public Avarice()
         {
             Name = "Avarice";
-            Description = "Sometimes your character may sense nearby chests\nwith valuable and unique items inside.\nLevel increases the range.\nThere is 30 seconds before you can find another chest nearby.";
+            Description = "Sometimes your character may sense nearby chests with valuable and unique items inside." +
+                " \nLevel increases the range." +
+                " \nThere is 30 seconds before you can find another chest nearby.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

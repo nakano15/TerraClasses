@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Berseker
         public Anger()
         {
             Name = "Anger";
-            Description = "Increases your damage as you get hurt.\nDamage stack is reduced overtime.\nEvery 2 Levels reduces the time It takes for the damage stack to deplete.\nLevel increases the damage bonus based on max health.";
+            Description = "Increases your damage as you get hurt.\n" +
+                " Damage stack is reduced overtime.\n" +
+                " Every 2 Levels reduces the time It takes for the damage stack to deplete.\n" +
+                " Level increases the damage bonus based on max health.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

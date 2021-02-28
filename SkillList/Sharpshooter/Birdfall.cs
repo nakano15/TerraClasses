@@ -10,7 +10,9 @@ namespace TerraClasses.SkillList.Sharpshooter
         public Birdfall()
         {
             Name = "Birdfall";
-            Description = "The next shot inflicts extra damage to enemies in the air.\nDamage increase is of 60% + 20% per level.\nOnly works with guns.";
+            Description = "The next shot inflicts extra damage to enemies in the air.\n" +
+                " Damage increase is of 60% + 20% per level.\n" +
+                " Only works with guns.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(45);

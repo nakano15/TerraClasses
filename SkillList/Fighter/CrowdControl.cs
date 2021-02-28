@@ -11,7 +11,9 @@ namespace TerraClasses.SkillList.Fighter
         public CrowdControl()
         {
             Name = "Crowd Control";
-            Description = "Increases your character defense by 2\nfor each hostile monster nearby.\nLevel increases the radius of checking.\nLevel 10 increases defense bonus by 3.";
+            Description = "Increases your character defense by 2 for each hostile monster nearby.\n" +
+                " Level increases the radius of checking.\n" +
+                " Level 10 increases defense bonus by 3.";
             skillType = Enum.SkillTypes.Passive;
             MaxLevel = 10;
         }

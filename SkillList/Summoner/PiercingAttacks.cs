@@ -12,7 +12,8 @@ namespace TerraClasses.SkillList.Summoner
         public PiercingAttacks()
         {
             Name = "Piercing Attacks";
-            Description = "Companion attacks returns 1% of enemy defense as damage per level.\nDefense ignored increases by 5% at max level.";
+            Description = "Companion attacks returns 1% of enemy defense as damage per level.\n" +
+                " Defense ignored increases by 5% at max level.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

@@ -10,7 +10,9 @@ namespace TerraClasses.SkillList.Berseker
         public AxePower()
         {
             Name = "Axe Power";
-            Description = "Increases damage of Axe type weapons based on 2% per level of their axe power.\nCritical rate when using axes increases by 6%.\nAt level 6 and above, hitting a monster with an axe can restore 7% of health based on damage.";
+            Description = "Increases damage of Axe type weapons based on 2% per level of their axe power.\n" +
+                " Critical rate when using axes increases by 6%.\n" +
+                " At level 6 and above, hitting a monster with an axe can restore 7% of health based on damage.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;            
         }

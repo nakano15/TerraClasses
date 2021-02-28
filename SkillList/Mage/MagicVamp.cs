@@ -10,7 +10,8 @@ namespace TerraClasses.SkillList.Mage
         public MagicVamp()
         {
             Name = "Magic Vamp";
-            Description = "Occassionally decreases enemies magic defense and strenghtens players magic weapon damage \nby a percentage when attacking with weapons that deal magic damage only.";
+            Description = "Occassionally decreases enemies magic defense and strenghtens players magic weapon damage \n" +
+                " by a percentage when attacking with weapons that deal magic damage only.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Attack;
         }

@@ -113,6 +113,10 @@ namespace TerraClasses
                     return new SkillList.Mage.ChainLightning();
                 case 49:
                     return new SkillList.Knight.Cavalry();
+                case 50:
+                    return new SkillList.Knight.Vow();
+                case 51:
+                    return new SkillList.Knight.Charge();
             }
             return new SkillBase();
         }

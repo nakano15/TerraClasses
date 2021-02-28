@@ -12,7 +12,14 @@ namespace TerraClasses.SkillList.Berseker
         public Frenzy()
         {
             Name = "Frenzy";
-            Description = "Enter a frenzied state, attacking full power anything in your way.\nAll Damages increases by 150%.\nDefense drops to 0.\nAttack speed greatly increased.\nLasts 20 + 1 seconds per level.\nWhen skill is at level 6+:\n +5 Seconds duration.\n Causes a explosion around your character,\n  inflicting 60% melee damage to all nearby foes.";
+            Description = "Enter a frenzied state, attacking full power anything in your way.\n" +
+                " All Damages increases by 150%.\n" +
+                " Defense drops to 0.\n" +
+                " Attack speed greatly increased.\n" +
+                " Lasts 20 + 1 seconds per level.\n" +
+                " When skill is at level 6+:\n" +
+                "  +5 Seconds duration.\n" +
+                "  Causes a explosion around your character, inflicting 60% melee damage to all nearby foes.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(0, 5);

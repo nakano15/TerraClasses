@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Merchant
         public ThrowCoins()
         {
             Name = "Throw Coins";
-            Description = "Throw coins in front of you.\nCoins launched will cause 33% + 4% per level of melee damage.\nUses 1 * Level Silver coins per use.\nCoins launched varies between 3~5. Every 3 levels increases coin count.";
+            Description = "Throw coins in front of you.\n" +
+                " Coins launched will cause 33% + 4% per level of melee damage.\n" +
+                " Uses 1 * Level Silver coins per use.\n" +
+                " Coins launched varies between 3~5. Every 3 levels increases coin count.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = GetCooldown(45);

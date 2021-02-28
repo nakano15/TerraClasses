@@ -12,11 +12,14 @@ namespace TerraClasses.ClassList
             Name = "Knight";
             Description = "";
             AddSkill(49);
+            AddSkill(50);
+            AddSkill(51);
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()
         {
-            return base.CreateLoreBase();
+            ClassUnlockLoreBase Lore = new ClassUnlockLoreBase();
+            return Lore;
         }
     }
 }

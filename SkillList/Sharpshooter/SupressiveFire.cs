@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Sharpshooter
         public SupressiveFire()
         {
             Name = "Supressive Fire";
-            Description = "Fires several shots at arrow direction.\nEach shot inflicts 70% + 12% per level of damage.\nAt level 6 and above, armor penetration increases by 10%.\nLevel increases precision.";
+            Description = "Fires several shots at arrow direction.\n" +
+                " Each shot inflicts 70% + 12% per level of damage.\n" +
+                " At level 6 and above, armor penetration increases by 10%.\n" +
+                " Level increases precision.";
             MaxLevel = 10;
             Cooldown = GetCooldown(20);
             CastTime = 30;

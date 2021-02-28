@@ -15,7 +15,13 @@ namespace TerraClasses.SkillList.Cerberus
         public ElementalBreath()
         {
             Name = "Elemental Breath";
-            Description = "Breathes elemental attacks from the mouth every 1 second.\nAlternates between mouths while spitting, launching different elements.\nInflicts 80% + 4% per level damage.\nEach mouth damage is related to a attack type.\n1/4 chance of spitting based on Summon damage, instead of Melee, ranged or magic damage.\nAfter 4 shots, It enters a overdrive mode for 8 shots, and then resets.\nFire delay is lower when with lower than half health.";
+            Description = "Breathes elemental attacks from the mouth every 1 second.\n" +
+                " Alternates between mouths while spitting, launching different elements.\n" +
+                " Inflicts 80% + 4% per level damage.\n" +
+                " Each mouth damage is related to a attack type.\n" +
+                " 1/4 chance of spitting based on Summon damage, instead of Melee, ranged or magic damage.\n" +
+                " After 4 shots, It enters a overdrive mode for 8 shots, and then resets.\n" +
+                " Fire delay is lower when with lower than half health.";
             skillType = Enum.SkillTypes.Attack;
             MaxLevel = 10;
         }

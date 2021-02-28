@@ -12,8 +12,12 @@ namespace TerraClasses.SkillList.Fighter
 
         public ProgressiveAttack()
         {
-            Name = "Prog. Attack";
-            Description = "Progressivelly changes the attack damage and speed based on swings.\nFirst swing inflicts 1% extra damage per level.\nSecond swing inflicts 20%+1% per level more damage.\nThird swing inflicts 40% + 1% per level more damage, attack is 30% slower and then resets the cycle.\nLevel increases melee damage and attack speed.";
+            Name = "Progressive Attack";
+            Description = "Progressivelly changes the attack damage and speed based on swings.\n" +
+                " First swing inflicts 1% extra damage per level.\n" +
+                " Second swing inflicts 20%+1% per level more damage.\n" +
+                " Third swing inflicts 40% + 1% per level more damage, attack is 30% slower and then resets the cycle.\n" +
+                " Level increases melee damage and attack speed.";
             skillType = Enum.SkillTypes.Attack;
             MaxLevel = 10;
         }

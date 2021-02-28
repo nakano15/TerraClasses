@@ -16,7 +16,9 @@ namespace TerraClasses.SkillList.Fighter
         public TrustyLongsword()
         {
             Name = "Side Sword";
-            Description = "Swings a longsword, inflicting damage to nearby enemies.\nInflicts 140% + 20% per level of melee damage.\nLevel increases sword size by 15%.";
+            Description = "Swings a longsword, inflicting damage to nearby enemies.\n" +
+                " Inflicts 140% + 20% per level of melee damage.\n" +
+                " Level increases sword size by 15%.";
             Cooldown = GetCooldown(28);
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;

@@ -12,7 +12,10 @@ namespace TerraClasses.SkillList.Cerberus
         public Fire_Breath()
         {
             Name = "Fire Breath";
-            Description = "Breathes fire at the mouse direction.\nYou will be unable to attack while breathing fire.\nCauses 120% + 15% per level of magic damage.\nFire breath lasts for 4 seconds.";
+            Description = "Breathes fire at the mouse direction.\n" +
+                " You will be unable to attack while breathing fire.\n" +
+                " Causes 120% + 15% per level of magic damage.\n" +
+                " Fire breath lasts for 4 seconds.";
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
             Cooldown = GetCooldown(40);

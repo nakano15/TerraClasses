@@ -11,7 +11,10 @@ namespace TerraClasses.SkillList.Berseker
         public Bully()
         {
             Name = "Bully";
-            Description = "Deal more damage on small targets.\nDamage inflicted increases by 12% per level.\nAt level 5 and above, half of the damage bonus affects medium monsters. \nAt level 10 and above, a fourth of the damage bonus affects large monsters.";
+            Description = "Deal more damage on small targets.\n" +
+                " Damage inflicted increases by 12% per level.\n" +
+                " At level 5 and above, half of the damage bonus affects medium monsters.\n" +
+                " At level 10 and above, a fourth of the damage bonus affects large monsters.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }

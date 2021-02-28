@@ -10,7 +10,10 @@ namespace TerraClasses.SkillList.Terrarian
         public BasicTraining()
         {
             Name = "Basic Training";
-            Description = "Unlocks features as you level It up.\nLevel 3 unlocks active skills.\nLevel 6 unlocks combat skills.\nLevel 10 unlocks class changes.";
+            Description = "Unlocks features as you level It up.\n" +
+                " Level 3 unlocks active skills.\n" +
+                " Level 6 unlocks combat skills.\n" +
+                " Level 10 unlocks class changes.";
             MaxLevel = 10;
         }
 

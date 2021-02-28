@@ -15,7 +15,10 @@ namespace TerraClasses.SkillList.Archer
         public Precision()
         {
             Name = "Precision";
-            Description = "The lower your move speed, the higher precision you get.\nPrecision increases your arrow damage by 6% per level based on the precision percentage.\nMoving too fast reduces the percentage.\nPast level 5, each level gives 3% Critical Rate";
+            Description = "The lower your move speed, the higher precision you get.\n" +
+                " Precision increases your arrow damage by 6% per level based on the precision percentage.\n" +
+                " Moving too fast reduces the percentage.\n" +
+                " Past level 5, each level gives 3% Critical Rate";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Passive;
         }
