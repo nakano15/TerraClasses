@@ -74,6 +74,7 @@
     <Compile Include="Enum\SkillTypes.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
+    <Compile Include="SkillList\Knight\Charge.cs" />
     <Compile Include="SkillList\Knight\Vow.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />

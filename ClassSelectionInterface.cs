@@ -208,12 +208,18 @@ namespace TerraClasses
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInterfacePos.X + 4, (int)SkillInterfacePos.Y + 4, 128, Height - 8), Color.Goldenrod);
                 bool LastClassIsMaxed = false;
                 List<string> ClassList = new List<string>();
+                bool First = true;
                 foreach (ClassData c in Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes)
                 {
                     LastClassIsMaxed = c.Level >= c.MaxLevel;
+                    if (First)
+                    {
+                        First = false;
+                        continue;
+                    }
                     ClassList.Add((LastClassIsMaxed ? "*" : "") + c.Name);
                 }
-                if (LastClassIsMaxed && Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().ClassChangeUnlocked && ClassList.Count < MainMod.MaxClasses)
+                if (LastClassIsMaxed && Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().ClassChangeUnlocked && ClassList.Count < MainMod.MaxClasses + 1)
                 {
                     ClassList.Add("New Class");
                 }
@@ -222,7 +228,7 @@ namespace TerraClasses
                     MaxClasses = ClassList.Count;
                 for (int i = 0; i < MaxClasses; i++)
                 {
-                    int Index = i;
+                    int Index = i + 1;
                     Vector2 ClassNamePosition = SkillInterfacePos + new Vector2(4, 4 + i * 25f);
                     bool MouseOver = Main.mouseX >= ClassNamePosition.X && Main.mouseX < ClassNamePosition.X + 96 && Main.mouseY >= ClassNamePosition.Y && Main.mouseY < ClassNamePosition.Y + 25;
                     Color color = Color.White;
@@ -275,7 +281,6 @@ namespace TerraClasses
                                         Main.mouseY >= Position.Y && Main.mouseY < Position.Y + 25)
                                     {
                                         color = Color.Yellow;
-                                        //Clicksch for classch infosch
                                         if (Main.mouseLeft && Main.mouseLeftRelease)
                                         {
                                             CheckedClassID = ClassID;

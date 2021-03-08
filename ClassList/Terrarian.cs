@@ -11,7 +11,6 @@ namespace TerraClasses.ClassList
         {
             Name = "Terrarian";
             Description = "The initial class a Terrarian can have.\nYou can choose a path after reaching level 10 with it.";
-            AddSkill(0);
         }
 
         public override int GetLevelExp(int Level)

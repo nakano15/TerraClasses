@@ -20,6 +20,8 @@ namespace TerraClasses.SkillList.Summoner
             skillType = Enum.SkillTypes.Passive;
         }
 
+        public override SkillData GetSkillData => new SummonPotenceSkillData();
+
         public override void UpdateStatus(Player player, SkillData rawdata)
         {
             SummonPotenceSkillData data = (SummonPotenceSkillData)rawdata;

@@ -10,7 +10,7 @@ namespace TerraClasses
 {
     public class PlayerMod : ModPlayer
     {
-        public byte BasicTrainingLevel = 0;
+        public int BasicTrainingLevel { get { return Classes[0].Level; } }
         public List<ClassData> Classes = new List<ClassData>();
         public SkillSlot[] ActiveSkill = new SkillSlot[] { new SkillSlot(), new SkillSlot(), new SkillSlot(), new SkillSlot() };
         public SkillSlot CombatSkill = new SkillSlot(); //Support Skill, Healing Skill?

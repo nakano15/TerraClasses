@@ -19,7 +19,7 @@ namespace TerraClasses.SkillList.Terrarian
 
         public override void UpdateStatus(Terraria.Player player, SkillData data)
         {
-            player.GetModPlayer<PlayerMod>().BasicTrainingLevel = (byte)data.Level;
+
         }
     }
 }
