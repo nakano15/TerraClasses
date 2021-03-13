@@ -10,7 +10,7 @@ namespace TerraClasses
 {
     public class SkillBase
     {
-        public string Name = "Unknown";
+        public string Name = "Unknown", WikiPage = null;
         public string Description = "The skill creator forgot to setup this...";
         public int MaxLevel = 1;
         public int ManaCost = 0;

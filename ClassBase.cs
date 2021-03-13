@@ -8,7 +8,7 @@ namespace TerraClasses
 {
     public class ClassBase
     {
-        public string Name = "Unknown";
+        public string Name = "Unknown", WikiPage = null;
         public string Description = "The class creator forgot to setup this...";
         public List<ClassSkillInfo> SkillList = new List<ClassSkillInfo>();
         public int MaxLevel = 10;

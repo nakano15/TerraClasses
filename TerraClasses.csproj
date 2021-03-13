@@ -168,6 +168,7 @@
     <Content Include="Interface\Border.png" />
     <Content Include="Interface\ClassBtn.png" />
     <Content Include="Interface\LevelArrow.png" />
+    <Content Include="Interface\Star.png" />
     <Content Include="Items\ClassBooks\ArcherBook.png" />
     <Content Include="Items\ClassBooks\BersekerBook.png" />
     <Content Include="Items\ClassBooks\CerberusBook.png" />

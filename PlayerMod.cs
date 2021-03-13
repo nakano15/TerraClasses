@@ -43,6 +43,7 @@ namespace TerraClasses
         public bool FakeWeapon = false;
         public bool UsingPrivilegedSkill = false;
         public SkillData SkillBeingCasted = null;
+        public float DifficultyLevel = 0f;
 
         public override void Initialize()
         {
@@ -717,6 +718,49 @@ namespace TerraClasses
                         sd.Time++;
                     }
                 }
+            }
+            GetDifficultyLevel();
+        }
+
+        public void GetDifficultyLevel()
+        {
+            Tile tile = Framing.GetTileSafely((int)player.Center.X / 16, (int)player.Center.Y / 16);
+            DifficultyLevel = (Classes.Count - 1) * 0.3f;
+            if(player.ZoneTowerNebula || player.ZoneTowerSolar || player.ZoneTowerStardust || player.ZoneTowerVortex)
+            {
+                DifficultyLevel += 5f;
+            }
+            if (tile.wall == Terraria.ID.WallID.LihzahrdBrickUnsafe)
+            {
+                DifficultyLevel += 3.25f;
+            }
+            if (player.ZoneDungeon)
+            {
+                DifficultyLevel += 1.25f;
+            }
+            if (player.ZoneJungle)
+            {
+                DifficultyLevel += 1.2f;
+            }
+            if (!Main.dayTime)
+            {
+                DifficultyLevel += 0.4f;
+            }
+            if (player.ZoneCorrupt || player.ZoneCrimson || player.ZoneHoly)
+            {
+                DifficultyLevel += 0.6f;
+            }
+            if (player.ZoneUnderworldHeight)
+            {
+                DifficultyLevel += 1.8f;
+            }
+            if (player.ZoneBeach)
+            {
+                DifficultyLevel += 1.2f;
+            }
+            if (Main.hardMode && (!player.ZoneUnderworldHeight || NPC.downedMechBossAny))
+            {
+                DifficultyLevel += 3;
             }
         }
 

@@ -1,1 +1,5 @@
-﻿
+﻿Now you can check the skills the class offers before changing classes.
+Difficulty readjusting system implemented:
+	The difficulty will be readjusted by a number of specific factors.
+	The difficulty change will be represented by stars that appears on the top of the screen.
+	The more stars It has, the more buffed the monsters will get.

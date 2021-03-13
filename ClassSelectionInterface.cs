@@ -16,14 +16,15 @@ namespace TerraClasses
         public static int ScrollY = 0;
         public static SkillSlot HeldSkill = null;
         public const int Width = 520, Height = 240;
-        public static int CheckedClassID = -1;
-        public static string CheckedClassModID = "";
+        public static int CheckedClassID = -1, CheckedSkillID = -1;
+        public static string CheckedClassModID = "", CheckedSkillModID = "";
 
         public static void Open()
         {
             Active = true;
             SelectedClass = -1;
             SelectedSkill = -1;
+            CheckedClassID = CheckedSkillID = -1;
             Mod NExperienceMod = ModLoader.GetMod("NExperience");
             if (NExperienceMod != null)
             {
@@ -63,6 +64,62 @@ namespace TerraClasses
                     Main.player[Main.myPlayer].mouseInterface = true;
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInterfacePos.X - 2, (int)SkillInterfacePos.Y - 2, Width + 4, Height + 2), Color.Black);
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInterfacePos.X, (int)SkillInterfacePos.Y, Width, Height), Color.OrangeRed);
+                //Wiki page
+                if (Active && SelectedClass > -1)
+                {
+                    Vector2 WikiPageButtonPosition = new Vector2(Main.screenWidth * 0.5f + Width * 0.5f - 2, Main.screenHeight - Height);
+                    Color color = Color.White;
+                    if (Main.mouseX >= WikiPageButtonPosition.X - 40 && Main.mouseX < WikiPageButtonPosition.X &&
+                        Main.mouseY >= WikiPageButtonPosition.Y + 2 && Main.mouseY < WikiPageButtonPosition.Y + 20)
+                    {
+                        color = Color.Yellow;
+                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        {
+                            string WikiLink = "";
+                            if (CheckedSkillID > -1)
+                            {
+                                SkillBase sb = MainMod.GetSkill(CheckedSkillID, CheckedSkillModID);
+                                if (sb.WikiPage != null)
+                                    WikiLink = sb.WikiPage;
+                                else
+                                    WikiLink = sb.Name;
+                            }
+                            else if (CheckedClassID > -1)
+                            {
+                                ClassBase sb = MainMod.GetClass(CheckedClassID, CheckedClassModID);
+                                if (sb.WikiPage != null)
+                                    WikiLink = sb.WikiPage;
+                                else
+                                    WikiLink = sb.Name;
+                            }
+                            else if (SelectedClass > -1)
+                            {
+                                ClassBase c = Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes[SelectedClass].GetClass;
+                                if (SelectedSkill > -1)
+                                {
+                                    SkillBase b = MainMod.GetSkill(c.SkillList[SelectedSkill].SkillID, c.SkillList[SelectedSkill].SkillMod);
+                                    if (c.WikiPage != null)
+                                        WikiLink = b.WikiPage;
+                                    else
+                                        WikiLink = b.Name;
+                                }
+                                else
+                                {
+                                    if (c.WikiPage != null)
+                                        WikiLink = c.WikiPage;
+                                    else
+                                        WikiLink = c.Name;
+                                }
+                            }
+                            if (WikiLink != "")
+                            {
+                                WikiLink = "https://nakano15-mods.fandom.com/wiki/" + WikiLink;
+                                System.Diagnostics.Process.Start(WikiLink);
+                            }
+                        }
+                    }
+                    Utils.DrawBorderString(Main.spriteBatch, "Wiki", WikiPageButtonPosition, color, 0.75f, 1);
+                }
                 if (CheckedClassID > -1)
                 {
                     SkillInterfacePos.X += 4;
@@ -74,53 +131,111 @@ namespace TerraClasses
                     SkillInterfacePos.Y += 25;
                     Utils.DrawBorderString(Main.spriteBatch, "Max Level: " + cb.MaxLevel, SkillInterfacePos, Color.White);
                     SkillInterfacePos.Y += 22;
-                    bool CanChangeClass = true;
-                    if (cb.ClassType == ClassBase.ClassTypes.Aspect && Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes.Any(x => x.GetClass.ClassType == ClassBase.ClassTypes.Aspect))
+                    if (CheckedSkillID > -1)
                     {
-                        CanChangeClass = false;
-                        Utils.DrawBorderString(Main.spriteBatch, "You can only have one Aspect class on your character.", SkillInterfacePos, Color.White, 0.85f);
-                        SkillInterfacePos.Y += 22f;
-                    }
-                    string[] DescriptionConcat = cb.Description.Split('\n');
-                    foreach (string s in DescriptionConcat)
-                    {
-                        Utils.DrawBorderString(Main.spriteBatch, s, SkillInterfacePos, Color.White, 0.9f);
-                        SkillInterfacePos.Y += 20;
-                    }
-                    Vector2 ButtonPosition = new Vector2(Main.screenWidth * 0.5f - Width * 0.5f + 4, Main.screenHeight - 22);
-                    Color color = Color.White;
-                    if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 86 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
-                    {
-                        color = Color.Yellow;
-                        if (CanChangeClass && Main.mouseLeft && Main.mouseLeftRelease)
+                        SkillBase sb = MainMod.GetSkill(CheckedSkillID, CheckedSkillModID);
+                        Utils.DrawBorderString(Main.spriteBatch, sb.Name, SkillInterfacePos, Color.White, 1.2f);
+                        SkillInterfacePos.Y += 25;
+                        Utils.DrawBorderString(Main.spriteBatch, "Type: " + sb.skillType.ToString(), SkillInterfacePos, Color.White, 1);
+                        SkillInterfacePos.Y += 22;
+                        string[] Desc = sb.Description.Split('\n');
+                        foreach (string desc in Desc)
                         {
-                            /*if (cb.ClassType == ClassBase.ClassTypes.Aspect)
+                            Utils.DrawBorderString(Main.spriteBatch, desc, SkillInterfacePos, Color.White, 0.8f);
+                            SkillInterfacePos.Y += 18;
+                        }
+                        Vector2 ButtonPosition = new Vector2(Main.screenWidth * 0.5f - Width * 0.5f + 4 + Width - 68f, Main.screenHeight - 22);
+                        Color color = Color.White;
+                        if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 68 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
+                        {
+                            color = Color.Yellow;
+                            if (Main.mouseLeft && Main.mouseLeftRelease)
                             {
-                                Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes[0].ChangeClass(CheckedClassID, CheckedClassModID);
+                                CheckedSkillID = -1;
+                                CheckedSkillModID = "";
                             }
-                            else
-                            {*/
-                                Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().AddClass(CheckedClassID, CheckedClassModID);
-                            //}
-                            Main.NewText("You changed into " + cb.Name + " class!");
-                            CheckedClassID = -1;
-                            CheckedClassModID = "";
-                            Active = false;
                         }
+                        Utils.DrawBorderString(Main.spriteBatch, "Return", ButtonPosition, color);
                     }
-                    Utils.DrawBorderString(Main.spriteBatch, "Change Class", ButtonPosition, color);
-                    color = Color.Red;
-                    ButtonPosition.X += Width - 68f;
-                    if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 68 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
+                    else
                     {
-                        color = Color.Yellow;
-                        if (Main.mouseLeft && Main.mouseLeftRelease)
+                        bool CanChangeClass = true;
+                        if (cb.ClassType == ClassBase.ClassTypes.Aspect && Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes.Any(x => x.GetClass.ClassType == ClassBase.ClassTypes.Aspect))
                         {
-                            CheckedClassID = -1;
-                            CheckedClassModID = "";
+                            CanChangeClass = false;
+                            Utils.DrawBorderString(Main.spriteBatch, "You can only have one Aspect class on your character.", SkillInterfacePos, Color.White, 0.85f);
+                            SkillInterfacePos.Y += 22f;
                         }
+                        string[] DescriptionConcat = cb.Description.Split('\n');
+                        foreach (string s in DescriptionConcat)
+                        {
+                            Utils.DrawBorderString(Main.spriteBatch, s, SkillInterfacePos, Color.White, 0.8f);
+                            SkillInterfacePos.Y += 18;
+                        }
+                        const int SkillColumns = 2;
+                        int SkillRows = (int)((Main.screenHeight - SkillInterfacePos.Y) / 20);
+                        for (int row = 0; row < SkillRows; row++)
+                        {
+                            for (int column = 0; column < SkillColumns; column++)
+                            {
+                                int SkillIndex = column + SkillColumns * (row + ScrollY);
+                                string SkillName = "Skill#" + SkillIndex;
+                                SkillBase sb = null;
+                                ClassSkillInfo csi;
+                                if (SkillIndex < cb.SkillList.Count)
+                                {
+                                    csi = cb.SkillList[SkillIndex];
+                                    sb = MainMod.GetSkill(csi.SkillID, csi.SkillMod);
+                                    SkillName = sb.Name;
+                                }
+                                else
+                                {
+                                    continue;
+                                }
+                                Vector2 SkillPosition = new Vector2(128f * column, row * 25) + SkillInterfacePos;
+                                Color c = Color.White;
+                                if (Main.mouseX >= SkillPosition.X && Main.mouseX < SkillPosition.X + 128 &&
+                                    Main.mouseY >= SkillPosition.Y && Main.mouseY < SkillPosition.Y + 25)
+                                {
+                                    c = Color.Cyan;
+                                    if (Main.mouseLeft && Main.mouseLeftRelease)
+                                    {
+                                        CheckedSkillID = csi.SkillID;
+                                        CheckedSkillModID = csi.SkillMod;
+                                    }
+                                }
+                                Utils.DrawBorderString(Main.spriteBatch, SkillName, SkillPosition, c);
+                            }
+                        }
+                        Vector2 ButtonPosition = new Vector2(Main.screenWidth * 0.5f - Width * 0.5f + 4, Main.screenHeight - 22);
+                        Color color = Color.White;
+                        if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 86 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
+                        {
+                            color = Color.Yellow;
+                            if (CanChangeClass && Main.mouseLeft && Main.mouseLeftRelease)
+                            {
+                                Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().AddClass(CheckedClassID, CheckedClassModID);
+                                Main.NewText("You changed into " + cb.Name + " class!");
+                                CheckedClassID = -1;
+                                CheckedClassModID = "";
+                                Active = false;
+                            }
+                        }
+                        Utils.DrawBorderString(Main.spriteBatch, "Change Class", ButtonPosition, color);
+                        color = Color.Red;
+                        ButtonPosition.X += Width - 68f;
+                        if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 68 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
+                        {
+                            color = Color.Yellow;
+                            if (Main.mouseLeft && Main.mouseLeftRelease)
+                            {
+                                CheckedClassID = -1;
+                                CheckedClassModID = "";
+                                Close();
+                            }
+                        }
+                        Utils.DrawBorderString(Main.spriteBatch, "Close", ButtonPosition, color);
                     }
-                    Utils.DrawBorderString(Main.spriteBatch, "Close", ButtonPosition, color);
                     return;
                 }
                 if (SelectedSkill > -1)
@@ -330,7 +445,6 @@ namespace TerraClasses
                             }
                         }
                     }
-
                 }
                 else
                 {

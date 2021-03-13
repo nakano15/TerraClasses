@@ -14,6 +14,7 @@ namespace TerraClasses.ClassList
             AddSkill(49);
             AddSkill(50);
             AddSkill(51);
+            MaxLevel = 50;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

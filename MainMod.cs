@@ -23,7 +23,7 @@ namespace TerraClasses
         public static bool SaySkillNameOnUse = false;
         public static Mod mod;
         public static SkillSprite Longsword, CerberusSprite, Electricity;
-        public static Texture2D MagicCircle, CastBar;
+        public static Texture2D MagicCircle, CastBar, StarTexture;
         public const int ModVersion = 1;
         public static bool LoadedCustomModClasses = false;
         public const string ModClassAndSkillListCallName = "modandskillclasslist";
@@ -123,13 +123,13 @@ namespace TerraClasses
             }
             if (File.Exists(ClassLoreDataSaveFileName))
             {
+                LoreDatas.Clear();
                 using (FileStream stream = new FileStream(ClassLoreDataSaveFileName, FileMode.Open))
                 {
                     using (BinaryReader reader = new BinaryReader(stream))
                     {
                         int LastModVersion = reader.ReadInt32();
                         int DataCounts = reader.ReadInt32();
-                        LoreDatas.Clear();
                         for (int d = 0; d < DataCounts; d++)
                         {
                             int ClassID = reader.ReadInt32();
@@ -296,6 +296,7 @@ namespace TerraClasses
                 ClassButtonTexture = LoadTexture("Interface/ClassBtn");
                 LevelArrowTexture = GetTexture("Interface/LevelArrow");
                 BorderTexture = GetTexture("Interface/Border");
+                StarTexture = GetTexture("Interface/Star");
                 //for(int i = 1; i <= 6; i++)
                 //    AddClassUnlocked(i, this.Name);
                 MagicCircle = LoadTexture("Content/MagicCircle");
@@ -745,6 +746,18 @@ namespace TerraClasses
                 }
             }
             SkillInfoStartPosition.X += 128;
+            if (!Main.playerInventory)
+            {
+                Vector2 Position = new Vector2(Main.screenWidth * 0.5f, Main.screenHeight * 0.15f + 25f);
+                int StarCount = (int)Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().DifficultyLevel;
+                Position.X -= (14 * StarCount) * 0.5f;
+                for(int i = 0; i < StarCount; i++)
+                {
+                    Main.spriteBatch.Draw(StarTexture, Position, Color.White);
+                    Position.X += 14;
+                }
+                //Utils.DrawBorderString(Main.spriteBatch, "Difficulty: "+ Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().DifficultyLevel, Position, Color.Yellow, 0.85f, 0.5f);
+            }
             DrawClassInfoInterface();
             return true;
         }

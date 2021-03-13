@@ -10,6 +10,7 @@ namespace TerraClasses
     public class NpcMod : GlobalNPC
     {
         public int CPReward = 0;
+        private static Player SpawnPlayer = null;
 
         public override bool CloneNewInstances
         {
@@ -27,9 +28,26 @@ namespace TerraClasses
             }
         }
 
+        public override void EditSpawnPool(IDictionary<int, float> pool, NPCSpawnInfo spawnInfo)
+        {
+            SpawnPlayer = spawnInfo.player;
+        }
+
         public override void SetDefaults(NPC npc)
         {
             CPReward = npc.lifeMax / 8 + (npc.damage * 2 + npc.defense) / 2;
+            if(SpawnPlayer != null)
+            {
+                ReadjustStatusBasedOnDifficulty(npc, SpawnPlayer.GetModPlayer<PlayerMod>().DifficultyLevel);
+            }
+        }
+
+        public void ReadjustStatusBasedOnDifficulty(NPC npc, float DifficultyLevel)
+        {
+            int StatusMod = (int)DifficultyLevel;
+            npc.lifeMax += (int)(npc.lifeMax * 0.4f * StatusMod);
+            npc.damage += (int)(npc.damage * 0.2f * StatusMod);
+            npc.defense += (int)(npc.defense * 0.1f * StatusMod);
         }
 
         public override bool CheckDead(NPC npc)

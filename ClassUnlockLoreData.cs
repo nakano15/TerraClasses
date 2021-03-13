@@ -139,7 +139,6 @@ namespace TerraClasses
             writer.Write(LoreInternalProgress.Count);
             for (int i = 0; i < LoreInternalProgress.Count; i++)
             {
-                ClassLoreStepProgress clsp = LoreInternalProgress[i];
                 writer.Write(LoreInternalProgress[i].StepValue);
             }
         }
