@@ -20,7 +20,7 @@ namespace TerraClasses.SkillList.Knight
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             PositionToTake = PositionToTakeOnCastEnum.Player;
-            Cooldown = GetCooldown(40);
+            Cooldown = GetTime(40);
         }
 
         public float GetDamageValue(Player player, SkillData data)

@@ -728,19 +728,19 @@ namespace TerraClasses
             DifficultyLevel = (Classes.Count - 1) * 0.3f;
             if(player.ZoneTowerNebula || player.ZoneTowerSolar || player.ZoneTowerStardust || player.ZoneTowerVortex)
             {
-                DifficultyLevel += 5f;
+                DifficultyLevel += 3f;
             }
             if (tile.wall == Terraria.ID.WallID.LihzahrdBrickUnsafe)
             {
-                DifficultyLevel += 3.25f;
+                DifficultyLevel += 2.25f;
             }
             if (player.ZoneDungeon)
             {
-                DifficultyLevel += 1.25f;
+                DifficultyLevel += 1f;
             }
             if (player.ZoneJungle)
             {
-                DifficultyLevel += 1.2f;
+                DifficultyLevel += 0.9f;
             }
             if (!Main.dayTime)
             {
@@ -752,15 +752,15 @@ namespace TerraClasses
             }
             if (player.ZoneUnderworldHeight)
             {
-                DifficultyLevel += 1.8f;
+                DifficultyLevel += 1.2f;
             }
             if (player.ZoneBeach)
             {
-                DifficultyLevel += 1.2f;
+                DifficultyLevel += 0.4f;
             }
             if (Main.hardMode && (!player.ZoneUnderworldHeight || NPC.downedMechBossAny))
             {
-                DifficultyLevel += 3;
+                DifficultyLevel += 2;
             }
         }
 

@@ -14,7 +14,9 @@ namespace TerraClasses
         public string ModID = "";
         public int Cooldown = 0;
         public float CastTime = 0;
-        public int Level = 0;
+        public int Level { get { return RealLevel + LevelBonus; } set { RealLevel = value; } }
+        public int RealLevel = 0;
+        public int LevelBonus = 0;
         public int Step = 0;
         public int Time = 0;
         public int LastTime { get { return Time > 0 ? Time - 1: 0; } }
@@ -332,6 +334,45 @@ namespace TerraClasses
                     {
                         Targets.RemoveAt(t);
                     }
+                }
+            }
+            if (MaxTargets > 0)
+            {
+                while (Targets.Count > MaxTargets)
+                    Targets.RemoveAt(MaxTargets);
+            }
+            return Targets.ToArray();
+        }
+
+        public TargetTranslator.Translator[] GetPossibleTargets(bool Allies, Rectangle rectangle, bool SelfIncluded = false,int MaxTargets = 0)
+        {
+            List<TargetTranslator.Translator> Targets = new List<TargetTranslator.Translator>();
+            Player me = Main.player[Owner];
+            for (int i = 0; i < 255; i++)
+            {
+                if (Main.player[i].active && (SelfIncluded || i != Owner))
+                {
+                    bool IsAlly = !Main.player[i].hostile || (me.team != 0 && me.team == Main.player[i].team);
+                    if ((Allies && IsAlly) || (!Allies && !IsAlly))
+                    {
+                        Targets.Add(new TargetTranslator.PlayerTarget(Main.player[i]));
+                    }
+                }
+                if (i < 200 && Main.npc[i].active)
+                {
+                    bool IsAlly = (Main.npc[i].townNPC || Main.npc[i].friendly);
+                    if ((Allies && IsAlly) || (!Allies && !IsAlly))
+                    {
+                        Targets.Add(new TargetTranslator.NpcTarget(Main.npc[i]));
+                    }
+                }
+            }
+            Targets.AddRange(MainMod.GetOtherModTargets(me, Allies));
+            for (int t = Targets.Count - 1; t >= 0; t--)
+            {
+                if (!Targets[t].GetRectangle.Intersects(rectangle))
+                {
+                    Targets.RemoveAt(t);
                 }
             }
             if (MaxTargets > 0)

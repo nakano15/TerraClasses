@@ -32,7 +32,7 @@ namespace TerraClasses.TargetTranslator
         public override int Height { get => player.height; set => player.height = value; }
         public override Vector2 Position { get => player.position; set => player.position = value; }
         public override Vector2 Velocity { get => player.velocity; set => player.velocity = value; }
-        public override Rectangle GetRectangle => player.getRect();
+        public override Rectangle GetRectangle { get => player.getRect(); }
         public override bool Immunity { get => player.immuneTime > 0 || player.immune; set => player.immune = value; }
 
         public override void PlayHurtSound()

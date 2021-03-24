@@ -3,3 +3,13 @@ Difficulty readjusting system implemented:
 	The difficulty will be readjusted by a number of specific factors.
 	The difficulty change will be represented by stars that appears on the top of the screen.
 	The more stars It has, the more buffed the monsters will get.
+	NPCs get 20% more health and damage, and 10% more defense multiplied by number of stars.
+-Sharpshooter
+	-Supressive Fire
+		Bullets shot by It now pierces through 3 + 5 / Level targets.
+	-Snipe
+		It functions partially like Supressive Fire, in the way skill works. Instead of waiting for you to try shotting to have the skill be used, It will now instead shot after 1/3 of a second has passed after skill usage.
+			This is to avoid an issue where certain weapons, like clockwork assault rifle, were never triggering this skill effect.
+-Summoner
+	-Summon Potence
+		Removed the twice damage multiplier given by the critical effect of the summon. That was actually causing summons to inflict 4 times the damage, in the end.

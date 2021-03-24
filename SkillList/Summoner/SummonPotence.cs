@@ -38,7 +38,7 @@ namespace TerraClasses.SkillList.Summoner
                     CriticalRate += 5;
                 if (Terraria.Main.rand.Next(100) < CriticalRate)
                 {
-                    damage *= 2;
+                    //damage *= 2;
                     crit = true;
                 }
             }

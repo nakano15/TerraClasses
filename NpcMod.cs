@@ -44,10 +44,13 @@ namespace TerraClasses
 
         public void ReadjustStatusBasedOnDifficulty(NPC npc, float DifficultyLevel)
         {
-            int StatusMod = (int)DifficultyLevel;
-            npc.lifeMax += (int)(npc.lifeMax * 0.4f * StatusMod);
-            npc.damage += (int)(npc.damage * 0.2f * StatusMod);
-            npc.defense += (int)(npc.defense * 0.1f * StatusMod);
+            if (npc.lifeMax > 5 || npc.damage > 0)
+            {
+                int StatusMod = (int)DifficultyLevel;
+                npc.lifeMax += (int)(npc.lifeMax * 0.2f * StatusMod);
+                npc.damage += (int)(npc.damage * 0.2f * StatusMod);
+                npc.defense += (int)(npc.defense * 0.1f * StatusMod);
+            }
         }
 
         public override bool CheckDead(NPC npc)
@@ -98,6 +101,22 @@ namespace TerraClasses
                 {
                     i.value = (int)(i.value * Discount);
                 }
+            }
+        }
+
+        public override void ModifyHitByItem(NPC npc, Player player, Item item, ref int damage, ref float knockback, ref bool crit)
+        {
+            if (npc.HasBuff(Terraria.ID.BuffID.BrokenArmor))
+            {
+                damage += npc.defense / 2;
+            }
+        }
+
+        public override void ModifyHitByProjectile(NPC npc, Projectile projectile, ref int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            if (npc.HasBuff(Terraria.ID.BuffID.BrokenArmor))
+            {
+                damage += npc.defense / 2;
             }
         }
 

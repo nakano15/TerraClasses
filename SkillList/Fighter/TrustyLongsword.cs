@@ -19,7 +19,7 @@ namespace TerraClasses.SkillList.Fighter
             Description = "Swings a longsword, inflicting damage to nearby enemies.\n" +
                 " Inflicts 140% + 20% per level of melee damage.\n" +
                 " Level increases sword size by 15%.";
-            Cooldown = GetCooldown(28);
+            Cooldown = GetTime(28);
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
         }

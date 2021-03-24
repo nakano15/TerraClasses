@@ -12,7 +12,7 @@ namespace TerraClasses.SkillList.Archer
             Name = "Fire Arrow";
             Description = "For 45 seconds, Wooden Arrows shoot are turned into Fire Arrows.";
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(15);
+            Cooldown = GetTime(15);
         }
 
         public override void Update(Terraria.Player player, SkillData data)

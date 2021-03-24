@@ -18,7 +18,7 @@ namespace TerraClasses.SkillList.Merchant
                 " Coins launched varies between 3~5. Every 3 levels increases coin count.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(45);
+            Cooldown = GetTime(45);
         }
 
         public override void Update(Player player, SkillData data)

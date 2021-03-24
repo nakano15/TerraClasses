@@ -17,7 +17,7 @@ namespace TerraClasses.SkillList.Cleric
                 " Allies defense increases by 2% per level.";
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
-            Cooldown = GetCooldown(30, 1);
+            Cooldown = GetTime(30, 1);
         }
 
         public override void Update(Player player, SkillData data)

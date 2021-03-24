@@ -18,7 +18,7 @@ namespace TerraClasses.SkillList.Cerberus
                 " Fire breath lasts for 4 seconds.";
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
-            Cooldown = GetCooldown(40);
+            Cooldown = GetTime(40);
             UnallowOtherSkillUsage = true;
         }
 

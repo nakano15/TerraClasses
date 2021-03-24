@@ -17,7 +17,7 @@ namespace TerraClasses.SkillList.Cleric
                 " For every 2 levels, increases damage overtime on nearby undeads by 2.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(30, 2);
+            Cooldown = GetTime(30, 2);
             CastTime = 30;
             PositionToTake = PositionToTakeOnCastEnum.Player;
         }

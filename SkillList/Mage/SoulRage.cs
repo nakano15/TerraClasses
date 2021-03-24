@@ -18,7 +18,7 @@ namespace TerraClasses.SkillList.Mage
                 " Number of souls spawned is 1 + Level / 2.\n" +
                 " Souls causes 120% + 22% magic damage per level.";
             MaxLevel = 10;
-            Cooldown = GetCooldown(35);
+            Cooldown = GetTime(35);
             CastTime = 30;
             skillType = Enum.SkillTypes.Active;
             UnallowOtherSkillUsage = true;

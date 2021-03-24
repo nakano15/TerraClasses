@@ -22,8 +22,8 @@ namespace TerraClasses.SkillList.Mage
                 " Inflicts 80% + 2.5% per level Magic Damage per hit.\n" +
                 " Chain Lightning damage drops as It hits more targets, but gains a 10% damage bonus per extra target to compensate."; //(At max rank can chain up to 8 enemies)
             MaxLevel = 10;
-            Cooldown = GetCooldown(40);
-            CastTime = GetCooldown(1) + 20;
+            Cooldown = GetTime(40);
+            CastTime = GetTime(1) + 20;
             skillType = Enum.SkillTypes.Active;
             UnallowOtherSkillUsage = true;
         }

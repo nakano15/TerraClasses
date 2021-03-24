@@ -15,7 +15,7 @@ namespace TerraClasses.SkillList.Sharpshooter
                 " Only works with guns.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(45);
+            Cooldown = GetTime(45);
         }
 
         public override bool BeforeShooting(Terraria.Player player, SkillData data, Terraria.Item weapon, ref int type, ref int damage, ref float knockback, ref Microsoft.Xna.Framework.Vector2 Position, ref float SpeedX, ref float SpeedY)

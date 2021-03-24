@@ -27,7 +27,7 @@ namespace TerraClasses.TargetTranslator
         public override int Height { get => npc.height; set => npc.height = value; }
         public override Vector2 Position { get => npc.position; set => npc.position = value; }
         public override Vector2 Velocity { get => npc.velocity; set => npc.velocity = value; }
-        public override Rectangle GetRectangle => npc.getRect();
+        public override Rectangle GetRectangle { get => npc.getRect(); }
 
         public override bool Immunity { get => npc.dontTakeDamage; set => base.Immunity = value; }
 

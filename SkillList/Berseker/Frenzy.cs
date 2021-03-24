@@ -22,7 +22,7 @@ namespace TerraClasses.SkillList.Berseker
                 "  Causes a explosion around your character, inflicting 60% melee damage to all nearby foes.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(0, 5);
+            Cooldown = GetTime(0, 5);
         }
 
         public override void UpdateStatus(Terraria.Player player, SkillData data)

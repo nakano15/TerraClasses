@@ -21,7 +21,7 @@ namespace TerraClasses.SkillList.Knight
                 " Staying close to the one you vowed for increases your health regen rate.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(0, 1);
+            Cooldown = GetTime(0, 1);
         }
 
         public override SkillData GetSkillData => new VowSkillData();

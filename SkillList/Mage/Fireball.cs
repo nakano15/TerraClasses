@@ -16,7 +16,7 @@ namespace TerraClasses.SkillList.Mage
                 " Each level increases the number of Fireballs.\n" +
                 " Fireball causes 60% + 10% per level of damage.";
             MaxLevel = 10;
-            Cooldown = GetCooldown(16);
+            Cooldown = GetTime(16);
             CastTime = 20;
             skillType = Enum.SkillTypes.Active;
             UnallowOtherSkillUsage = true;

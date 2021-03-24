@@ -18,7 +18,7 @@ namespace TerraClasses.SkillList.Summoner
                 "  3rd Spirit Flame at level 9.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(45, 1);
+            Cooldown = GetTime(45, 1);
         }
 
         public override void Update(Terraria.Player player, SkillData data)

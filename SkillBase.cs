@@ -26,7 +26,7 @@ namespace TerraClasses
             return 0;
         }
 
-        public int GetCooldown(int Seconds, int Minutes = 0, int Hours = 0)
+        public int GetTime(int Seconds, int Minutes = 0, int Hours = 0)
         {
             return Seconds * 60 + Minutes * 3600 + Hours * 216000;
         }

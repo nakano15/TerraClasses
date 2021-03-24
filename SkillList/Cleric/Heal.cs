@@ -18,7 +18,7 @@ namespace TerraClasses.SkillList.Cleric
                 " Healing range increases with the level.";
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
-            Cooldown = GetCooldown(45);
+            Cooldown = GetTime(45);
             CastTime = 20;
         }
 

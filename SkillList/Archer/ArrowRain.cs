@@ -18,7 +18,7 @@ namespace TerraClasses.SkillList.Archer
                 " Arrows falls for 7 seconds.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            Cooldown = GetCooldown(22);
+            Cooldown = GetTime(22);
         }
 
         public int GetDamage(Player player, SkillData data, bool UpwardShot)

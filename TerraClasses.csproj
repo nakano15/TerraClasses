@@ -52,6 +52,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="Buffs\Bless.cs" />
+    <Compile Include="Buffs\HighGuard.cs" />
     <Compile Include="ClassBase.cs" />
     <Compile Include="ClassData.cs" />
     <Compile Include="ClassDB.cs" />
@@ -72,9 +73,15 @@
     <Compile Include="ClassUnlockLoreData.cs" />
     <Compile Include="ConfigMod.cs" />
     <Compile Include="Enum\SkillTypes.cs" />
+    <Compile Include="Items\ClassBooks\KnightBook.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
     <Compile Include="SkillList\Knight\Charge.cs" />
+    <Compile Include="SkillList\Knight\ConstantRest.cs" />
+    <Compile Include="SkillList\Knight\HeavySlam.cs" />
+    <Compile Include="SkillList\Knight\HighGuard.cs" />
+    <Compile Include="SkillList\Knight\ShieldBash.cs" />
+    <Compile Include="SkillList\Knight\Unload.cs" />
     <Compile Include="SkillList\Knight\Vow.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
@@ -158,12 +165,14 @@
     <Compile Include="WorldMod.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Buffs\HighGuard.png" />
     <Content Include="Buffs\Bless.png" />
     <Content Include="ChangeLog.txt" />
     <Content Include="Content\CastBar.png" />
     <Content Include="Content\Effects\cerberus.png" />
     <Content Include="Content\Effects\Electricity.png" />
     <Content Include="Content\Effects\longsword.png" />
+    <Content Include="Content\Effects\ShieldBashEffect.png" />
     <Content Include="Content\MagicCircle.png" />
     <Content Include="Interface\Border.png" />
     <Content Include="Interface\ClassBtn.png" />
@@ -175,6 +184,7 @@
     <Content Include="Items\ClassBooks\ClassLoreBookPrefab.png" />
     <Content Include="Items\ClassBooks\ClericBook.png" />
     <Content Include="Items\ClassBooks\FighterBook.png" />
+    <Content Include="Items\ClassBooks\KnightBook.png" />
     <Content Include="Items\ClassBooks\MageBook.png" />
     <Content Include="Items\ClassBooks\MerchantBook.png" />
     <Content Include="Items\ClassBooks\SharpshooterBook.png" />

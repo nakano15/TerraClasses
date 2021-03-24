@@ -34,6 +34,8 @@ namespace TerraClasses
                     return new ClassList.Berseker();
                 case 10:
                     return new ClassList.Summoner();
+                case 11:
+                    return new ClassList.Knight();
             }
             return new ClassBase();
         }

@@ -117,6 +117,14 @@ namespace TerraClasses
                     return new SkillList.Knight.Vow();
                 case 51:
                     return new SkillList.Knight.Charge();
+                case 52:
+                    return new SkillList.Knight.Unload();
+                case 53:
+                    return new SkillList.Knight.ShieldBash();
+                case 54:
+                    return new SkillList.Knight.HighGuard();
+                case 55:
+                    return new SkillList.Knight.HeavySlam();
             }
             return new SkillBase();
         }
