@@ -125,6 +125,8 @@ namespace TerraClasses
                     return new SkillList.Knight.HighGuard();
                 case 55:
                     return new SkillList.Knight.HeavySlam();
+                case 56:
+                    return new SkillList.Knight.Provoke();
             }
             return new SkillBase();
         }

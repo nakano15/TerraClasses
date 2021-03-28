@@ -65,7 +65,7 @@ namespace TerraClasses
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInterfacePos.X - 2, (int)SkillInterfacePos.Y - 2, Width + 4, Height + 2), Color.Black);
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInterfacePos.X, (int)SkillInterfacePos.Y, Width, Height), Color.OrangeRed);
                 //Wiki page
-                if (Active && SelectedClass > -1)
+                if (Active && SelectedClass > -1 && SelectedClass < Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().Classes.Count)
                 {
                     Vector2 WikiPageButtonPosition = new Vector2(Main.screenWidth * 0.5f + Width * 0.5f - 2, Main.screenHeight - Height);
                     Color color = Color.White;

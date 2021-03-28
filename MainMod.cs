@@ -22,7 +22,7 @@ namespace TerraClasses
         public static bool DebugMode = false;
         public static bool SaySkillNameOnUse = false;
         public static Mod mod;
-        public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect;
+        public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect;
         public static Texture2D MagicCircle, CastBar, StarTexture;
         public const int ModVersion = 1;
         public static bool LoadedCustomModClasses = false;
@@ -32,7 +32,7 @@ namespace TerraClasses
         public static string UnlockedClassedSaveFileName = Main.SavePath + "/unlockedclasses.sav";
         public static string ClassLoreDataSaveFileName = Main.SavePath + "/classloredatas.sav";
         public const string ModGetTargetListCallName = "getothermodtargets";
-        public static int TotalSkills = 55;
+        public const int TotalSkills = 57;
 
         /// <summary>
         /// To add a kind of support to other things having classes too, maybe 
@@ -306,6 +306,7 @@ namespace TerraClasses
                 CerberusSprite = new SkillSprite("Content/Effects/cerberus");
                 Electricity = new SkillSprite("Content/Effects/Electricity");
                 ShieldBashEffect = new SkillSprite("Content/Effects/ShieldBashEffect");
+                ProvokeAudioEffect = new SkillSprite("Content/Effects/ProvokeSound");
                 if (ModLoader.GetMod("NExperience") != null)
                     NExperienceLoaded = true;
                 LoadUnlockedClasses();
