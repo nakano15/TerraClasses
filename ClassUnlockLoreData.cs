@@ -294,7 +294,6 @@ namespace TerraClasses
 
         public static bool IsRequiredMonster(int NpcType, int ReqMobID)
         {
-            bool IsQuestMob = false;
             if (NpcType == NPCID.EaterofWorldsHead || NpcType == NPCID.EaterofWorldsBody || NpcType == NPCID.EaterofWorldsTail)
             {
                 byte BodyPartCount = 0;
@@ -305,59 +304,53 @@ namespace TerraClasses
                         BodyPartCount++;
                     }
                 }
-                IsQuestMob = BodyPartCount < 2;
+                return BodyPartCount < 2;
             }
             else if (NpcType == ReqMobID)
-                IsQuestMob = true;
+                return true;
             else
             {
                 switch (ReqMobID)
                 {
                     case NPCID.Zombie: //Add event monsters to the list.
-                        IsQuestMob = NpcType == 430 || NpcType == 132 || NpcType == 186 || NpcType == 432 || NpcType == 187 || NpcType == 433 || NpcType == 188 || NpcType == 434 || NpcType == 189 || NpcType == 435 ||
+                        return NpcType == 430 || NpcType == 132 || NpcType == 186 || NpcType == 432 || NpcType == 187 || NpcType == 433 || NpcType == 188 || NpcType == 434 || NpcType == 189 || NpcType == 435 ||
                             NpcType == 200 || NpcType == 436 || NpcType == 319 || NpcType == 320 || NpcType == 321 || NpcType == 331 || NpcType == 332 || NpcType == 223 || NpcType == 52 || NpcType == 53 || NpcType == 536 ||
                             NpcType == Terraria.ID.NPCID.ZombieEskimo || NpcType == NPCID.ArmedZombieEskimo || NpcType == 255 || NpcType == 254 || NpcType == Terraria.ID.NPCID.BloodZombie;
-                        break;
+                    case NPCID.Skeleton:
+                        return NpcType == NPCID.ArmoredSkeleton || NpcType == NPCID.BigHeadacheSkeleton || NpcType == NPCID.BigMisassembledSkeleton || NpcType == NPCID.BigPantlessSkeleton || NpcType == NPCID.BigSkeleton ||
+                            NpcType == NPCID.BoneThrowingSkeleton || NpcType == NPCID.BoneThrowingSkeleton2 || NpcType == NPCID.BoneThrowingSkeleton3 || NpcType == NPCID.BoneThrowingSkeleton4 ||
+                            NpcType == NPCID.HeadacheSkeleton || NpcType == NPCID.HeavySkeleton || NpcType == NPCID.MisassembledSkeleton || NpcType == NPCID.PantlessSkeleton || NpcType == NPCID.SkeletonAlien ||
+                            NpcType == NPCID.SkeletonArcher || NpcType == NPCID.SkeletonAstonaut || NpcType == NPCID.SkeletonTopHat || NpcType == NPCID.SmallHeadacheSkeleton || NpcType == NPCID.SmallMisassembledSkeleton ||
+                            NpcType == NPCID.SmallPantlessSkeleton || NpcType == NPCID.SmallSkeleton;
                     case NPCID.ZombieEskimo:
-                        IsQuestMob = NpcType == NPCID.ArmedZombieEskimo;
-                        break;
+                        return NpcType == NPCID.ArmedZombieEskimo;
                     case NPCID.DemonEye:
-                        IsQuestMob = NpcType == 190 || NpcType == 191 || NpcType == 192 || NpcType == 193 || NpcType == 194 || NpcType == 317 || NpcType == 318;
-                        break;
+                        return NpcType == 190 || NpcType == 191 || NpcType == 192 || NpcType == 193 || NpcType == 194 || NpcType == 317 || NpcType == 318;
                     case NPCID.BloodCrawler:
-                        IsQuestMob = NpcType == NPCID.BloodCrawlerWall;
-                        break;
+                        return NpcType == NPCID.BloodCrawlerWall;
                     case NPCID.Demon:
-                        IsQuestMob = NpcType == NPCID.VoodooDemon;
-                        break;
+                        return NpcType == NPCID.VoodooDemon;
                     case NPCID.JungleCreeper:
-                        IsQuestMob = NpcType == NPCID.JungleCreeperWall;
-                        break;
+                        return NpcType == NPCID.JungleCreeperWall;
                     case NPCID.Hornet:
-                        IsQuestMob = NpcType == NPCID.HornetFatty || NpcType == NPCID.HornetHoney || NpcType == NPCID.HornetLeafy || NpcType == NPCID.HornetSpikey || NpcType == NPCID.HornetStingy;
-                        break;
+                        return NpcType == NPCID.HornetFatty || NpcType == NPCID.HornetHoney || NpcType == NPCID.HornetLeafy || NpcType == NPCID.HornetSpikey || NpcType == NPCID.HornetStingy;
                     case NPCID.AngryBones:
-                        IsQuestMob = NpcType == 294 || NpcType == 295 || NpcType == 296;
-                        break;
+                        return NpcType == 294 || NpcType == 295 || NpcType == 296;
                     case NPCID.BlueArmoredBones:
-                        IsQuestMob = NpcType == NPCID.BlueArmoredBonesMace || NpcType == NPCID.BlueArmoredBonesNoPants || NpcType == NPCID.BlueArmoredBonesSword;
-                        break;
+                        return NpcType == NPCID.BlueArmoredBonesMace || NpcType == NPCID.BlueArmoredBonesNoPants || NpcType == NPCID.BlueArmoredBonesSword;
                     case NPCID.RustyArmoredBonesAxe:
-                        IsQuestMob = NpcType == NPCID.RustyArmoredBonesFlail || NpcType == NPCID.RustyArmoredBonesSword || NpcType == NPCID.RustyArmoredBonesSwordNoArmor;
-                        break;
+                        return NpcType == NPCID.RustyArmoredBonesFlail || NpcType == NPCID.RustyArmoredBonesSword || NpcType == NPCID.RustyArmoredBonesSwordNoArmor;
                     case NPCID.HellArmoredBones:
-                        IsQuestMob = NpcType == NPCID.HellArmoredBonesMace || NpcType == NPCID.HellArmoredBonesSpikeShield || NpcType == NPCID.HellArmoredBonesSword;
-                        break;
+                        return NpcType == NPCID.HellArmoredBonesMace || NpcType == NPCID.HellArmoredBonesSpikeShield || NpcType == NPCID.HellArmoredBonesSword;
                     case NPCID.BlueSlime:
-                        IsQuestMob = NpcType == NPCID.SlimeRibbonGreen || NpcType == NPCID.SlimeRibbonRed || NpcType == NPCID.SlimeRibbonWhite || NpcType == NPCID.SlimeRibbonYellow || NpcType == 302 ||
+                        return NpcType == NPCID.SlimeRibbonGreen || NpcType == NPCID.SlimeRibbonRed || NpcType == NPCID.SlimeRibbonWhite || NpcType == NPCID.SlimeRibbonYellow || NpcType == 302 ||
                             NpcType == NPCID.SandSlime || NpcType == NPCID.IceSlime || NpcType == NPCID.SpikedIceSlime || NpcType == NPCID.SlimedZombie || NpcType == NPCID.ArmedZombieSlimed ||
                             NpcType == NPCID.LavaSlime || NpcType == NPCID.RainbowSlime || NpcType == NPCID.KingSlime || NpcType == NPCID.IlluminantSlime || NpcType == NPCID.DungeonSlime ||
                             NpcType == NPCID.MotherSlime || NpcType == NPCID.Slimeling || NpcType == NPCID.SlimeMasked || NpcType == NPCID.SlimeSpiked || NpcType == NPCID.SpikedJungleSlime ||
                             NpcType == NPCID.UmbrellaSlime; //302 is Bunny Slime
-                        break;
                 }
             }
-            return IsQuestMob;
+            return false;
         }
 
         public class ClassLoreStepProgress

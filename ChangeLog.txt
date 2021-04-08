@@ -13,3 +13,4 @@ Difficulty readjusting system implemented:
 -Summoner
 	-Summon Potence
 		Removed the twice damage multiplier given by the critical effect of the summon. That was actually causing summons to inflict 4 times the damage, in the end.
+Skeleton variants now counts toward goals of killing them.
