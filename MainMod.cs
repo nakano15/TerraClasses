@@ -117,14 +117,13 @@ namespace TerraClasses
 
         public static void LoadLoreDatas()
         {
+            LoreDatas.Clear();
             if (DebugMode)
             {
-                LoreDatas.Clear();
                 return;
             }
             if (File.Exists(ClassLoreDataSaveFileName))
             {
-                LoreDatas.Clear();
                 using (FileStream stream = new FileStream(ClassLoreDataSaveFileName, FileMode.Open))
                 {
                     using (BinaryReader reader = new BinaryReader(stream))

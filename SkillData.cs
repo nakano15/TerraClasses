@@ -578,6 +578,26 @@ namespace TerraClasses
             }
         }
 
+        public void DrawSkillIcon(Vector2 Position, float Scale = 2f)
+        {
+            Position.X = (int)Position.X;
+            Position.Y = (int)Position.Y;
+            byte[,] IconMap;
+            Color IconColor;
+            GetBase.GetSkillIconInfos(out IconMap, out IconColor);
+            const float ColorStrengthValue = 1f / 9;
+            for (int y = 0; y < 16; y++)
+            {
+                for (int x = 0; x < 16; x++)
+                {
+                    Vector2 NewPosition = Position;
+                    NewPosition.X += x * Scale;
+                    NewPosition.Y += y * Scale;
+                    Main.spriteBatch.Draw(Main.blackTileTexture, NewPosition, null, IconColor * (IconMap[x, y] * ColorStrengthValue), 0, Vector2.Zero, Scale, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
+                }
+            }
+        }
+
         public void EndUse(bool Fail = false)
         {
             Active = false;

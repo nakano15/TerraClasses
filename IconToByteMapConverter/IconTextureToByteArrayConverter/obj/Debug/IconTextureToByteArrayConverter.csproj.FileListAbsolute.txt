@@ -1,0 +1,10 @@
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\bin\Debug\IconTextureToByteArrayConverter.exe.config
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\bin\Debug\IconTextureToByteArrayConverter.exe
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\bin\Debug\IconTextureToByteArrayConverter.pdb
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.csprojAssemblyReference.cache
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.Main.resources
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.Properties.Resources.resources
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.csproj.GenerateResource.cache
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.csproj.CoreCompileInputs.cache
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.exe
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\IconToByteMapConverter\IconTextureToByteArrayConverter\obj\Debug\IconTextureToByteArrayConverter.pdb

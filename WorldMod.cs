@@ -17,8 +17,12 @@ namespace TerraClasses
 
         public override void Load(Terraria.ModLoader.IO.TagCompound tag)
         {
-            MainMod.LoadLoreDatas();
             base.Load(tag);
+        }
+
+        public override void Initialize()
+        {
+            MainMod.LoadLoreDatas();
         }
     }
 }

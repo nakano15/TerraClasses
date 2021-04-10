@@ -55,19 +55,25 @@ namespace TerraClasses
 
         public override bool CheckDead(NPC npc)
         {
-            bool PlayerGotClassExp = false;
-            for (int p = 0; p < 255; p++)
+            if (CPReward > 0)
             {
-                if (Main.player[p].active && npc.playerInteraction[p])
+                bool PlayerGotClassExp = false;
+                for (int p = 0; p < 255; p++)
                 {
-                    if (p == Main.myPlayer)
-                        PlayerGotClassExp = true;
-                    Main.player[p].GetModPlayer<PlayerMod>().AddClassExp(CPReward);
-                    Main.player[p].GetModPlayer<PlayerMod>().OnMobKill(npc);
+                    if (Main.player[p].active && npc.playerInteraction[p])
+                    {
+                        if (p == Main.myPlayer)
+                            PlayerGotClassExp = true;
+                        Main.player[p].GetModPlayer<PlayerMod>().AddClassExp(CPReward);
+                    }
                 }
+                if (PlayerGotClassExp)
+                    CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.Cyan, CPReward + " CP", true);
             }
-            if(PlayerGotClassExp)
-                CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.Cyan, CPReward + " CP", true);
+            if (Main.netMode < 2 && npc.playerInteraction[Main.myPlayer])
+            {
+                Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().OnMobKill(npc);
+            }
             return base.CheckDead(npc);
         }
         

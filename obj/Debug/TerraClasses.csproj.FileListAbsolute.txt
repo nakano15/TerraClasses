@@ -1,1 +1,3 @@
 C:\Users\Nakano15\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\obj\Debug\TerraClasses.csprojResolveAssemblyReference.cache
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\obj\Debug\TerraClasses.csprojAssemblyReference.cache
+C:\Users\Douglas\Documents\My Games\Terraria\ModLoader\Mod Sources\TerraClasses\obj\Debug\TerraClasses.csproj.CoreCompileInputs.cache

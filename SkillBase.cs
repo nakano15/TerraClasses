@@ -20,6 +20,47 @@ namespace TerraClasses
         public Enum.SkillTypes skillType = Enum.SkillTypes.Passive;
         public PositionToTakeOnCastEnum PositionToTake = PositionToTakeOnCastEnum.Mouse;
         public virtual SkillData GetSkillData { get { return new SkillData(); } }
+        private byte[,] SkillIconMap = new byte[16, 16];
+        private Color SkillIconColor = Color.White;
+
+        public SkillBase()
+        {
+            SkillIconMap = new byte[,]{
+                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
+                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
+                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
+                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
+                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
+                {9,9,5,5,5,4,4,4,4,4,4,5,5,5,9,9},
+                {9,9,5,5,5,4,2,2,2,2,4,5,5,5,9,9},
+                {9,9,5,5,5,4,2,1,1,2,4,5,5,5,9,9},
+                {9,9,5,5,5,4,2,1,1,2,4,5,5,5,9,9},
+                {9,9,5,5,5,4,2,2,2,2,4,5,5,5,9,9},
+                {9,9,5,5,5,4,4,4,4,4,4,5,5,5,9,9},
+                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
+                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
+                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
+                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
+                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}
+            };
+        }
+
+        public void ChangeSkillIconColor(Color NewColor)
+        {
+            this.SkillIconColor = NewColor;
+        }
+
+        public void SetSkillIcon(byte[,] SkillByteMap, Color IconColor)
+        {
+            this.SkillIconMap = SkillByteMap;
+            this.SkillIconColor = IconColor;
+        }
+
+        public void GetSkillIconInfos (out byte[,] ByteMap, out Color color)
+        {
+            ByteMap = SkillIconMap;
+            color = SkillIconColor;
+        }
 
         public virtual float GetEffectRange(SkillData sd)
         {
