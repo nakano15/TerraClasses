@@ -57,6 +57,7 @@
     <Compile Include="ClassBase.cs" />
     <Compile Include="ClassData.cs" />
     <Compile Include="ClassDB.cs" />
+    <Compile Include="ClassList\Arachnomancer.cs" />
     <Compile Include="ClassList\Berseker.cs" />
     <Compile Include="ClassList\Cerberus.cs" />
     <Compile Include="ClassList\Cleric.cs" />
@@ -77,6 +78,7 @@
     <Compile Include="ItemSkillLevelBonus.cs" />
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
     <Compile Include="NameIDHelper.cs" />
+    <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
     <Compile Include="SkillList\Knight\Charge.cs" />
@@ -87,6 +89,8 @@
     <Compile Include="SkillList\Knight\ShieldBash.cs" />
     <Compile Include="SkillList\Knight\Unload.cs" />
     <Compile Include="SkillList\Knight\Vow.cs" />
+    <Compile Include="SkillList\Thief\DoubleStrike.cs" />
+    <Compile Include="SkillList\Thief\Steal.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
     <Compile Include="TargetTranslator\Translator.cs" />
@@ -197,9 +201,7 @@
     <Content Include="Items\ClassBooks\SummonerBook.png" />
     <Content Include="Items\ClassBooks\ThiefBook.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="SkillList\Thief\" />
-  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

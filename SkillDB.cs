@@ -127,6 +127,10 @@ namespace TerraClasses
                     return new SkillList.Knight.HeavySlam();
                 case 56:
                     return new SkillList.Knight.Provoke();
+                case 57:
+                    return new SkillList.Arachnomancer.SpiderSwarm();
+                case 58:
+                    return new SkillList.Thief.DoubleStrike();
             }
             return new SkillBase();
         }

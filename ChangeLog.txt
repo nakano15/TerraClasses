@@ -13,6 +13,8 @@ Difficulty readjusting system implemented:
 -Summoner
 	-Summon Potence
 		Removed the twice damage multiplier given by the critical effect of the summon. That was actually causing summons to inflict 4 times the damage, in the end.
+-Knight
+	Class arrives.
 Skeleton variants now counts toward goals of killing them.
 There is no longer the chance of getting 0 CP.
 The mod will no longer try giving cp, neither showing how much cp you've acquired from killing something that gives none.

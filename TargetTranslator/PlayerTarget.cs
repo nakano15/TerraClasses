@@ -27,6 +27,7 @@ namespace TerraClasses.TargetTranslator
         public override int MaxHealth { get => player.statLifeMax2; set => player.statLifeMax2 = value; }
         public override int Mana { get => player.statMana; set => player.statMana = value; }
         public override int MaxMana { get => player.statManaMax2; set => player.statManaMax2 = value; }
+        public override int Damage { get => player.inventory[player.selectedItem].damage; }
         public override int Defense { get => player.statDefense; set => player.statDefense = value; }
         public override int Width { get => player.width; set => player.width = value; }
         public override int Height { get => player.height; set => player.height = value; }

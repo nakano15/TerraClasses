@@ -128,8 +128,12 @@ namespace TerraClasses
 
         public override void NPCLoot(NPC npc)
         {
-            if (npc.type == Terraria.ID.NPCID.Demon && Main.rand.Next(500) == 0)
+            if ((npc.type == Terraria.ID.NPCID.Demon || npc.type == Terraria.ID.NPCID.VoodooDemon) && Main.rand.Next(500) == 0)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.CerberusBook>());
+            if ((npc.type == Terraria.ID.NPCID.HeadlessHorseman || npc.type == Terraria.ID.NPCID.ArmoredSkeleton || npc.type == Terraria.ID.NPCID.ArmoredViking ||
+                npc.type == Terraria.ID.NPCID.RustyArmoredBonesSword || npc.type == Terraria.ID.NPCID.BlueArmoredBonesSword || npc.type == Terraria.ID.NPCID.HellArmoredBonesSword) 
+                && Main.rand.Next(500) == 0)
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.KnightBook>());
             if ((npc.type == Terraria.ID.NPCID.AngryBones || npc.type == Terraria.ID.NPCID.AngryBonesBig || npc.type == Terraria.ID.NPCID.AngryBonesBigHelmet ||
                 npc.type == Terraria.ID.NPCID.AngryBonesBigMuscle) && Main.rand.Next(1000) == 0)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.BersekerBook>());

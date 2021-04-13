@@ -16,7 +16,7 @@ namespace TerraClasses.Items.ClassBooks
         public override void SetDefaults()
         {
             base.SetDefaults();
-            item.value = 500;
+            item.value = 4000;
         }
     }
 }

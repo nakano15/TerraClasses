@@ -16,6 +16,7 @@ namespace TerraClasses.TargetTranslator
         public virtual int MaxHealth { get; set; }
         public virtual int Mana { get; set; }
         public virtual int MaxMana { get; set; }
+        public virtual int Damage { get; set; }
         public virtual int Defense { get; set; }
         public virtual Vector2 Position { get; set; }
         public virtual Vector2 Velocity { get; set; }
@@ -87,6 +88,15 @@ namespace TerraClasses.TargetTranslator
         public virtual void ChangeMana(int Change, bool DoT = false)
         {
 
+        }
+
+        public override bool Equals(object obj)
+        {
+            if(obj is Translator)
+            {
+                return ((Translator)obj).CharacterIdentifier == CharacterIdentifier;
+            }
+            return false;
         }
     }
 }
