@@ -9,7 +9,7 @@ using Terraria.Utilities;
 namespace TerraClasses
 {
     public class ItemMod : GlobalItem
-    {                
+    {
         public override bool ReforgePrice(Terraria.Item item, ref int reforgePrice, ref bool canApplyDiscount)
         {
             reforgePrice = (int)(Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().ReforgeValue * reforgePrice);

@@ -12,7 +12,11 @@ namespace TerraClasses.ClassList
             Name = "Thief";
             Description = "Hit the tank, not me!";
             MaxLevel = 50;
-            AddSkill(59);
+            AddSkill(58);
+            AddSkill(60);
+            AddSkill(61);
+            AddSkill(62);
+            AddSkill(63);
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

@@ -131,6 +131,22 @@ namespace TerraClasses
                     return new SkillList.Arachnomancer.SpiderSwarm();
                 case 58:
                     return new SkillList.Thief.DoubleStrike();
+                case 59:
+                    return new SkillList.Arachnomancer.VenomousAmmo();
+                case 60:
+                    return new SkillList.Thief.PoisonousStrike();
+                case 61:
+                    return new SkillList.Thief.DodgeMastery();
+                case 62:
+                    return new SkillList.Thief.Steal();
+                case 63:
+                    return new SkillList.Thief.Hide();
+                case 64:
+                    return new SkillList.Cleric.BaneUndead();
+                case 65:
+                    return new SkillList.Cleric.IncreaseAgility();
+                case 66:
+                    return new SkillList.Cleric.BaneDemons();
             }
             return new SkillBase();
         }

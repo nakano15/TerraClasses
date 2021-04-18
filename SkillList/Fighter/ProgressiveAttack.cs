@@ -22,38 +22,42 @@ namespace TerraClasses.SkillList.Fighter
             MaxLevel = 10;
         }
 
-        public override void UpdateItemUse(Terraria.Player player, SkillData data, bool JustUsed)
+        public override SkillData GetSkillData => new ProgressiveAttackData();
+
+        public override void Update(Player player, SkillData rawdata)
         {
-            if (JustUsed && player.inventory[player.selectedItem].melee)
+            ProgressiveAttackData data = (ProgressiveAttackData)rawdata;
+            if (player.inventory[player.selectedItem].melee)
             {
-                int Level = data.GetInteger(IAttackCycleVar) + 1;
-                if (Level > 3)
-                    Level -= 3;
-                data.SetInteger(IAttackCycleVar, Level);
-                data.SetInteger(IAttackTimeout, 300);
-                CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.position.X, (int)player.Center.Y, player.width, 1), Microsoft.Xna.Framework.Color.Red, "Swing "+Level,false, true);
+                if(player.itemAnimation > data.LastItemAttackTime)
+                {
+                    data.AttackLevel++;
+                    data.TimeOut = 300;
+                    if (data.AttackLevel > 3)
+                        data.AttackLevel -= 3;
+                    CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.position.X, (int)player.Center.Y, player.width, 1), Microsoft.Xna.Framework.Color.Red, "Swing " + data.AttackLevel, false, true);
+                }
             }
+            data.LastItemAttackTime = player.itemAnimation;
         }
 
-        public override void UpdateStatus(Terraria.Player player, SkillData data)
+        public override void UpdateStatus(Terraria.Player player, SkillData rawdata)
         {
-            int Level = data.GetInteger(IAttackCycleVar);
-            if (Level > 0)
+            ProgressiveAttackData data = (ProgressiveAttackData)rawdata;
+            if (data.AttackLevel > 0)
             {
-                int Timeout = data.GetInteger(IAttackTimeout);
-                if (Timeout == 0)
+                if (data.TimeOut == 0)
                 {
-                    if (Level > 0)
+                    if (data.AttackLevel > 0)
                     {
-                        data.SetInteger(IAttackCycleVar, 0);
-                        Level = 0;
-                        CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.Center.X, (int)player.Center.Y, 1, 1), Microsoft.Xna.Framework.Color.Red, "Combo Break", false, true);
+                        data.AttackLevel = 0;
+                           CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.Center.X, (int)player.Center.Y, 1, 1), Microsoft.Xna.Framework.Color.Red, "Combo Break", false, true);
                     }
                 }
                 else
                 {
-                    data.SetInteger(IAttackTimeout, Timeout - 1);
-                    switch (Level)
+                    data.TimeOut--;
+                    switch (data.AttackLevel)
                     {
                         case 1:
                             player.meleeDamage += 0.01f * data.Level;
@@ -67,9 +71,14 @@ namespace TerraClasses.SkillList.Fighter
                             player.meleeSpeed += 0.3f - player.meleeSpeed * 0.01f * data.Level;
                             break;
                     }
-                    data.SetInteger(IAttackCycleVar, Level);
                 }
             }
+        }
+
+        public class ProgressiveAttackData: SkillData
+        {
+            public byte AttackLevel = 0;
+            public int TimeOut = 0, LastItemAttackTime = 0;
         }
     }
 }

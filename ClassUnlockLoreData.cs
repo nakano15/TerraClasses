@@ -321,7 +321,7 @@ namespace TerraClasses
                             NpcType == NPCID.BoneThrowingSkeleton || NpcType == NPCID.BoneThrowingSkeleton2 || NpcType == NPCID.BoneThrowingSkeleton3 || NpcType == NPCID.BoneThrowingSkeleton4 ||
                             NpcType == NPCID.HeadacheSkeleton || NpcType == NPCID.HeavySkeleton || NpcType == NPCID.MisassembledSkeleton || NpcType == NPCID.PantlessSkeleton || NpcType == NPCID.SkeletonAlien ||
                             NpcType == NPCID.SkeletonArcher || NpcType == NPCID.SkeletonAstonaut || NpcType == NPCID.SkeletonTopHat || NpcType == NPCID.SmallHeadacheSkeleton || NpcType == NPCID.SmallMisassembledSkeleton ||
-                            NpcType == NPCID.SmallPantlessSkeleton || NpcType == NPCID.SmallSkeleton;
+                            NpcType == NPCID.SmallPantlessSkeleton || NpcType == NPCID.SmallSkeleton || NpcType == NPCID.GreekSkeleton;
                     case NPCID.ZombieEskimo:
                         return NpcType == NPCID.ArmedZombieEskimo;
                     case NPCID.DemonEye:

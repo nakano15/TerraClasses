@@ -51,6 +51,7 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="Buffs\AgilityUp.cs" />
     <Compile Include="Buffs\Bless.cs" />
     <Compile Include="Buffs\HighGuard.cs" />
     <Compile Include="Buffs\Provoke.cs" />
@@ -79,7 +80,11 @@
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
     <Compile Include="NameIDHelper.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
+    <Compile Include="SkillList\Arachnomancer\VenomousAmmo.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
+    <Compile Include="SkillList\Cleric\BaneDemons.cs" />
+    <Compile Include="SkillList\Cleric\BaneUndead.cs" />
+    <Compile Include="SkillList\Cleric\IncreaseAgility.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
     <Compile Include="SkillList\Knight\Charge.cs" />
     <Compile Include="SkillList\Knight\ConstantRest.cs" />
@@ -89,7 +94,10 @@
     <Compile Include="SkillList\Knight\ShieldBash.cs" />
     <Compile Include="SkillList\Knight\Unload.cs" />
     <Compile Include="SkillList\Knight\Vow.cs" />
+    <Compile Include="SkillList\Thief\DodgeMastery.cs" />
     <Compile Include="SkillList\Thief\DoubleStrike.cs" />
+    <Compile Include="SkillList\Thief\Hide.cs" />
+    <Compile Include="SkillList\Thief\PoisonousStrike.cs" />
     <Compile Include="SkillList\Thief\Steal.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
@@ -173,6 +181,7 @@
     <Compile Include="WorldMod.cs" />
   </ItemGroup>
   <ItemGroup>
+    <Content Include="Buffs\AgilityUp.png" />
     <Content Include="Buffs\Provoke.png" />
     <Content Include="Buffs\HighGuard.png" />
     <Content Include="Buffs\Bless.png" />
@@ -180,6 +189,7 @@
     <Content Include="Content\CastBar.png" />
     <Content Include="Content\Effects\cerberus.png" />
     <Content Include="Content\Effects\Electricity.png" />
+    <Content Include="Content\Effects\HideEffect.png" />
     <Content Include="Content\Effects\longsword.png" />
     <Content Include="Content\Effects\ShieldBashEffect.png" />
     <Content Include="Content\MagicCircle.png" />

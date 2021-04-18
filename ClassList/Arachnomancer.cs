@@ -13,6 +13,7 @@ namespace TerraClasses.ClassList
             Description = "Summon spiders to aid you in combat.";
             MaxLevel = 50;
             AddSkill(57);
+            AddSkill(59);
         }
     }
 }

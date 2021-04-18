@@ -22,7 +22,7 @@ namespace TerraClasses
         public static bool DebugMode = false;
         public static bool SaySkillNameOnUse = false;
         public static Mod mod;
-        public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect;
+        public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect;
         public static Texture2D MagicCircle, CastBar, StarTexture;
         public const int ModVersion = 1;
         public static bool LoadedCustomModClasses = false;
@@ -32,7 +32,7 @@ namespace TerraClasses
         public static string UnlockedClassedSaveFileName = Main.SavePath + "/unlockedclasses.sav";
         public static string ClassLoreDataSaveFileName = Main.SavePath + "/classloredatas.sav";
         public const string ModGetTargetListCallName = "getothermodtargets";
-        public const int TotalSkills = 57;
+        public const int TotalSkills = 67;
 
         /// <summary>
         /// To add a kind of support to other things having classes too, maybe 
@@ -306,6 +306,7 @@ namespace TerraClasses
                 Electricity = new SkillSprite("Content/Effects/Electricity");
                 ShieldBashEffect = new SkillSprite("Content/Effects/ShieldBashEffect");
                 ProvokeAudioEffect = new SkillSprite("Content/Effects/ProvokeSound");
+                HideEffect = new SkillSprite("Content/Effects/HideEffect");
                 if (ModLoader.GetMod("NExperience") != null)
                     NExperienceLoaded = true;
                 LoadUnlockedClasses();
@@ -534,15 +535,41 @@ namespace TerraClasses
             return false;
         }
 
+        public static bool IsDemon(int MobID)
+        {
+            switch (MobID)
+            {
+                case 4:
+                case 2:
+                case 190:
+                case 191:
+                case 192:
+                case 193:
+                case 194:
+                case 317:
+                case 318:
+                case 133:
+                //Underworld
+                case 62:
+                case 66:
+                case 156:
+                case 534:
+                case 266:
+                case 267:
+                    return true;
+            }
+            return false;
+        }
+
         public override object Call(params object[] args)
         {
             if (args.Length == 1)
             {
-                if (args[0] == "hidehud")
+                if ((string)args[0] == "hidehud")
                 {
                     ClassSelectionInterface.ShowHud = false;
                 }
-                else if (args[0] == "showhud")
+                else if ((string)args[0] == "showhud")
                 {
                     ClassSelectionInterface.ShowHud = true;
                 }
