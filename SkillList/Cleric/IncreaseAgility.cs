@@ -13,6 +13,7 @@ namespace TerraClasses.SkillList.Cleric
             Name = "Increase Agility";
             Description = "Increases agility of allies in range.\n" +
                 " Speed Bonus increases by 3% + 2% every 2 levels.\n" +
+                " Also affects melee speed." +
                 " Duration of the buff increases by 30 seconds per level.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;

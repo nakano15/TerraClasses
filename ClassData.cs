@@ -111,7 +111,7 @@ namespace TerraClasses
                     }
                     sd.UpdateSkill(player);
                 }
-                SP -= sd.Level;
+                SP -= sd.RealLevel;
             }
             bool LeveledUp = false;
             while (Level < MaxLevel && Exp >= MaxExp)

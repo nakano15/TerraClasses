@@ -19,7 +19,7 @@ namespace TerraClasses
         public static List<KeyValuePair<int, string>> UnlockedClasses = new List<KeyValuePair<int, string>>();
         public static List<ClassUnlockLoreData> LoreDatas = new List<ClassUnlockLoreData>();
         public static int SkillChangeSlot = -1;
-        public static bool DebugMode = false;
+        public static bool DebugMode = false, DebugSkills = false;
         public static bool SaySkillNameOnUse = false;
         public static Mod mod;
         public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect;
@@ -33,6 +33,7 @@ namespace TerraClasses
         public static string ClassLoreDataSaveFileName = Main.SavePath + "/classloredatas.sav";
         public const string ModGetTargetListCallName = "getothermodtargets";
         public const int TotalSkills = 67;
+        private static List<string> ModsWithTargetCompatibility = new List<string>();
 
         /// <summary>
         /// To add a kind of support to other things having classes too, maybe 
@@ -43,6 +44,12 @@ namespace TerraClasses
         public MainMod()
         {
 
+        }
+
+        public static void AddModToTargetCompatibilityList(Mod mod)
+        {
+            if (!ModsWithTargetCompatibility.Contains(mod.Name))
+                ModsWithTargetCompatibility.Add(mod.Name);
         }
 
         public static void SaveUnlockedClasses()
@@ -268,14 +275,18 @@ namespace TerraClasses
             List<TargetTranslator.Translator> targets = new List<TargetTranslator.Translator>();
             foreach (Mod mod in ModLoader.Mods)
             {
+                if (!ModsWithTargetCompatibility.Contains(mod.Name))
+                    continue;
+                object returned = null;
                 try
                 {
-                    object returned = mod.Call(new object[] { ModGetTargetListCallName, caster, Allies });
-                    if (returned is List<TargetTranslator.Translator>)
-                        targets.AddRange((List<TargetTranslator.Translator>)returned);
+                    returned = mod.Call(new object[] { ModGetTargetListCallName, caster, Allies });
                 }
                 catch { }
+                if (returned != null && returned is TargetTranslator.Translator[])
+                    targets.AddRange((TargetTranslator.Translator[])returned);
             }
+            //Main.NewText("Possible Targets Found: " + targets.Count);
             return targets;
         }
 

@@ -17,6 +17,9 @@ Difficulty readjusting system implemented:
 	Class arrives.
 -Fighter
 	Fixed Progressive Attack skill.
+-Cleric
+	Added Increase Agility, Bane Demons and Bane Undead skills.
 Skeleton variants now counts toward goals of killing them.
 There is no longer the chance of getting 0 CP.
 The mod will no longer try giving cp, neither showing how much cp you've acquired from killing something that gives none.
+Fixed a bug on a number of skills that gives buffs, where the buffs were giving you NOTHING!

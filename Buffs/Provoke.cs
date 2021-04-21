@@ -21,7 +21,7 @@ namespace TerraClasses.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, buffIndex);
+            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, player.buffType[buffIndex]);
             player.aggro += 40 * SkillLevel;
             if (SkillLevel > 5)
                 player.statDefense += (int)(player.statDefense * 0.05f);

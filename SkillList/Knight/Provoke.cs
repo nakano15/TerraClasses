@@ -29,19 +29,24 @@ namespace TerraClasses.SkillList.Knight
                 data.ApplySkillBuff(player, ModContent.BuffType<Buffs.Provoke>(), (30 * (1 + data.Level / 5)) * 60);
                 player.chatOverhead.NewMessage("Who will challenge me?!", Main.chatLength / 2);
             }
-            if (data.Time >= 90)
+            if (data.Time >= 20)
             {
                 data.EndUse(false);
                 return;
             }
-            float Scale = (float)data.Time / 60, Opacity = 1f;
-            if (data.Time > 60)
+        }
+
+        public override void Draw(Player player, SkillData data, PlayerDrawInfo pdi)
+        {
+            float Scale = (float)(data.Time * 2) / 20, Opacity = 1f;
+            if (data.Time > 10)
             {
-                Opacity = 1f - (float)(data.Time - 60) / 30;
+                Opacity = 1f - (float)(data.Time - 10) / 10;
             }
             Vector2 Position = player.Center - Main.screenPosition;
             Position.Y -= player.height * 0.25f;
-            Main.spriteBatch.Draw(MainMod.ProvokeAudioEffect.GetTexture, Position, null, Color.White * Opacity, 0f, new Vector2(32, 32) * 0.5f, Scale, SpriteEffects.None, 0f);
+            Terraria.DataStructures.DrawData dd = new Terraria.DataStructures.DrawData(MainMod.ProvokeAudioEffect.GetTexture, Position, null, Color.White * Opacity, 0f, new Vector2(16, 16), Scale, SpriteEffects.None, 0);
+            Main.playerDrawData.Add(dd);
         }
     }
 }

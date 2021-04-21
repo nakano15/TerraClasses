@@ -34,6 +34,8 @@ namespace TerraClasses.SkillList.Knight
         public override void UpdateStatus(Player player, SkillData rawdata)
         {
             VowSkillData data = (VowSkillData)rawdata;
+            if (data.Target == null)
+                return;
             if(data.Target.Health < data.Target.MaxHealth * 0.9f)
             {
                 player.meleeDamage += 0.15f + 0.02f * data.Level;
@@ -67,6 +69,10 @@ namespace TerraClasses.SkillList.Knight
                     data.EndUse(true);
                     return;
                 }
+                else
+                {
+                    Main.NewText("You vowed to protect " + NearestTarget.Name + ".");
+                }
                 data.Target = NearestTarget;
             }
             if(data.Target.IsDead())
@@ -90,6 +96,8 @@ namespace TerraClasses.SkillList.Knight
         public override void Draw(Player player, SkillData rawdata, PlayerDrawInfo pdi)
         {
             VowSkillData data = (VowSkillData)rawdata;
+            if (data.Target == null)
+                return;
             Vector2 DrawPosition = data.Target.Center - Main.screenPosition;
             DrawPosition.Y -= data.Target.Height * 0.5f + 20f;
             Terraria.DataStructures.DrawData dd = new Terraria.DataStructures.DrawData(Main.heartTexture, DrawPosition, null,

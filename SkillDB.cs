@@ -147,6 +147,8 @@ namespace TerraClasses
                     return new SkillList.Cleric.IncreaseAgility();
                 case 66:
                     return new SkillList.Cleric.BaneDemons();
+                case 67:
+                    return new SkillList.Knight.ConstantRest();
             }
             return new SkillBase();
         }

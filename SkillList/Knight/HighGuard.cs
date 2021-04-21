@@ -30,7 +30,7 @@ namespace TerraClasses.SkillList.Knight
             int BuffID = ModContent.BuffType<Buffs.HighGuard>();
             if (player.HasBuff(BuffID))
             {
-                player.DelBuff(BuffID);
+                player.DelBuff(player.FindBuffIndex(BuffID));
                 CombatText.NewText(player.getRect(), Microsoft.Xna.Framework.Color.White, "High Guard Deactivated.");
             }
             else

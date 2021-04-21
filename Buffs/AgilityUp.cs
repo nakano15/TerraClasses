@@ -20,8 +20,9 @@ namespace TerraClasses.Buffs
 
         public override void Update(Player player, ref int buffIndex)
         {
-            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, buffIndex);
-            player.moveSpeed += player.moveSpeed * (0.03f + SkillLevel * 0.02f);
+            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, player.buffType[buffIndex]);
+            player.moveSpeed += 0.03f + SkillLevel * 0.02f;
+            player.meleeSpeed += 0.03f + SkillLevel * 0.02f;
         }
     }
 }

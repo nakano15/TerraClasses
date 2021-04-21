@@ -56,5 +56,19 @@ namespace TerraClasses
                     MainMod.DebugMode = value;
             }
         }
+
+        [Label("Free Skill Test")]
+        [Tooltip("Sets all skills to level 10, regardless of wether you spent points on it or not. Only activates if Debug Mode is active.")]
+        public bool DebugSkills
+        {
+            get
+            {
+                return MainMod.DebugSkills;
+            }
+            set
+            {
+                MainMod.DebugSkills = value;
+            }
+        }
     }
 }

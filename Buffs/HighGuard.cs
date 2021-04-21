@@ -16,11 +16,12 @@ namespace TerraClasses.Buffs
             Main.debuff[Type] = false;
             Main.pvpBuff[Type] = false;
             Main.buffNoSave[Type] = true;
+            Main.buffNoTimeDisplay[Type] = true;
         }
 
         public override void Update(Player player, ref int buffIndex)
         {
-            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, buffIndex);
+            int SkillLevel = PlayerMod.GetPlayerSkillBuffLevel(player, player.buffType[buffIndex]);
             player.statDefense += 2 * SkillLevel;
             if (SkillLevel > 5)
                 player.statDefense += (int)(player.statDefense * 0.05f);

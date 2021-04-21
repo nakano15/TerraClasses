@@ -42,7 +42,7 @@ namespace TerraClasses.SkillList.Cleric
                 DamageOvertimeInflicted = (data.Level / 2) * 2;
             for (int i = 0; i < 200; i++)
             {
-                if (Main.npc[i].active && !Main.npc[i].dontTakeDamage && Main.npc[i].Distance(PlayerCenter) < Range && IsUndead(Main.npc[i].type))
+                if (Main.npc[i].active && !Main.npc[i].dontTakeDamage && IsUndead(Main.npc[i].type) && Main.npc[i].Distance(PlayerCenter) < Range)
                 {
                     Main.npc[i].AddBuff(31, 5 * 60);
                     if (InflictDamage)

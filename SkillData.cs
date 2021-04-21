@@ -14,7 +14,7 @@ namespace TerraClasses
         public string ModID = "";
         public int Cooldown = 0;
         public float CastTime = 0;
-        public int Level { get { return RealLevel + LevelBonus; } set { RealLevel = value; } }
+        public int Level { get { if (MainMod.DebugMode && MainMod.DebugSkills) return 10; return RealLevel + LevelBonus; } set { RealLevel = value; } }
         public int RealLevel = 0;
         public int LevelBonus = 0;
         public int Step = 0;
@@ -278,7 +278,12 @@ namespace TerraClasses
 
         public int HurtTarget(TargetTranslator.Translator target, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false)
         {
-            if (ExtraTargetDamageCooldown.ContainsKey(target) || target.Immunity)
+            foreach(TargetTranslator.Translator Keys in ExtraTargetDamageCooldown.Keys)
+            {
+                if (Keys == target)
+                    return 0;
+            }
+            if (target.Immunity)
                 return 0;
             int NewDamage = Damage - target.Defense / 2;
             if (NewDamage < 1)
@@ -330,7 +335,7 @@ namespace TerraClasses
             {
                 for (int t = 0; t < Targets.Count; t++)
                 {
-                    if ((Targets[t].Center - Position).Length() >= Distance)
+                    if ((Targets[t].Center - Position).Length() >= Distance) //Doesn't seems to work correctly with infos acquired from other mods.
                     {
                         Targets.RemoveAt(t);
                     }
@@ -443,7 +448,12 @@ namespace TerraClasses
 
         public bool ContainsTargetInteraction(TargetTranslator.Translator target)
         {
-            return OtherInteraction.Contains(target);
+            foreach(TargetTranslator.Translator Targets in OtherInteraction)
+            {
+                if (Targets == target)
+                    return true;
+            }
+            return false;
         }
 
         public void RemovePlayerInteraction(Player player)
@@ -490,14 +500,15 @@ namespace TerraClasses
 
         public void ApplyCooldownToTarget(TargetTranslator.Translator target, int CooldownTime)
         {
-            if (!ExtraTargetDamageCooldown.ContainsKey(target))
+            foreach (TargetTranslator.Translator key in ExtraTargetDamageCooldown.Keys)
             {
-                ExtraTargetDamageCooldown.Add(target, CooldownTime);
+                if (key == target)
+                {
+                    ExtraTargetDamageCooldown[key] = CooldownTime;
+                    return;
+                }
             }
-            else
-            {
-                ExtraTargetDamageCooldown[target] = CooldownTime;
-            }
+            ExtraTargetDamageCooldown.Add(target, CooldownTime);
         }
 
         public bool ContainsPlayerCooldown(Player player)
@@ -539,7 +550,12 @@ namespace TerraClasses
             if (!Active)
             {
                 if (Cooldown > 0)
-                    Cooldown--;
+                {
+                    if (MainMod.DebugMode)
+                        Cooldown = 0;
+                    else
+                        Cooldown--;
+                }
                 return;
             }
             if(CastTime < GetBase.CastTime)

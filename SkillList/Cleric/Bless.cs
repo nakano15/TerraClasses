@@ -36,11 +36,11 @@ namespace TerraClasses.SkillList.Cleric
             }
             if (data.Time % 3 == 0)
             {
-                float HealEffectX = (float)Math.Sin(data.Time * 3) * 5;
+                float HealEffectX = (float)Math.Sin(data.Time * 3) * 15;
                 foreach (Player p in data.GetPlayersInteractedWith())
                 {
-                    Vector2 EffectPos = new Vector2(player.Center.X + HealEffectX, player.position.Y - 8);
-                    Dust d = Dust.NewDustPerfect(EffectPos - Main.screenPosition, Terraria.ID.DustID.Platinum);
+                    Vector2 EffectPos = new Vector2(player.Center.X + HealEffectX, player.Center.Y - 8);
+                    Dust d = Dust.NewDustPerfect(EffectPos, Terraria.ID.DustID.Platinum);
                     d.noGravity = false;
                     d.noLight = false;
                     d.scale = Main.rand.Next(13, 18) * 0.1f;

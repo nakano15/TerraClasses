@@ -39,16 +39,20 @@ namespace TerraClasses.SkillList.Knight
         public override void Update(Player player, SkillData data)
         {
             player.immuneTime = 60;
+            player.immuneNoBlink = true;
+            player.immune = true;
             float DamageToInflict = GetDamageValue(player, data);
             if(player.direction > 0)
             {
-                player.controlRight = true;
-                player.controlLeft = false;
+                player.velocity.X += player.moveSpeed;
+                if (player.velocity.X > player.maxRunSpeed * 2)
+                    player.velocity.X = player.maxRunSpeed * 2;
             }
             else
             {
-                player.controlRight = false;
-                player.controlLeft = true;
+                player.velocity.X -= player.moveSpeed;
+                if (player.velocity.X < -player.maxRunSpeed * 2)
+                    player.velocity.X = -player.maxRunSpeed * 2;
             }
             Translator[] Targets = data.GetPossibleTargets(false, false, player.Center, 200);
             Microsoft.Xna.Framework.Rectangle rect = player.getRect();
@@ -57,12 +61,14 @@ namespace TerraClasses.SkillList.Knight
             {
                 if (Target.GetRectangle.Intersects(rect))
                 {
-                    data.HurtTarget(Target, Damage, player.direction, 12f);
+                    data.HurtTarget(Target, Damage, player.direction, 12f, 18);
                 }
             }
-            if (data.Time >= 5 * 60)
+            if (data.Time >= 3 * 60)
             {
                 data.EndUse(false);
+                player.immune = false;
+                player.immuneNoBlink = false;
             }
         }
     }
