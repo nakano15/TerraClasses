@@ -22,7 +22,7 @@ namespace TerraClasses.SkillList.Thief
         public override void Update(Player player, SkillData data)
         {
             player.immuneTime = 5;
-            player.immuneAlpha = 0;
+            player.immuneAlpha = 255;
             player.aggro -= 900;
             if (player.controlRight || player.controlLeft || player.controlJump)
                 data.EndUse(false);

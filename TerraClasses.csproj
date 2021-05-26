@@ -85,6 +85,7 @@
     <Compile Include="SkillList\Cleric\BaneDemons.cs" />
     <Compile Include="SkillList\Cleric\BaneUndead.cs" />
     <Compile Include="SkillList\Cleric\IncreaseAgility.cs" />
+    <Compile Include="SkillList\Fighter\PiercingShot.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
     <Compile Include="SkillList\Knight\Charge.cs" />
     <Compile Include="SkillList\Knight\ConstantRest.cs" />
@@ -94,9 +95,11 @@
     <Compile Include="SkillList\Knight\ShieldBash.cs" />
     <Compile Include="SkillList\Knight\Unload.cs" />
     <Compile Include="SkillList\Knight\Vow.cs" />
+    <Compile Include="SkillList\Sharpshooter\Marksmanship.cs" />
     <Compile Include="SkillList\Thief\DodgeMastery.cs" />
     <Compile Include="SkillList\Thief\DoubleStrike.cs" />
     <Compile Include="SkillList\Thief\Hide.cs" />
+    <Compile Include="SkillList\Thief\PoisonousArrows.cs" />
     <Compile Include="SkillList\Thief\PoisonousStrike.cs" />
     <Compile Include="SkillList\Thief\Steal.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />

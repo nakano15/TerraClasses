@@ -14,8 +14,8 @@ namespace TerraClasses.ClassList
             ClassType = ClassTypes.Aspect;
             MaxLevel = 50;
             AddSkill(22, "", 1); //Cerberus Form
-            AddSkill(25, ""); //Elemental Breath
-            AddSkill(47, ""); //Fire Breath
+            AddSkill(25); //Elemental Breath
+            AddSkill(47); //Fire Breath
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

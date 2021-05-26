@@ -10,6 +10,8 @@ Difficulty readjusting system implemented:
 	-Snipe
 		It functions partially like Supressive Fire, in the way skill works. Instead of waiting for you to try shotting to have the skill be used, It will now instead shot after 1/3 of a second has passed after skill usage.
 			This is to avoid an issue where certain weapons, like clockwork assault rifle, were never triggering this skill effect.
+	-Marksmanship
+		New skill. Increases damage far away enemies receive from ranged attacks.
 -Summoner
 	-Summon Potence
 		Removed the twice damage multiplier given by the critical effect of the summon. That was actually causing summons to inflict 4 times the damage, in the end.
@@ -17,9 +19,15 @@ Difficulty readjusting system implemented:
 	Class arrives.
 -Fighter
 	Fixed Progressive Attack skill.
+	Added Piercing Shot.
 -Cleric
 	Added Increase Agility, Bane Demons and Bane Undead skills.
+	Added Divine Smite passive skill.
+-Thief
+	Gained a number of skills.
 Skeleton variants now counts toward goals of killing them.
 There is no longer the chance of getting 0 CP.
 The mod will no longer try giving cp, neither showing how much cp you've acquired from killing something that gives none.
 Fixed a bug on a number of skills that gives buffs, where the buffs were giving you NOTHING!
+You can no longer click the skill slots while the skills window isn't opened.
+Thief skill book no longer unlocks Cleric class.

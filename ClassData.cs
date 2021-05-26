@@ -53,7 +53,7 @@ namespace TerraClasses
                 string SkillText = ClassText + "_Skill_" + s;
                 tag.Add(SkillText + "_ID", Skills[s].ID);
                 tag.Add(SkillText + "_ModID", Skills[s].ModID);
-                tag.Add(SkillText + "_Level", Skills[s].Level);
+                tag.Add(SkillText + "_Level", Skills[s].RealLevel);
                 tag.Add(SkillText + "_Cooldown", Skills[s].Cooldown);
             }
         }
@@ -81,6 +81,49 @@ namespace TerraClasses
                         sd.Level = SkillLevel;
                         sd.Cooldown = Cooldown;
                         break;
+                    }
+                }
+            }
+        }
+
+        public void ResetClassSkills()
+        {
+            ClassBase cb = GetClass;
+            for (int cs = 0; cs < cb.SkillList.Count; cs++)
+            {
+                ResetSkill(cb.SkillList[cs]);
+            }
+        }
+
+        public void ResetSkill(int SkillID, string SkillModID = "")
+        {
+            if (SkillModID == "") SkillModID = MainMod.mod.Name;
+            ClassBase cb = GetClass;
+            ClassSkillInfo csi = null;
+            for(int cs = 0; cs < cb.SkillList.Count; cs++)
+            {
+                if(cb.SkillList[cs].SkillID == SkillID && cb.SkillList[cs].SkillMod == SkillModID)
+                {
+                    csi = cb.SkillList[cs];
+                    break;
+                }
+            }
+            if (csi == null) return;
+            ResetSkill(csi);
+        }
+
+        public void ResetSkill(ClassSkillInfo csi)
+        {
+            for (int s = 0; s < Skills.Count; s++)
+            {
+                if (Skills[s].ID == csi.SkillID && Skills[s].ModID == csi.SkillMod)
+                {
+                    int LevelsToRemove = Skills[s].Level - csi.FreeLevel;
+                    if (LevelsToRemove > 0)
+                    {
+                        Skills[s].Level -= LevelsToRemove;
+                        SkillPoint += LevelsToRemove;
+                        return;
                     }
                 }
             }

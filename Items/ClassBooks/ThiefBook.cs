@@ -8,7 +8,7 @@ namespace TerraClasses.Items.ClassBooks
     public class ThiefBook : ClassLoreBookPrefab
     {
         public ThiefBook()
-            : base(6)
+            : base(5)
         {
 
         }

@@ -24,7 +24,7 @@ namespace TerraClasses
         public static Mod mod;
         public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect;
         public static Texture2D MagicCircle, CastBar, StarTexture;
-        public const int ModVersion = 1;
+        public const int ModVersion = 2;
         public static bool LoadedCustomModClasses = false;
         public const string ModClassAndSkillListCallName = "modandskillclasslist";
         public static Vector2 ExpBarOffset = Vector2.Zero;
@@ -674,7 +674,7 @@ namespace TerraClasses
                     }
                     Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInfoStartPosition.X - 4, (int)SkillInfoStartPosition.Y, (int)(120 * Charge), 18), barColor);
                     DrawTextBorder(SkillInfoStartPosition, 128 - 16, Color.Yellow);
-                    if (Main.playerInventory || SkillChangeSlot > -1)
+                    if ((Main.playerInventory && ClassSelectionInterface.Active) || SkillChangeSlot > -1)
                     {
                         if (Main.mouseX >= SkillInfoStartPosition.X && Main.mouseX < SkillInfoStartPosition.X + 128 &&
                             Main.mouseY >= SkillInfoStartPosition.Y && Main.mouseY < SkillInfoStartPosition.Y + 24)
@@ -718,7 +718,7 @@ namespace TerraClasses
                 float Charge = 1f;
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInfoStartPosition.X - 4, (int)SkillInfoStartPosition.Y, 120, 18), Color.Black);
                 DrawTextBorder(SkillInfoStartPosition, 128 - 16, Color.Red);
-                if (Main.playerInventory || SkillChangeSlot > -1)
+                if ((Main.playerInventory && ClassSelectionInterface.Active) || SkillChangeSlot > -1)
                 {
                     if (Main.mouseX >= SkillInfoStartPosition.X && Main.mouseX < SkillInfoStartPosition.X + 128 &&
                         Main.mouseY >= SkillInfoStartPosition.Y && Main.mouseY < SkillInfoStartPosition.Y + 24)

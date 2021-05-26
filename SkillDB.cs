@@ -149,6 +149,16 @@ namespace TerraClasses
                     return new SkillList.Cleric.BaneDemons();
                 case 67:
                     return new SkillList.Knight.ConstantRest();
+                case 68:
+                    return new SkillList.Sharpshooter.Marksmanship();
+                case 69:
+                    return new SkillList.Thief.PoisonousArrows();
+                case 70:
+                    return new SkillList.Fighter.PiercingShot();
+                case 71:
+                    return new SkillList.Cleric.DivineSmite();
+                case 72:
+                    return new SkillList.Archer.PreciseStrike();
             }
             return new SkillBase();
         }

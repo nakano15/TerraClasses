@@ -18,16 +18,23 @@ namespace TerraClasses.SkillList.Cleric
             skillType = Enum.SkillTypes.Active;
             MaxLevel = 10;
             Cooldown = GetTime(30, 1);
+            CastTime = 20;
+            PositionToTake = PositionToTakeOnCastEnum.Mouse;
+        }
+
+        public override float GetEffectRange(SkillData sd)
+        {
+            return 136f + 20f * sd.Level;
         }
 
         public override void Update(Player player, SkillData data)
         {
             if (data.Time == 1)
             {
-                float distance = 136f;
+                float distance = GetEffectRange(data);
                 for (int p = 0; p < 255; p++)
                 {
-                    if (Main.player[p].active && !Main.player[p].dead && (Main.player[p].Center - player.Center).Length() < distance)
+                    if (Main.player[p].active && !Main.player[p].dead && (Main.player[p].Center - data.CastPosition).Length() < distance)
                     {
                         data.ApplySkillBuff(Main.player[p], ModContent.BuffType<Buffs.Bless>(), 5 * 3600 + 30 * 60 * data.Level);
                         data.ApplyPlayerInteraction(Main.player[p]);

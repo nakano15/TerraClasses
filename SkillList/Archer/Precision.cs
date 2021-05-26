@@ -43,6 +43,7 @@ namespace TerraClasses.SkillList.Archer
 
         public override void Draw(Player player, SkillData data, PlayerDrawInfo pdi)
         {
+            if (Main.gameMenu) return;
             Vector2 DrawPosition = new Vector2(Main.screenWidth * 0.25f, Main.screenHeight * 0.75f);
             Utils.DrawBorderString(Main.spriteBatch, "Precision: " + (int)data.GetFloat(ChargePercentageVar) + "%", DrawPosition, Color.Blue, 0.75f, 0.5f, 0.5f);
         }

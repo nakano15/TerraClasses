@@ -25,7 +25,7 @@ namespace TerraClasses.ClassList
         public override ClassUnlockLoreBase CreateLoreBase()
         {
             ClassUnlockLoreBase LoreBase = new ClassUnlockLoreBase();
-            LoreBase.AddGatherItemObjective(Terraria.ID.ItemID.FallenStar, 3, "Concentrate your magic while");
+            LoreBase.AddGatherItemObjective(Terraria.ID.ItemID.FallenStar, 3, "Channel your magic while");
             LoreBase.AddHuntObjective(Terraria.ID.NPCID.Vulture, 10, " reciting the magic words,");
             LoreBase.AddGatherItemObjective(Terraria.ID.ItemID.LesserManaPotion, 10, "\nyou will be able to control ");
             LoreBase.AddHuntObjective(Terraria.ID.NPCID.EyeofCthulhu, 1, " elements for your multi purpose benefit.");
