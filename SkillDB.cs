@@ -159,6 +159,10 @@ namespace TerraClasses
                     return new SkillList.Cleric.DivineSmite();
                 case 72:
                     return new SkillList.Archer.PreciseStrike();
+                case 73:
+                    return new SkillList.Cerberus.Frost_Breath();
+                case 74:
+                    return new SkillList.Cerberus.Lightning_Breath();
             }
             return new SkillBase();
         }

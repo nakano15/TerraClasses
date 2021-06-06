@@ -31,14 +31,13 @@ namespace TerraClasses.SkillList.Cerberus
         {
             if (data.Time >= 20)
             {
-                SkillData sd = PlayerMod.GetPlayerSkillData(player, 22);
+                CerberusFormData sd = (CerberusFormData)PlayerMod.GetPlayerSkillData(player, 22);
                 if (sd != null)
                 {
-                    for(int i = 0; i < 3; i++)
-                        sd.SetInteger((byte)i, 30);
+                    //for(int i = 0; i < 3; i++)
+                        sd.HeadFrame[0] = 30;
                 }
-                Vector2 ShotSpawnPosition = player.Center;
-                ShotSpawnPosition.Y -= 8 * player.gravDir;
+                Vector2 ShotSpawnPosition = CerberusForm.GetMouthPosition(player);
                 //ShotSpawnPosition.X += player.direction * 12;
                 int Damage = data.GetMagicDamage(0, 1.2f + 0.15f * data.Level, player);
                 Vector2 ShotDirection = (new Vector2(Main.mouseX, Main.mouseY) + Main.screenPosition) - ShotSpawnPosition;

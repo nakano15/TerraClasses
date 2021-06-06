@@ -22,7 +22,7 @@ namespace TerraClasses
         public static bool DebugMode = false, DebugSkills = false;
         public static bool SaySkillNameOnUse = false;
         public static Mod mod;
-        public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect;
+        public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect, LightningBolt;
         public static Texture2D MagicCircle, CastBar, StarTexture;
         public const int ModVersion = 2;
         public static bool LoadedCustomModClasses = false;
@@ -318,6 +318,7 @@ namespace TerraClasses
                 ShieldBashEffect = new SkillSprite("Content/Effects/ShieldBashEffect");
                 ProvokeAudioEffect = new SkillSprite("Content/Effects/ProvokeSound");
                 HideEffect = new SkillSprite("Content/Effects/HideEffect");
+                LightningBolt = new SkillSprite("Content/Effects/LightningBolt");
                 if (ModLoader.GetMod("NExperience") != null)
                     NExperienceLoaded = true;
                 LoadUnlockedClasses();

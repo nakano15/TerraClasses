@@ -14,9 +14,25 @@ namespace TerraClasses.SkillList.Cerberus
         {
             Name = "Cerberus Form";
             Description = "Changes yourself to a Cerberus.\n" +
-                " Demons are friendly towards you, except Fire Imps.";
+                " Demons are friendly towards you, except Fire Imps.\n" +
+                " Immunity to Lava.\n" +
+                " Lava blocks doesn't burn you.\n" +
+                " On Fire! debuff now heals you.";
             skillType = Enum.SkillTypes.Passive;
             MaxLevel = 1;
+        }
+
+        public override SkillData GetSkillData => new CerberusFormData();
+
+        public static Vector2 GetMouthPosition(Player player, bool XPositionToo = false)
+        {
+            Vector2 ShotSpawnPosition = player.Center;
+            ShotSpawnPosition.Y -= 8 * player.gravDir;
+            if (XPositionToo)
+            {
+                ShotSpawnPosition.X += 12 * player.direction;
+            }
+            return ShotSpawnPosition;
         }
 
         private void DarkenColor(ref Color color)
@@ -26,14 +42,41 @@ namespace TerraClasses.SkillList.Cerberus
             color.B = (byte)(color.B * 0.3f);
         }
 
+        public override void UpdateStatus(Player player, SkillData data)
+        {
+            player.fireWalk = true;
+        }
+
         public override void Update(Player player, SkillData data)
         {
             player.npcTypeNoAggro[Terraria.ID.NPCID.Demon] = player.npcTypeNoAggro[Terraria.ID.NPCID.VoodooDemon] = player.npcTypeNoAggro[Terraria.ID.NPCID.RedDevil] = true;
+            CerberusFormData cfb = (CerberusFormData)data;
             for (byte i = 0; i < 3; i++)
             {
-                if (data.GetInteger(i) > 0)
+                if (cfb.HeadFrame[i] > 0)
                 {
-                    data.ChangeInteger(i, -1);
+                    cfb.HeadFrame[i]--;
+                }
+            }
+            if (player.HasBuff(Terraria.ID.BuffID.OnFire))
+            {
+                player.lifeRegen += 8;
+                cfb.FireHealingTimer++;
+                if(cfb.FireHealingTimer >= 10)
+                {
+                    cfb.FireHealingTimer -= 10;
+                    if(player.statLife < player.statLifeMax2)
+                    {
+                        int HealthRegen = player.statLifeMax2 / player.statLifeMax;
+                        if (HealthRegen < 1)
+                            HealthRegen = 1;
+                        player.statLifeMax2 += HealthRegen;
+                        CombatText.NewText(player.getRect(), CombatText.HealLife, HealthRegen, false, true);
+                    }
+                }
+                else
+                {
+                    cfb.FireHealingTimer = 0;
                 }
             }
         }
@@ -50,8 +93,9 @@ namespace TerraClasses.SkillList.Cerberus
             return Original;
         }
 
-        public override void Draw(Player player, SkillData data, Terraria.ModLoader.PlayerDrawInfo pdi)
+        public override void Draw(Player player, SkillData rawdata, Terraria.ModLoader.PlayerDrawInfo pdi)
         {
+            CerberusFormData data = (CerberusFormData)rawdata;
             if (player.velocity.X != 0 && player.velocity.Y == 0)
             {
                 for (int i = 0; i < 1; i++)
@@ -98,7 +142,7 @@ namespace TerraClasses.SkillList.Cerberus
                                 rect.X += 1 * 40;
                                 break;
                         }
-                        if (data.GetInteger(i) > 0)
+                        if (data.HeadFrame[i] > 0)
                         {
                             rect.Y = 19 * rect.Height;
                         }
@@ -122,7 +166,8 @@ namespace TerraClasses.SkillList.Cerberus
                 }
                 else if (player.head > 0 && Main.playerDrawData[t].texture == Main.armorHeadTexture[player.head])
                 {
-                    HeadPosition = player.head;
+                    Main.playerDrawData.RemoveAt(t);
+                    //HeadPosition = player.head;
                 }
                 else if ((!pdi.drawAltHair && Main.playerDrawData[t].texture == Main.playerHairTexture[pdi.drawPlayer.hair]) || Main.playerDrawData[t].texture == Main.playerHairAltTexture[pdi.drawPlayer.hair] || pdi.drawPlayer.head > 0 && Main.playerDrawData[t].texture == Main.armorHeadTexture[pdi.drawPlayer.head])
                 {
@@ -152,5 +197,11 @@ namespace TerraClasses.SkillList.Cerberus
                 }
             }
         }
+    }
+
+    public class CerberusFormData : SkillData
+    {
+        public byte[] HeadFrame = new byte[] { 0, 0, 0 };
+        public byte FireHealingTimer = 0;
     }
 }

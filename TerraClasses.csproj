@@ -81,9 +81,13 @@
     <Compile Include="NameIDHelper.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
     <Compile Include="SkillList\Arachnomancer\VenomousAmmo.cs" />
+    <Compile Include="SkillList\Archer\PreciseStrike.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
+    <Compile Include="SkillList\Cerberus\Frost Breath.cs" />
+    <Compile Include="SkillList\Cerberus\Lightning Breath.cs" />
     <Compile Include="SkillList\Cleric\BaneDemons.cs" />
     <Compile Include="SkillList\Cleric\BaneUndead.cs" />
+    <Compile Include="SkillList\Cleric\DivineSmite.cs" />
     <Compile Include="SkillList\Cleric\IncreaseAgility.cs" />
     <Compile Include="SkillList\Fighter\PiercingShot.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
@@ -193,6 +197,7 @@
     <Content Include="Content\Effects\cerberus.png" />
     <Content Include="Content\Effects\Electricity.png" />
     <Content Include="Content\Effects\HideEffect.png" />
+    <Content Include="Content\Effects\LightningBolt.png" />
     <Content Include="Content\Effects\longsword.png" />
     <Content Include="Content\Effects\ShieldBashEffect.png" />
     <Content Include="Content\MagicCircle.png" />
