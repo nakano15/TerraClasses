@@ -13,7 +13,7 @@ namespace TerraClasses.SkillList.Cerberus
         public Lightning_Breath()
         {
             Name = "Lightning Breath";
-            Description = "Launches Lightning Bolts at the foes in front of you.\n" +
+            Description = "Launches Lightning Bolts at the foes in a arc in front of you.\n" +
                 " Bolts causes 102% + 6% Magic damage.\n" +
                 " Hurts foes that are in range of where the lightning passes through.";
             MaxLevel = 10;
@@ -53,14 +53,14 @@ namespace TerraClasses.SkillList.Cerberus
                         if(Math.Abs(Main.npc[i].Center.X - player.Center.X) < 400 &&
                             Math.Abs(Main.npc[i].Center.Y - player.Center.Y) < 300)
                         {
-                            if((player.direction > 0 && player.Center.X < Main.npc[i].Center.X) ||
+                            if ((player.direction > 0 && player.Center.X < Main.npc[i].Center.X) ||
                                 (player.direction < 0 && player.Center.X > Main.npc[i].Center.X))
                             {
-                                //if (Collision.CanHitLine(player.position, player.width, player.height, Main.npc[i].position, Main.npc[i].width, Main.npc[i].height))
-                                //{
+                                if (Math.Abs(player.Center.Y - Main.npc[i].Center.Y) < (Main.npc[i].Center - player.Center).Length() + Main.npc[i].height * 0.5f)
+                                {
                                     float Prediction = (Main.npc[i].Center - LightningSpawnPos).Length() * 0.0625f;
                                     Paths.Add(new LightningBreathData.LightningPath(LightningSpawnPos, Main.npc[i].Center + Main.npc[i].velocity * Prediction));
-                                //}
+                                }
                             }
                         }
                     }
