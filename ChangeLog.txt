@@ -1,12 +1,1 @@
-﻿-Cerberus Class
-	-Elemental Breath
-		Now can shot while you're using an item, instead of when you just press the attack button.
-	-Frost Breath
-		New Skill. Launches Frost Bolts to the mouse direction.
-	-Lightning Breath
-		New Skill. Launches Thunder Bolts to all enemies in front of you.
-	-Cerberus Form
-		Immunity to Lava.
-		Immunity to Lava Blocks.
-		On Fire! debuff now restores your health.
-Fixed an issue that could cause crashes upon reloading mods.
+﻿

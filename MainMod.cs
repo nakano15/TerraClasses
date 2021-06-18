@@ -21,6 +21,7 @@ namespace TerraClasses
         public static int SkillChangeSlot = -1;
         public static bool DebugMode = false, DebugSkills = false;
         public static bool SaySkillNameOnUse = false;
+        public static bool EnableMonsterStatusBuffingBasedOnClasses = true;
         public static Mod mod;
         public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect, LightningBolt;
         public static Texture2D MagicCircle, CastBar, StarTexture;

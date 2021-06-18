@@ -38,6 +38,26 @@ namespace TerraClasses
     }
 
     [Label("Debugging Settings")]
+    public class GlobalConfig : ModConfig
+    {
+        public override ConfigScope Mode => ConfigScope.ServerSide;
+
+        [Label("Enable Star Difficulty?")]
+        [Tooltip("When enabled, star difficulty increases based on where you are, and how many classes you have. The number of stars determines how tougher the monsters get.")]
+        public bool EnableStarDifficulty
+        {
+            get
+            {
+                return MainMod.EnableMonsterStatusBuffingBasedOnClasses;
+            }
+            set
+            {
+                MainMod.EnableMonsterStatusBuffingBasedOnClasses = value;
+            }
+        }
+    }
+
+    [Label("Debugging Settings")]
     public class DebugConfig : ModConfig
     {
         public override ConfigScope Mode => ConfigScope.ServerSide;
