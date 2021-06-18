@@ -36,7 +36,7 @@ namespace TerraClasses
         public override void SetDefaults(NPC npc)
         {
             CPReward = npc.lifeMax / 8 + (npc.damage * 2 + npc.defense) / 2;
-            if(SpawnPlayer != null)
+            if(!Main.gameMenu && SpawnPlayer != null)
             {
                 ReadjustStatusBasedOnDifficulty(npc, SpawnPlayer.GetModPlayer<PlayerMod>().DifficultyLevel);
             }
