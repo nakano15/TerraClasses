@@ -19,6 +19,8 @@ namespace TerraClasses.ClassList
             AddSkill(38);
             AddSkill(39);
             AddSkill(44);
+            AddSkill(75);
+            AddSkill(76);
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

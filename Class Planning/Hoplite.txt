@@ -1,0 +1,15 @@
+Benefits Spear and Javelin users.
+
+Class quest can require finding the entire Hoplite set.
+
+//
+
+Could have an skill that makes It launch a Javelin at the cursor direction.
+
+An skill that gradually increases the speed of spear attacks. At higher levels, makes them have auto reuse.
+
+An skill that makes critical hits restore part of the player health.
+
+A skill that boosts damage of thrown weapons.
+
+Skill that increases Melee damage based on Ranged damage.

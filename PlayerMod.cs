@@ -382,6 +382,58 @@ namespace TerraClasses
             return null;
         }
 
+        public bool ResetSkill(int ClassPosition, int SkillPosition)
+        {
+            if(ClassPosition >= 0 && ClassPosition < Classes.Count)
+            {
+                ClassData cd = Classes[ClassPosition];
+                if(SkillPosition >= 0 && SkillPosition < cd.Skills.Count)
+                {
+                    SkillData sd = cd.Skills[SkillPosition];
+                    if (cd.ResetSkill(SkillPosition))
+                    {
+                        if(CombatSkill.ClassPosition == ClassPosition && 
+                            CombatSkill.SkillPosition == SkillPosition)
+                        {
+                            CombatSkill = new SkillSlot();
+                        }
+                        for(int i = 0; i < 4; i++)
+                        {
+                            if (ActiveSkill[i].ClassPosition == ClassPosition &&
+                                ActiveSkill[i].SkillPosition == SkillPosition)
+                                ActiveSkill[i] = new SkillSlot();
+                        }
+                        Main.NewText("[" + sd.Name + "] resetted successfully.");
+                        return true;
+                    }
+                }
+            }
+            return false;
+        }
+
+        public bool DeleteClass(int ClassPosition)
+        {
+            if(ClassPosition > 0 && ClassPosition < Classes.Count)
+            {
+                string ClassName = Classes[ClassPosition].Name + " Lv" + Classes[ClassPosition].Level;
+                Classes.RemoveAt(ClassPosition);
+                if (CombatSkill.ClassPosition == ClassPosition)
+                    CombatSkill = new SkillSlot();
+                else if (CombatSkill.ClassPosition > ClassPosition)
+                    CombatSkill.ClassPosition--;
+                for(int i = 0; i < 4; i++)
+                {
+                    if (ActiveSkill[i].ClassPosition == ClassPosition)
+                        ActiveSkill[i] = new SkillSlot();
+                    else if (ActiveSkill[i].ClassPosition > ClassPosition)
+                        ActiveSkill[i].ClassPosition--;
+                }
+                Main.NewText("["+ClassName + "] removed successfully.");
+                return true;
+            }
+            return false;
+        }
+
         public override void ResetEffects()
         {
             BuyValue = SellValue = ReforgeValue = HealValue = 1f;
@@ -704,11 +756,12 @@ namespace TerraClasses
                 {
                     sd.GetBase.Update(player, sd);
                 }
-                if (sd.Active)
+                bool Passive = sd.IsPassive;
+                if (sd.Active || Passive)
                 {
-                    if (sd.GetBase.UnallowOtherSkillUsage)
+                    if (!Passive && sd.GetBase.UnallowOtherSkillUsage)
                         UsingPrivilegedSkill = true;
-                    if (sd.CastTime < sd.GetBase.CastTime)
+                    if (!Passive && sd.CastTime < sd.GetBase.CastTime)
                     {
                         sd.CastTime++;
                         SkillBeingCasted = sd;

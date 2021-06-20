@@ -1,1 +1,17 @@
-﻿
+﻿Fixed an issue where passive skills weren't having their time variable increase.
+-Cerberus Class
+	-Lightning Breath
+		Buffed a bit the distance It travels, when It can't find a target.
+		Also buffed the distance travelled when It finds a target.
+-Summoner Class
+	-Summon Queen Bee
+		New Skill.
+		Invoke the Queen Bee to summon bees to attack foes around you.
+	-Summon Demons
+		New Skill.
+		Summon one or a horde of demons to launch scythes at nearby foes.
+Fixed a bug related to selecting skills on the list.
+Added Class Deletion and Skill Reset possibility.
+	For now, they are free and can be done at any time.
+	Class deletion doesn't stops you from picking It again.
+Changing classes no longer bugs NExperience Mod interface.

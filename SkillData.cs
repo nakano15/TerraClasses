@@ -14,7 +14,7 @@ namespace TerraClasses
         public string ModID = "";
         public int Cooldown = 0;
         public float CastTime = 0;
-        public int Level { get { if (MainMod.DebugMode && MainMod.DebugSkills) return 10; return RealLevel + LevelBonus; } set { RealLevel = value; } }
+        public int Level { get { if (MainMod.DebugMode && MainMod.DebugSkills) return GetBase.MaxLevel; return RealLevel + LevelBonus; } set { RealLevel = value; } }
         public int RealLevel = 0;
         public int LevelBonus = 0;
         public int Step = 0;

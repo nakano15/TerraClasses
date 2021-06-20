@@ -95,6 +95,17 @@ namespace TerraClasses
             }
         }
 
+        public bool ResetSkill(int SkillPosition)
+        {
+            if(SkillPosition >= 0 && SkillPosition < Skills.Count)
+            {
+                ClassBase cb = GetClass;
+                ResetSkill(cb.SkillList[SkillPosition]);
+                return true;
+            }
+            return false;
+        }
+
         public void ResetSkill(int SkillID, string SkillModID = "")
         {
             if (SkillModID == "") SkillModID = MainMod.mod.Name;
@@ -118,10 +129,10 @@ namespace TerraClasses
             {
                 if (Skills[s].ID == csi.SkillID && Skills[s].ModID == csi.SkillMod)
                 {
-                    int LevelsToRemove = Skills[s].Level - csi.FreeLevel;
+                    int LevelsToRemove = Skills[s].RealLevel - csi.FreeLevel;
                     if (LevelsToRemove > 0)
                     {
-                        Skills[s].Level -= LevelsToRemove;
+                        Skills[s].RealLevel -= LevelsToRemove;
                         SkillPoint += LevelsToRemove;
                         return;
                     }

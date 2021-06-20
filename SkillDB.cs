@@ -163,6 +163,10 @@ namespace TerraClasses
                     return new SkillList.Cerberus.Frost_Breath();
                 case 74:
                     return new SkillList.Cerberus.Lightning_Breath();
+                case 75:
+                    return new SkillList.Summoner.SummonQueenBee();
+                case 76:
+                    return new SkillList.Summoner.SummonDemon();
             }
             return new SkillBase();
         }

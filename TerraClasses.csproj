@@ -100,6 +100,8 @@
     <Compile Include="SkillList\Knight\Unload.cs" />
     <Compile Include="SkillList\Knight\Vow.cs" />
     <Compile Include="SkillList\Sharpshooter\Marksmanship.cs" />
+    <Compile Include="SkillList\Summoner\SummonDemon.cs" />
+    <Compile Include="SkillList\Summoner\SummonQueenBee.cs" />
     <Compile Include="SkillList\Thief\DodgeMastery.cs" />
     <Compile Include="SkillList\Thief\DoubleStrike.cs" />
     <Compile Include="SkillList\Thief\Hide.cs" />

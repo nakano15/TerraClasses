@@ -50,7 +50,7 @@ namespace TerraClasses.SkillList.Cerberus
                 {
                     if(Main.npc[i].active && !Main.npc[i].dontTakeDamage && !Main.npc[i].friendly)
                     {
-                        if(Math.Abs(Main.npc[i].Center.X - player.Center.X) < 400 &&
+                        if(Math.Abs(Main.npc[i].Center.X - player.Center.X) < 500 &&
                             Math.Abs(Main.npc[i].Center.Y - player.Center.Y) < 300)
                         {
                             if ((player.direction > 0 && player.Center.X < Main.npc[i].Center.X) ||
@@ -68,7 +68,7 @@ namespace TerraClasses.SkillList.Cerberus
                 while(Paths.Count < 3)
                 {
                     Vector2 BoltPosition = player.Center;
-                    BoltPosition.X += player.direction * Main.rand.Next(300);
+                    BoltPosition.X += player.direction * (300 + Main.rand.Next(200));
                     BoltPosition.Y += Main.rand.Next(-150, 151);
                     Paths.Add(new LightningBreathData.LightningPath(LightningSpawnPos, BoltPosition));
                 }

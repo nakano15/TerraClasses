@@ -33,7 +33,7 @@ namespace TerraClasses.SkillList.Summoner
             }
             if (data.Time >= 21 && player.itemAnimation > 0 && player.HeldItem.damage > 0)
             {
-                data.Time = 0;
+                data.ChangeStep();
                 float ShotDirectionY = data.GetFloat(ShotDirectionVar);
                 int Damage = data.GetSummonDamage(0, 0.6f + 0.02f * data.Level, player);
                 Vector2 ShotDirection = new Vector2(player.direction * -2f, ShotDirectionY);

@@ -18,6 +18,7 @@ namespace TerraClasses
         public const int Width = 520, Height = 240;
         public static int CheckedClassID = -1, CheckedSkillID = -1;
         public static string CheckedClassModID = "", CheckedSkillModID = "";
+        private static bool AskIfShouldResetThis = false;
 
         public static void Open()
         {
@@ -35,6 +36,7 @@ namespace TerraClasses
         public static void Close()
         {
             Active = false;
+            AskIfShouldResetThis = false;
             Mod NExperienceMod = ModLoader.GetMod("NExperience");
             if (NExperienceMod != null)
             {
@@ -153,6 +155,7 @@ namespace TerraClasses
                             {
                                 CheckedSkillID = -1;
                                 CheckedSkillModID = "";
+                                AskIfShouldResetThis = false;
                             }
                         }
                         Utils.DrawBorderString(Main.spriteBatch, "Return", ButtonPosition, color);
@@ -202,11 +205,13 @@ namespace TerraClasses
                                     {
                                         CheckedSkillID = csi.SkillID;
                                         CheckedSkillModID = csi.SkillMod;
+                                        AskIfShouldResetThis = false;
                                     }
                                 }
                                 Utils.DrawBorderString(Main.spriteBatch, SkillName, SkillPosition, c);
                             }
                         }
+                        //
                         Vector2 ButtonPosition = new Vector2(Main.screenWidth * 0.5f - Width * 0.5f + 4, Main.screenHeight - 22);
                         Color color = Color.White;
                         if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 86 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
@@ -218,12 +223,14 @@ namespace TerraClasses
                                 Main.NewText("You changed into " + cb.Name + " class!");
                                 CheckedClassID = -1;
                                 CheckedClassModID = "";
-                                Active = false;
+                                Close();
+                                AskIfShouldResetThis = false;
                             }
                         }
                         Utils.DrawBorderString(Main.spriteBatch, "Change Class", ButtonPosition, color);
-                        color = Color.Red;
+                        //
                         ButtonPosition.X += Width - 68f;
+                        color = Color.Red;
                         if (Main.mouseX >= ButtonPosition.X && Main.mouseX < ButtonPosition.X + 68 && Main.mouseY >= ButtonPosition.Y && Main.mouseY < ButtonPosition.Y + 22)
                         {
                             color = Color.Yellow;
@@ -258,7 +265,7 @@ namespace TerraClasses
                         t = "Spend Skill Point to Unlock.";
                     }
                     else if (sd.Level > sb.MaxLevel)
-                        t = "Overlevel " + (sb.MaxLevel - sd.Level);
+                        t = "Overlevel " + (sd.Level - sb.MaxLevel);
                     else if (sd.Level == sb.MaxLevel)
                         t = "Mastered";
                     else
@@ -318,6 +325,57 @@ namespace TerraClasses
                         }
                     }
                     Utils.DrawBorderString(Main.spriteBatch, "Close", SkillPointsPosition, textColor);
+                    //
+                    if (sd.Level > 0)
+                    {
+                        SkillPointsPosition.X = Main.screenWidth * 0.5f;
+                        if (AskIfShouldResetThis)
+                        {
+                            SkillPointsPosition.X -= 10;
+                            textColor = Color.White;
+                            if (Main.mouseX >= SkillPointsPosition.X - 40 && Main.mouseX < SkillPointsPosition.X && Main.mouseY >= SkillPointsPosition.Y && Main.mouseY < SkillPointsPosition.Y + 22)
+                            {
+                                textColor = Color.Yellow;
+                                if (Main.mouseLeft && Main.mouseLeftRelease)
+                                {
+                                    if (!Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().ResetSkill(SelectedClass, SelectedSkill))
+                                    {
+                                        Main.NewText("Something went wrong.");
+                                    }
+                                    AskIfShouldResetThis = false;
+                                }
+                            }
+                            Utils.DrawBorderString(Main.spriteBatch, "Yes", SkillPointsPosition, textColor, 1f, 1f);
+
+                            SkillPointsPosition.X = Main.screenWidth * 0.5f + 10;
+                            textColor = Color.White;
+                            if (Main.mouseX >= SkillPointsPosition.X && Main.mouseX < SkillPointsPosition.X + 40 && Main.mouseY >= SkillPointsPosition.Y && Main.mouseY < SkillPointsPosition.Y + 22)
+                            {
+                                textColor = Color.Yellow;
+                                if (Main.mouseLeft && Main.mouseLeftRelease)
+                                {
+                                    AskIfShouldResetThis = false;
+                                }
+                            }
+                            Utils.DrawBorderString(Main.spriteBatch, "No", SkillPointsPosition, textColor, 1f, 0);
+                            SkillPointsPosition.X -= 10;
+                            SkillPointsPosition.Y -= 25;
+                            Utils.DrawBorderString(Main.spriteBatch, "Are you sure that want to reset this skill?", SkillPointsPosition, Color.White, 1f, 0.5f);
+                        }
+                        else
+                        {
+                            textColor = Color.White;
+                            if (Main.mouseX >= SkillPointsPosition.X - 30 && Main.mouseX < SkillPointsPosition.X + 30 && Main.mouseY >= SkillPointsPosition.Y && Main.mouseY < SkillPointsPosition.Y + 22)
+                            {
+                                textColor = Color.Yellow;
+                                if (Main.mouseLeft && Main.mouseLeftRelease)
+                                {
+                                    AskIfShouldResetThis = true;
+                                }
+                            }
+                            Utils.DrawBorderString(Main.spriteBatch, "Reset Skill", SkillPointsPosition, textColor, 1f, 0.5f);
+                        }
+                    }
                     return;
                 }
                 Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)SkillInterfacePos.X + 4, (int)SkillInterfacePos.Y + 4, 128, Height - 8), Color.Goldenrod);
@@ -347,7 +405,7 @@ namespace TerraClasses
                     Vector2 ClassNamePosition = SkillInterfacePos + new Vector2(4, 4 + i * 25f);
                     bool MouseOver = Main.mouseX >= ClassNamePosition.X && Main.mouseX < ClassNamePosition.X + 96 && Main.mouseY >= ClassNamePosition.Y && Main.mouseY < ClassNamePosition.Y + 25;
                     Color color = Color.White;
-                    bool IsSelected = SelectedClass == i;
+                    bool IsSelected = SelectedClass == Index;
                     if (IsSelected)
                         color = Color.Yellow;
                     if (MouseOver)
@@ -415,7 +473,7 @@ namespace TerraClasses
                         Utils.DrawBorderString(Main.spriteBatch, (c.Level < c.MaxLevel ? "Level: " + c.Level + "  Exp [" + c.Exp + "/" + c.MaxExp + "]" : "Mastered"), SkillInterfacePos, Color.White, 0.85f);
                         SkillInterfacePos.Y += 22f;
                         const int SkillColumns = 2;
-                        int SkillRows = (int)((Main.screenHeight - SkillInterfacePos.Y) / 25);
+                        int SkillRows = (int)((Main.screenHeight - SkillInterfacePos.Y) / 25 - (AskIfShouldResetThis ? 2 : 1));
                         for (int row = 0; row < SkillRows; row++)
                         {
                             for (int column = 0; column < SkillColumns; column++)
@@ -443,6 +501,59 @@ namespace TerraClasses
                                 }
                                 Utils.DrawBorderString(Main.spriteBatch, SkillName, SkillPosition, color);
                             }
+                        }
+                        //
+                        Vector2 SkillResetPos = new Vector2(Main.screenWidth * 0.5f, Main.screenHeight - 22);
+                        Color textColor;
+                        if (AskIfShouldResetThis)
+                        {
+                            SkillResetPos.X -= 10;
+                            textColor = Color.White;
+                            if (Main.mouseX >= SkillResetPos.X - 40 && Main.mouseX < SkillResetPos.X && Main.mouseY >= SkillResetPos.Y && Main.mouseY < SkillResetPos.Y + 22)
+                            {
+                                textColor = Color.Red;
+                                if (Main.mouseLeft && Main.mouseLeftRelease)
+                                {
+                                    if (!Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().DeleteClass(SelectedClass))
+                                    {
+                                        Main.NewText("Something went wrong.");
+                                    }
+                                    else
+                                    {
+                                        SelectedClass = SelectedSkill = -1;
+                                    }
+                                    AskIfShouldResetThis = false;
+                                }
+                            }
+                            Utils.DrawBorderString(Main.spriteBatch, "Yes", SkillResetPos, textColor, 1f, 1f);
+
+                            SkillResetPos.X = Main.screenWidth * 0.5f + 10;
+                            textColor = Color.White;
+                            if (Main.mouseX >= SkillResetPos.X && Main.mouseX < SkillResetPos.X + 40 && Main.mouseY >= SkillResetPos.Y && Main.mouseY < SkillResetPos.Y + 22)
+                            {
+                                textColor = Color.Yellow;
+                                if (Main.mouseLeft && Main.mouseLeftRelease)
+                                {
+                                    AskIfShouldResetThis = false;
+                                }
+                            }
+                            Utils.DrawBorderString(Main.spriteBatch, "No", SkillResetPos, textColor, 1f, 0);
+                            SkillResetPos.X -= 10;
+                            SkillResetPos.Y -= 25;
+                            Utils.DrawBorderString(Main.spriteBatch, "Do you really want to delete this class?", SkillResetPos, Color.White, 1f, 0.5f);
+                        }
+                        else
+                        {
+                            textColor = Color.White;
+                            if (Main.mouseX >= SkillResetPos.X - 30 && Main.mouseX < SkillResetPos.X + 30 && Main.mouseY >= SkillResetPos.Y && Main.mouseY < SkillResetPos.Y + 22)
+                            {
+                                textColor = Color.Red;
+                                if (Main.mouseLeft && Main.mouseLeftRelease)
+                                {
+                                    AskIfShouldResetThis = true;
+                                }
+                            }
+                            Utils.DrawBorderString(Main.spriteBatch, "Delete Class", SkillResetPos, textColor, 1f, 0.5f);
                         }
                     }
                 }
