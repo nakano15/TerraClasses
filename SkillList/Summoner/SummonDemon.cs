@@ -24,7 +24,7 @@ namespace TerraClasses.SkillList.Summoner
                 " Decreases delay between shots past level 6 and 12.";
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
-            GetTime(55);
+            Cooldown = GetTime(55);
         }
 
         public override SkillData GetSkillData => new SummonDemonData();
@@ -58,7 +58,7 @@ namespace TerraClasses.SkillList.Summoner
                 MaxShotCooldown--;
             if (data.Level > 12)
                 MaxShotCooldown--;
-            MaxShotCooldown = (byte)(data.DemonMinions.Length * MaxShotCooldown);
+            MaxShotCooldown = (byte)(8 * MaxShotCooldown);
             for (int i = 0; i < data.DemonMinions.Length; i++)
             {
                 SummonDemonData.DemonInfo di = data.DemonMinions[i];
@@ -133,8 +133,8 @@ namespace TerraClasses.SkillList.Summoner
                 di.ShotCooldown--;
                 if(di.ShotCooldown == 0)
                 {
-                    di.ShotCooldown = MaxShotCooldown;
-                    if(FoundNpc > -1)
+                    di.ShotCooldown = (byte)(MaxShotCooldown * 4);
+                    if(CanAttack && FoundNpc > -1)
                     {
                         Vector2 TargetPosition = FinalPosition - di.Position;
                         TargetPosition.X += Main.rand.Next(-100, 101);
