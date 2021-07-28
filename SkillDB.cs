@@ -167,6 +167,12 @@ namespace TerraClasses
                     return new SkillList.Summoner.SummonQueenBee();
                 case 76:
                     return new SkillList.Summoner.SummonDemon();
+                case 77:
+                    return new SkillList.Cerberus.CerberusHead();
+                case 78:
+                    return new SkillList.Cerberus.PawStrike();
+                case 79:
+                    return new SkillList.Cerberus.ClawSlash();
             }
             return new SkillBase();
         }

@@ -269,7 +269,7 @@ namespace TerraClasses
                     else if (sd.Level == sb.MaxLevel)
                         t = "Mastered";
                     else
-                        t = "Level [" + sd.Level + "/" + sb.MaxLevel + "]";
+                        t = "Level [" + sd.RealLevel + "/" + sb.MaxLevel + "]";
                     Color textColor = Color.White;
                     if (sd.Level < sb.MaxLevel && Main.mouseX >= SkillInterfacePos.X && Main.mouseX < SkillInterfacePos.X + 128 &&
                         Main.mouseY >= SkillInterfacePos.Y && Main.mouseY < SkillInterfacePos.Y + 20)

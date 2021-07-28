@@ -9,7 +9,6 @@ namespace TerraClasses.SkillList.Archer
 {
     public class ExtraArrows : SkillBase
     {
-        const byte IAttackCountVar = 0;
         public ExtraArrows()
         {
             Name = "Extra Arrows";
@@ -22,18 +21,19 @@ namespace TerraClasses.SkillList.Archer
             skillType = Enum.SkillTypes.Attack;
         }
 
-        public override bool BeforeShooting(Player player, SkillData data, Item weapon, ref int type, ref int damage, ref float knockback, ref Vector2 Position, ref float SpeedX, ref float SpeedY)
+        public override SkillData GetSkillData => new ExtraArrowsData();
+
+        public override bool BeforeShooting(Player player, SkillData rawdata, Item weapon, ref int type, ref int damage, ref float knockback, ref Vector2 Position, ref float SpeedX, ref float SpeedY)
         {
+            ExtraArrowsData data = (ExtraArrowsData)rawdata;
             if (weapon.useAmmo == Terraria.ID.AmmoID.Arrow)
             {
-                data.ChangeInteger(IAttackCountVar, 1);
-                int Count = data.GetInteger(IAttackCountVar);
-                if (Count > 3)
+                data.AttackCount ++;
+                if (data.AttackCount > 3)
                 {
-                    data.SetInteger(IAttackCountVar, 1);
-                    Count = 1;
+                    data.AttackCount = 1;
                 }
-                for (int i = 0; i < Count; i++)
+                for (int i = 0; i < data.AttackCount; i++)
                 {
                     float ThisSpeedX = SpeedX, ThisSpeedY = SpeedY;
                     int Damage = (int)(damage * (0.6f + 0.08f * data.Level));
@@ -52,6 +52,11 @@ namespace TerraClasses.SkillList.Archer
                 }
             }
             return true;
+        }
+
+        public class ExtraArrowsData : SkillData
+        {
+            public byte AttackCount = 0;
         }
     }
 }

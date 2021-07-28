@@ -14,7 +14,8 @@ namespace TerraClasses
         public string ModID = "";
         public int Cooldown = 0;
         public float CastTime = 0;
-        public int Level { get { if (MainMod.DebugMode && MainMod.DebugSkills) return GetBase.MaxLevel; return RealLevel + LevelBonus; } set { RealLevel = value; } }
+        public int Level { get { if (Active && !IsPassive && SkillTypes != Enum.SkillTypes.Attack) return CastLevel; if (MainMod.DebugMode && MainMod.DebugSkills) return GetBase.MaxLevel; return RealLevel + LevelBonus; } set { RealLevel = value; } }
+        private int CastLevel = 0;
         public int RealLevel = 0;
         public int LevelBonus = 0;
         public int Step = 0;
@@ -26,8 +27,6 @@ namespace TerraClasses
         public int MaxLevel { get { return GetBase.MaxLevel; } }
         public Enum.SkillTypes SkillTypes { get { return GetBase.skillType; } }
         public bool IsPassive { get { return GetBase.skillType == Enum.SkillTypes.Passive; } }
-        private Dictionary<byte, int> IntegerVariables = new Dictionary<byte, int>();
-        private Dictionary<byte, float> FloatVariables = new Dictionary<byte, float>();
         private Dictionary<byte, int> NpcDamageCooldown = new Dictionary<byte, int>(), 
             PlayerDamageCooldown = new Dictionary<byte, int>();
         private Dictionary<TargetTranslator.Translator, int> ExtraTargetDamageCooldown = new Dictionary<TargetTranslator.Translator, int>();
@@ -37,11 +36,23 @@ namespace TerraClasses
         private static bool StepChanged = false;
         public Vector2 CastPosition = Vector2.Zero;
 
-        public void ChangeStep()
+        public void ChangeStep(int StepNum = -1)
         {
-            Step++;
+            if (StepNum == -1)
+                Step++;
+            else
+                Step = StepNum;
             Time = 0;
             StepChanged = true;
+        }
+
+        public int GetProjectileFromWeapon(Item i, Player player, bool ConsumeAmmo = true)
+        {
+            int shoot = 0, damage = 0;
+            float speed = 0, kb = 0;
+            bool canshoot = true;
+            player.PickAmmo(i, ref shoot, ref speed, ref canshoot, ref damage, ref kb, ConsumeAmmo); //tModLoader gives errors when using this...
+            return shoot;
         }
 
         public int GetMeleeDamage(int DamageBonus, float DamagePercentage, Player player)
@@ -120,52 +131,6 @@ namespace TerraClasses
             return (int)((dmg + DamageBonus) * DamagePercentage);
         }
 
-        public void SetInteger(byte Variable, int Value)
-        {
-            if (IntegerVariables.ContainsKey(Variable))
-                IntegerVariables[Variable] = Value;
-            else
-                IntegerVariables.Add(Variable, Value);
-        }
-
-        public void ChangeInteger(byte Variable, int Value)
-        {
-            if (IntegerVariables.ContainsKey(Variable))
-                IntegerVariables[Variable] += Value;
-            else
-                IntegerVariables.Add(Variable, Value);
-        }
-
-        public int GetInteger(byte Variable)
-        {
-            if (IntegerVariables.ContainsKey(Variable))
-                return IntegerVariables[Variable];
-            return 0;
-        }
-
-        public void SetFloat(byte Variable, float Value)
-        {
-            if (FloatVariables.ContainsKey(Variable))
-                FloatVariables[Variable] = Value;
-            else
-                FloatVariables.Add(Variable, Value);
-        }
-
-        public void ChangeFloat(byte Variable, float Value)
-        {
-            if (FloatVariables.ContainsKey(Variable))
-                FloatVariables[Variable] += Value;
-            else
-                FloatVariables.Add(Variable, Value);
-        }
-
-        public float GetFloat(byte Variable)
-        {
-            if (FloatVariables.ContainsKey(Variable))
-                return FloatVariables[Variable];
-            return 0;
-        }
-
         public void ApplySkillBuff(Player player, int BuffID, int BuffTime, int SkillLevel = -1)
         {
             if (SkillLevel == -1)
@@ -185,6 +150,7 @@ namespace TerraClasses
             Time = 0;
             Step = 0;
             CastTime = 0;
+            CastLevel = Level;
             Active = true;
             Cooldown = GetBase.Cooldown;
             PlayerDamageCooldown.Clear();
@@ -547,29 +513,32 @@ namespace TerraClasses
         public void UpdateSkill(Player player)
         {
             Owner = player.whoAmI;
-            if (!Active)
+            if (GetBase.skillType != Enum.SkillTypes.Passive)
             {
-                if (Cooldown > 0)
+                if (!Active)
                 {
-                    if (MainMod.DebugMode)
-                        Cooldown = 0;
-                    else
-                        Cooldown--;
+                    if (Cooldown > 0)
+                    {
+                        if (MainMod.DebugMode)
+                            Cooldown = 0;
+                        else
+                            Cooldown--;
+                    }
+                    return;
                 }
-                return;
-            }
-            if(CastTime < GetBase.CastTime)
-            {
-                switch (GetBase.PositionToTake)
+                if (CastTime < GetBase.CastTime)
                 {
-                    case SkillBase.PositionToTakeOnCastEnum.Mouse:
-                        CastPosition = SkillBase.GetMousePositionInTheWorld;
-                        break;
-                    case SkillBase.PositionToTakeOnCastEnum.Player:
-                        CastPosition = player.Center;
-                        break;
+                    switch (GetBase.PositionToTake)
+                    {
+                        case SkillBase.PositionToTakeOnCastEnum.Mouse:
+                            CastPosition = SkillBase.GetMousePositionInTheWorld;
+                            break;
+                        case SkillBase.PositionToTakeOnCastEnum.Player:
+                            CastPosition = player.Center;
+                            break;
+                    }
+                    return;
                 }
-                return;
             }
             byte[] Keys = PlayerDamageCooldown.Keys.ToArray();
             foreach (byte key in Keys)

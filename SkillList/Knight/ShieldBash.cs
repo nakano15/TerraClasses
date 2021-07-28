@@ -10,8 +10,6 @@ namespace TerraClasses.SkillList.Knight
 {
     public class ShieldBash : SkillBase
     {
-        private const byte ShieldBashDirectionVar = 0;
-
         public ShieldBash()
         {
             Name = "Shield Bash";
@@ -24,17 +22,18 @@ namespace TerraClasses.SkillList.Knight
             skillType = Enum.SkillTypes.Active;
         }
 
-        public override void Update(Player player, SkillData data)
+        public override void Update(Player player, SkillData rawdata)
         {
+            ShieldBashData data = (ShieldBashData)rawdata;
             if (data.Time == 0)
             {
-                data.SetInteger(ShieldBashDirectionVar, player.direction > 0 ? 1 : -1);
+                data.ShieldBashDir = (sbyte)(player.direction > 0 ? 1 : -1);
             }
             if (data.Time == 2)
             {
                 Rectangle rect = new Rectangle((int)player.Center.X, (int)player.Center.Y, 60 + 20, 44 + 20);
                 rect.Y -= rect.Height / 2;
-                if (data.GetInteger(ShieldBashDirectionVar) < 0)
+                if (data.ShieldBashDir < 0)
                     rect.X -= rect.Width;
                 TargetTranslator.Translator[] Targets = data.GetPossibleTargets(false, rect);
                 int Damage = data.GetMeleeDamage(0, 1.2f + 0.026f * data.Level, player);
@@ -47,18 +46,26 @@ namespace TerraClasses.SkillList.Knight
                 data.EndUse();
         }
 
-        public override void Draw(Player player, SkillData data, PlayerDrawInfo pdi)
+        public override void Draw(Player player, SkillData rawdata, PlayerDrawInfo pdi)
         {
+            ShieldBashData data = (ShieldBashData)rawdata;
             Vector2 EffectPosition = player.Center - Main.screenPosition;
             Color color = Color.White;
-            EffectPosition.X += data.GetInteger(ShieldBashDirectionVar) * 3.6f * data.Time;
+            EffectPosition.X += data.ShieldBashDir * 3.6f * data.Time;
             if (data.Time > 10)
             {
                 color *= 1f - ((data.Time - 10) * 0.1f);
             }
             Terraria.DataStructures.DrawData dd = new Terraria.DataStructures.DrawData(MainMod.ShieldBashEffect.GetTexture, EffectPosition, null, color,
-                0f, new Vector2(24, 44) * 0.5f, 1f, (data.GetInteger(ShieldBashDirectionVar) > 0 ? Microsoft.Xna.Framework.Graphics.SpriteEffects.None : Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally), 0);
+                0f, new Vector2(24, 44) * 0.5f, 1f, (data.ShieldBashDir > 0 ? Microsoft.Xna.Framework.Graphics.SpriteEffects.None : Microsoft.Xna.Framework.Graphics.SpriteEffects.FlipHorizontally), 0);
             Main.playerDrawData.Add(dd);
+        }
+
+        public override SkillData GetSkillData => new ShieldBashData();
+
+        public class ShieldBashData : SkillData
+        {
+            public sbyte ShieldBashDir = 0;
         }
     }
 }

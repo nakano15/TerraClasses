@@ -20,20 +20,19 @@ namespace TerraClasses.SkillList.Knight
             MaxLevel = 10;
         }
 
-        public override void Update(Player player, SkillData data)
+        public override SkillData GetSkillData => new ConstantRestData();
+
+        public override void Update(Player player, SkillData rawdata)
         {
-            int HealthRegenValue = data.GetInteger(HealthRegenTimerVar);
+            ConstantRestData data = (ConstantRestData)rawdata;
             if (player.velocity.X != 0)
             {
-                if (HealthRegenValue > 0)
-                {
-                    data.SetInteger(HealthRegenTimerVar, 0);
-                }
+                data.HealthRegenTime = 0;
             }
             else
             {
-                HealthRegenValue++;
-                if(HealthRegenValue >= 3 * 60 - 9 * data.Level)
+                data.HealthRegenTime++;
+                if(data.HealthRegenTime >= 3 * 60 - 9 * data.Level)
                 {
                     if (player.statLife < player.statLifeMax2)
                     {
@@ -43,13 +42,14 @@ namespace TerraClasses.SkillList.Knight
                         player.statLife += HealthToRestore;
                         player.HealEffect(HealthToRestore);
                     }
-                    data.SetInteger(HealthRegenTimerVar, 0);
-                }
-                else
-                {
-                    data.SetInteger(HealthRegenTimerVar, HealthRegenValue);
+                    data.HealthRegenTime = 0;
                 }
             }
+        }
+
+        public class ConstantRestData : SkillData
+        {
+            public int HealthRegenTime = 0;
         }
     }
 }

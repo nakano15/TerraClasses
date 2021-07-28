@@ -24,8 +24,8 @@ namespace TerraClasses.ClassList
         public override ClassUnlockLoreBase CreateLoreBase()
         {
             ClassUnlockLoreBase LoreBase = new ClassUnlockLoreBase();
-            LoreBase.AddHuntObjective(Terraria.ID.NPCID.Zombie, 20, "Doesn't matter how many comes, ");
-            LoreBase.AddHuntObjective(Terraria.ID.NPCID.Skeleton, 10, "or how big the fight is, ");
+            LoreBase.AddHuntObjective(Terraria.ID.NPCID.Zombie, 12, "Doesn't matter how many comes, ");
+            LoreBase.AddHuntObjective(Terraria.ID.NPCID.Skeleton, 5, "or how big the fight is, ");
             LoreBase.AddHuntObjective(Terraria.ID.NPCID.EyeofCthulhu, 1, "\nyou should fight them with all your strength.");
             return LoreBase;
         }

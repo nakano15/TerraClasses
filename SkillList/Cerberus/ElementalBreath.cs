@@ -77,7 +77,7 @@ namespace TerraClasses.SkillList.Cerberus
                 }
                 Vector2 ProjDirection = GetDirection(ShotSpawnPosition, new Vector2(Main.mouseX, Main.mouseY) + Main.screenPosition);
                 const float ShotSpeed = 12f;
-                Projectile.NewProjectile(ShotSpawnPosition, ProjDirection * ShotSpeed, ShotType, Damage, 0.8f, player.whoAmI);
+                int proj = Projectile.NewProjectile(ShotSpawnPosition, ProjDirection * ShotSpeed, ShotType, Damage, 0.8f, player.whoAmI);
                 data.AttackTurn++;
                 if (data.AttackTurn > 2)
                     data.AttackTurn = 0;

@@ -82,9 +82,12 @@
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
     <Compile Include="SkillList\Arachnomancer\VenomousAmmo.cs" />
     <Compile Include="SkillList\Archer\PreciseStrike.cs" />
+    <Compile Include="SkillList\Cerberus\CerberusHead.cs" />
+    <Compile Include="SkillList\Cerberus\ClawSlash.cs" />
     <Compile Include="SkillList\Cerberus\Fire Breath.cs" />
     <Compile Include="SkillList\Cerberus\Frost Breath.cs" />
     <Compile Include="SkillList\Cerberus\Lightning Breath.cs" />
+    <Compile Include="SkillList\Cerberus\PawStrike.cs" />
     <Compile Include="SkillList\Cleric\BaneDemons.cs" />
     <Compile Include="SkillList\Cleric\BaneUndead.cs" />
     <Compile Include="SkillList\Cleric\DivineSmite.cs" />
@@ -197,6 +200,9 @@
     <Content Include="ChangeLog.txt" />
     <Content Include="Content\CastBar.png" />
     <Content Include="Content\Effects\cerberus.png" />
+    <Content Include="Content\Effects\CerberusBiteHead.png" />
+    <Content Include="Content\Effects\CerberusClaw.png" />
+    <Content Include="Content\Effects\CerberusPaw.png" />
     <Content Include="Content\Effects\Electricity.png" />
     <Content Include="Content\Effects\HideEffect.png" />
     <Content Include="Content\Effects\LightningBolt.png" />

@@ -8,8 +8,6 @@ namespace TerraClasses.SkillList.Arachnomancer
 {
     public class SpiderSwarm : SkillBase
     {
-        private const byte EggLayingVarID = 0;
-
         public SpiderSwarm()
         {
             Name = "Spider Swarm";
@@ -25,21 +23,17 @@ namespace TerraClasses.SkillList.Arachnomancer
 
         public override void Update(Player player, SkillData data)
         {
-            if(data.Step == 0 && data.Time == 0)
-            {
-                int EggLayingTime = 90 - data.Level * 6;
-                if (EggLayingTime < 20)
-                    EggLayingTime = 20;
-                data.SetInteger(EggLayingVarID, EggLayingTime);
-            }
-            if(data.Time >= data.GetInteger(EggLayingVarID))
+            int EggLayingTime = 90 - data.Level * 6;
+            if (EggLayingTime < 20)
+                EggLayingTime = 20;
+            if (data.Time >= EggLayingTime)
             {
                 int Damage = data.GetSummonDamage(0, 0.8f + 0.03f * data.Level, player);
                 Projectile.NewProjectile(player.Center, Microsoft.Xna.Framework.Vector2.UnitX * -player.direction * 0.05f, Terraria.ID.ProjectileID.SpiderEgg, Damage, 0.6f, player.whoAmI);
                 data.ChangeStep();
                 if(data.Level < 5 && Main.rand.NextFloat() * 10 < (5 - data.Level) * 2)
                 {
-                    player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason(" couldn't endure..."), Main.rand.Next(2, 5), 0, false, false, false);
+                    player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason(" was unnable to endure..."), Main.rand.Next(2, 5), 0, false, false, false);
                 }
                 if (data.Step >= data.Level / 2 + 5)
                     data.EndUse();

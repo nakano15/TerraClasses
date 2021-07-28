@@ -24,8 +24,8 @@ namespace TerraClasses.ClassList
         public override ClassUnlockLoreBase CreateLoreBase()
         {
             ClassUnlockLoreBase LoreBase = new ClassUnlockLoreBase();
-            LoreBase.AddHuntObjective(Terraria.ID.NPCID.DemonEye, 10, "Through faith comes the power");
-            LoreBase.AddHuntObjective(Terraria.ID.NPCID.Zombie, 20, "\nto aid your allies, and expel");
+            LoreBase.AddHuntObjective(Terraria.ID.NPCID.DemonEye, 7, "Through faith comes the power");
+            LoreBase.AddHuntObjective(Terraria.ID.NPCID.Zombie, 12, "\nto aid your allies, and expel");
             LoreBase.AddHuntObjective(Terraria.ID.NPCID.EyeofCthulhu, 1, "\nevil from everyone you want to protect.");
             return LoreBase;
         }

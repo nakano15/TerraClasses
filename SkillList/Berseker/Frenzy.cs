@@ -14,7 +14,7 @@ namespace TerraClasses.SkillList.Berseker
             Name = "Frenzy";
             Description = "Enter a frenzied state, attacking full power anything in your way.\n" +
                 " All Damages increases by 150%.\n" +
-                " Defense drops to 0.\n" +
+                " Defense drops by half.\n" +
                 " Attack speed greatly increased.\n" +
                 " Lasts 20 + 1 seconds per level.\n" +
                 " When skill is at level 6+:\n" +
@@ -31,7 +31,7 @@ namespace TerraClasses.SkillList.Berseker
             player.rangedDamage += (player.rangedDamage - 1) * 0.5f;
             player.magicDamage += (player.magicDamage - 1) * 0.5f;
             player.minionDamage += (player.minionDamage - 1) * 0.5f;
-            player.statDefense = 0;
+            player.statDefense = (int)(player.statDefense * 0.5f);
             player.meleeSpeed += 1f;
         }
 

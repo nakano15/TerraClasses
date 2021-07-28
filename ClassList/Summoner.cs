@@ -26,9 +26,9 @@ namespace TerraClasses.ClassList
         public override ClassUnlockLoreBase CreateLoreBase()
         {
             ClassUnlockLoreBase LoreBase = new ClassUnlockLoreBase();
-            LoreBase.AddHuntObjective(NPCID.Snatcher, 20, "I entrust you the knowledge");
-            LoreBase.AddGatherItemObjective(ItemID.VariegatedLardfish, 10, " of invoking creatures");
-            LoreBase.AddHuntObjective(NPCID.Hornet, 30, "\nand make them do as you command");
+            LoreBase.AddHuntObjective(NPCID.Snatcher, 7, "I entrust you the knowledge");
+            LoreBase.AddGatherItemObjective(ItemID.VariegatedLardfish, 5, " of invoking creatures");
+            LoreBase.AddHuntObjective(NPCID.Hornet, 12, "\nand make them do as you command");
             LoreBase.AddGatherItemObjective(ItemID.BeeWax, 20, ",\nto save the lands from the evil.");
             return LoreBase;
         }

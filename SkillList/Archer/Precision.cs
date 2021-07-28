@@ -10,8 +10,6 @@ namespace TerraClasses.SkillList.Archer
 {
     public class Precision : SkillBase
     {
-        private const byte ChargePercentageVar = 0;
-
         public Precision()
         {
             Name = "Precision";
@@ -23,29 +21,39 @@ namespace TerraClasses.SkillList.Archer
             skillType = Enum.SkillTypes.Passive;
         }
 
-        public override void UpdateStatus(Player player, SkillData data)
+        public override void UpdateStatus(Player player, SkillData rawdata)
         {
-            float Boost = data.GetFloat(ChargePercentageVar) * 0.01f;
+            PrecisionData data = (PrecisionData)rawdata;
+            float Boost = data.ChargePercent * 0.01f;
             player.rangedDamage += Boost * 0.06f * data.Level;
             if (data.Level > 5)
                 player.rangedCrit += (int)((data.Level - 5) * 3 * Boost);
         }
 
-        public override void Update(Player player, SkillData data)
+        public override void Update(Player player, SkillData rawdata)
         {
+            PrecisionData data = (PrecisionData)rawdata;
             float ChargeValue = ((float)Math.Abs(player.velocity.X) / 1.5f - 1f) * -0.25f;
             ChargeValue *= 0.5f;
-            float Boost = data.GetFloat(ChargePercentageVar) + ChargeValue;
+            float Boost = data.ChargePercent + ChargeValue;
             if (Boost > 100) Boost = 100;
             if (Boost < 0) Boost = 0;
-            data.SetFloat(ChargePercentageVar, Boost);
+            data.ChargePercent = Boost;
         }
 
-        public override void Draw(Player player, SkillData data, PlayerDrawInfo pdi)
+        public override void Draw(Player player, SkillData rawdata, PlayerDrawInfo pdi)
         {
             if (Main.gameMenu) return;
+            PrecisionData data = (PrecisionData)rawdata;
             Vector2 DrawPosition = new Vector2(Main.screenWidth * 0.25f, Main.screenHeight * 0.75f);
-            Utils.DrawBorderString(Main.spriteBatch, "Precision: " + (int)data.GetFloat(ChargePercentageVar) + "%", DrawPosition, Color.Blue, 0.75f, 0.5f, 0.5f);
+            Utils.DrawBorderString(Main.spriteBatch, "Precision: " + (int)data.ChargePercent + "%", DrawPosition, Color.Blue, 0.75f, 0.5f, 0.5f);
+        }
+
+        public override SkillData GetSkillData => new PrecisionData();
+
+        public class PrecisionData : SkillData
+        {
+            public float ChargePercent = 0;
         }
     }
 }

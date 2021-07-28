@@ -35,15 +35,15 @@ namespace TerraClasses.SkillList.Archer
             return (int)(HighestDamage * player.rangedDamage * (UpwardShot ? 1.2f : 0.7f) * (0.8f + data.Level * 0.03f));
         }
 
-        public override void Update(Terraria.Player player, SkillData data)
+        public override void Update(Terraria.Player player, SkillData rawdata)
         {
+            ArrowRainData data = (ArrowRainData)rawdata;
             if (data.Time == 0 && !player.inventory.Take(10).Any(x => x.useAmmo == Terraria.ID.AmmoID.Arrow))
             {
                 CombatText.NewText(player.getRect(), Color.Red, "You don't have a bow type weapon.");
                 data.EndUse(true);
                 return;
             }
-            const byte RainPosXVar = 0;
             switch (data.Step)
             {
                 case 0:
@@ -65,7 +65,7 @@ namespace TerraClasses.SkillList.Archer
                                 int proj = Projectile.NewProjectile(player.Center, new Vector2(SpeedX, SpeedY), Terraria.ID.ProjectileID.WoodenArrowFriendly, GetDamage(player, data, true), 1.2f, player.whoAmI);
                                 Main.projectile[proj].noDropItem = true;
                             }
-                            data.SetFloat(RainPosXVar, ShotPos.X);
+                            data.RainPosX = ShotPos.X;
                         }
                         if (data.Time >= 60 * 3)
                             data.ChangeStep();
@@ -76,7 +76,7 @@ namespace TerraClasses.SkillList.Archer
                         if (data.Time % 3 == 0)
                         {
                             Vector2 ProjPosition = player.Center;
-                            ProjPosition.X = data.GetFloat(RainPosXVar);
+                            ProjPosition.X = data.RainPosX;
                             ProjPosition.Y -= Main.screenHeight;
                             ProjPosition.X -= Main.rand.Next(-Main.screenHeight, Main.screenHeight);
                             int proj = Projectile.NewProjectile(ProjPosition, new Vector2(0, 10 + Main.rand.Next(7, 13)), Terraria.ID.ProjectileID.WoodenArrowFriendly, GetDamage(player, data, false), 0.7f, player.whoAmI);
@@ -89,6 +89,13 @@ namespace TerraClasses.SkillList.Archer
                     }
                     break;
             }
+        }
+
+        public override SkillData GetSkillData => new ArrowRainData();
+
+        public class ArrowRainData : SkillData
+        {
+            public float RainPosX = 0;
         }
     }
 }

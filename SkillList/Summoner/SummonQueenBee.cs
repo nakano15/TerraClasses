@@ -42,6 +42,8 @@ namespace TerraClasses.SkillList.Summoner
             }
             //AI Part
             Vector2 BeeFollowPosition = player.Center;
+            if (Math.Abs(data.Position.X - BeeFollowPosition.X) >= 1000 || Math.Abs(data.Position.Y - BeeFollowPosition.Y) >= 800)
+                data.Position = BeeFollowPosition;
             bool HasHostileCreatureNearby = false;
             float NearestDistance = 800;
             for(int i = 0; i < 200; i++)

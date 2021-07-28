@@ -24,8 +24,9 @@ namespace TerraClasses.SkillList.Summoner
             skillType = Enum.SkillTypes.Passive;
         }
 
-        public override void Update(Terraria.Player player, SkillData data)
+        public override void Update(Terraria.Player player, SkillData rawdata)
         {
+            HauntingPresenceData data = (HauntingPresenceData)rawdata;
             int Frequence = 120 - data.Level * 4;
             if (player.numMinions > 9)
             {
@@ -41,7 +42,8 @@ namespace TerraClasses.SkillList.Summoner
                 for (int n = 0; n < 200; n++)
                 {
                     float Distance = 0;
-                    if (Main.npc[n].active && !Main.npc[n].friendly && Main.npc[n].CanBeChasedBy() && (Distance = Main.npc[n].Distance(player.Center)) < NearestHostileDistance)
+                    if (Main.npc[n].active && !Main.npc[n].friendly && Main.npc[n].CanBeChasedBy() && (Distance = Main.npc[n].Distance(player.Center)) < NearestHostileDistance && 
+                        Collision.CanHit(Main.npc[n].position, Main.npc[n].width, Main.npc[n].height, player.position, player.width, player.height))
                     {
                         HostileNearby = true;
                         NearestHostileDistance = Distance;
@@ -50,7 +52,7 @@ namespace TerraClasses.SkillList.Summoner
                 }
                 if (HostileNearby)
                 {
-                    int SummonIndex = data.GetInteger(0);
+                    int SummonIndex = data.LastShooterSummon;
                     int LastSummonPos = -1;
                     int SummonPosStack = 0;
                     for (int proj = 0; proj < 1000; proj++)
@@ -82,7 +84,7 @@ namespace TerraClasses.SkillList.Summoner
                     SummonIndex++;
                     if (SummonIndex > player.maxMinions)
                         SummonIndex = 0;
-                    data.SetInteger(0, SummonIndex);
+                    data.LastShooterSummon = SummonIndex;
                     data.ChangeStep();
                 }
             }
@@ -96,6 +98,13 @@ namespace TerraClasses.SkillList.Summoner
                 if(target.defense < 9000)
                     damage += target.defense / 2;
             }
+        }
+
+        public override SkillData GetSkillData => new HauntingPresenceData();
+
+        public class HauntingPresenceData : SkillData
+        {
+            public int LastShooterSummon = 0;
         }
     }
 }

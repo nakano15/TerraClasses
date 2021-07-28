@@ -67,6 +67,12 @@ namespace TerraClasses.SkillList.Summoner
                 FinalPosition.X += (float)Math.Sin(MyRadians) * DistanceFromPlayer;
                 FinalPosition.Y += (float)Math.Cos(MyRadians) * DistanceFromPlayer;
                 const float FlightSpeed = 0.1f, MaxSpeed = 4f;
+                if (Math.Abs(FinalPosition.X - di.Position.X) >= 600 ||
+                    Math.Abs(FinalPosition.Y - di.Position.Y) >= 400)
+                {
+                    di.Position = FinalPosition;
+                    di.Velocity = Vector2.Zero;
+                }
                 if(Main.rand.Next(700) == 0)
                 {
                     Main.PlaySound(29, (int)di.Position.X, (int)di.Position.Y, Main.rand.Next(26, 30));

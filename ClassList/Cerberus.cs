@@ -18,6 +18,9 @@ namespace TerraClasses.ClassList
             AddSkill(47); //Fire Breath
             AddSkill(73); //Frost Breath
             AddSkill(74); //Lightning Breath
+            AddSkill(77); //Cerberus Bite
+            AddSkill(78); //Paw Strike
+            AddSkill(79); //Claw Slash
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

@@ -9,8 +9,6 @@ namespace TerraClasses.SkillList.Summoner
 {
     public class InvokeBats : SkillBase
     {
-        private const byte ShotDirectionVar = 0;
-
         public InvokeBats()
         {
             Name = "Invoke Bats";
@@ -29,23 +27,21 @@ namespace TerraClasses.SkillList.Summoner
             const float ShotDirectionVariation = 0.2f;
             if (data.Time == 0)
             {
-                data.SetFloat(ShotDirectionVar, -ShotDirectionVariation * 2);
+                data.ShotDirectionY = -ShotDirectionVariation * 2;
             }
             if (data.Time >= 21 && player.itemAnimation > 0 && player.HeldItem.damage > 0)
             {
                 data.ChangeStep();
-                float ShotDirectionY = data.GetFloat(ShotDirectionVar);
                 int Damage = data.GetSummonDamage(0, 0.6f + 0.02f * data.Level, player);
-                Vector2 ShotDirection = new Vector2(player.direction * -2f, ShotDirectionY);
+                Vector2 ShotDirection = new Vector2(player.direction * -2f, data.ShotDirectionY);
                 int ProjPos = Projectile.NewProjectile(player.Center, ShotDirection, 316, Damage, 0f, player.whoAmI);
                 if (!data.BatPositions.Contains(ProjPos))
                 {
                     data.BatPositions.Add(ProjPos);
                 }
-                ShotDirectionY += ShotDirectionVariation;
-                if (ShotDirectionY >= ShotDirectionVariation * 2)
-                    ShotDirectionY *= -1;
-                data.SetFloat(ShotDirectionVar, ShotDirectionY);
+                data.ShotDirectionY += ShotDirectionVariation;
+                if (data.ShotDirectionY >= ShotDirectionVariation * 2)
+                    data.ShotDirectionY *= -1;
             }
         }
 
@@ -68,6 +64,7 @@ namespace TerraClasses.SkillList.Summoner
         public class InvokeBatsSkillData : SkillData
         {
             public List<int> BatPositions = new List<int>();
+            public float ShotDirectionY = 0;
         }
     }
 }

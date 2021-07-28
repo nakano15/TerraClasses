@@ -22,16 +22,15 @@ namespace TerraClasses.SkillList.Mage
             UnallowOtherSkillUsage = true;
         }
 
-        public override void Update(Player player, SkillData data)
+        public override void Update(Player player, SkillData rawdata)
         {
-            const byte TimeVar = 0;
+            FireballData data = (FireballData)rawdata;
             if (data.Time == 0)
             {
-                data.SetFloat(TimeVar, 20);
+                data.FireballDelay = 20;
             }
-            float FireballDelay = data.GetFloat(TimeVar);
             const float ShotSpeed = 12;
-            if (data.Time >= FireballDelay)
+            if (data.Time >= data.FireballDelay)
             {
                 Vector2 SpawnPosition = player.Center;
                 Vector2 MousePosition = Main.screenPosition;
@@ -41,14 +40,20 @@ namespace TerraClasses.SkillList.Mage
                 ShotDirection.Normalize();
                 int Damage = data.GetMagicDamage(0, 0.6f + 0.1f * data.Level, player);
                 Projectile.NewProjectile(SpawnPosition, ShotDirection * ShotSpeed, Terraria.ID.ProjectileID.Flamelash, Damage, 3, player.whoAmI);
-                FireballDelay -= FireballDelay * 0.2f;
-                if (FireballDelay < 1)
-                    FireballDelay = 1;
-                data.SetFloat(TimeVar, FireballDelay);
+                data.FireballDelay -= data.FireballDelay * 0.2f;
+                if (data.FireballDelay < 1)
+                    data.FireballDelay = 1;
                 data.ChangeStep();
             }
             if (data.Step >= data.Level)
                 data.EndUse();
+        }
+
+        public override SkillData GetSkillData => new FireballData();
+
+        public class FireballData : SkillData
+        {
+            public float FireballDelay = 0;
         }
     }
 }

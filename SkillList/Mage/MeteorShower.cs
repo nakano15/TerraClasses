@@ -19,18 +19,18 @@ namespace TerraClasses.SkillList.Mage
             skillType = Enum.SkillTypes.Active;
         }
 
-        public override void Update(Terraria.Player player, SkillData data)
+        public override void Update(Terraria.Player player, SkillData rawdata)
         {
-            const byte SpawnXVar = 0, SpawnYVar = 1;
+            MeteorShowerData data = (MeteorShowerData)rawdata;
             if (data.Time == 0)
             {
-                data.SetFloat(SpawnXVar, Main.screenPosition.X + Main.mouseX);
-                data.SetFloat(SpawnYVar, Main.screenPosition.Y + Main.mouseY);
+                data.SpawnX = Main.screenPosition.X + Main.mouseX;
+                data.SpawnY = Main.screenPosition.Y + Main.mouseY;
             }
             if (data.Time % 10 == 0)
             {
                 const float ShotSpeed = 20;
-                float SpawnX = data.GetFloat(SpawnXVar), SpawnY = data.GetFloat(SpawnYVar);
+                float SpawnX = data.SpawnX, SpawnY = data.SpawnY;
                 float CenterX = SpawnX, CenterY = SpawnY;
                 SpawnY -= 1000;
                 SpawnX += Main.rand.Next(-300, 301);
@@ -40,6 +40,13 @@ namespace TerraClasses.SkillList.Mage
             }
             if (data.Time / 10 >= data.Level)
                 data.EndUse();
+        }
+
+        public override SkillData GetSkillData => new MeteorShowerData();
+
+        public class MeteorShowerData : SkillData
+        {
+            public float SpawnX = 0, SpawnY = 0;
         }
     }
 }

@@ -7,8 +7,6 @@ namespace TerraClasses.SkillList.Berseker
 {
     public class Anger : SkillBase
     {
-        const byte DamageStackVar = 0;
-
         public Anger()
         {
             Name = "Anger";
@@ -20,29 +18,46 @@ namespace TerraClasses.SkillList.Berseker
             skillType = Enum.SkillTypes.Passive;
         }
 
-        public override void Update(Terraria.Player player, SkillData data)
+        public override SkillData GetSkillData => new AngerData();
+
+        public override void Update(Terraria.Player player, SkillData rawdata)
         {
-            if (data.GetFloat(DamageStackVar) > 0)
+            AngerData data = (AngerData)rawdata;
+            if (data.DamageStack > 0)
             {
-                data.ChangeFloat(DamageStackVar, 1f - (0.1f * (data.Level * 0.5f)));
+                data.DamageStack -= 1f - (0.1f * (data.Level * 0.5f));
+                if (data.DamageStack < 0)
+                    data.DamageStack = 0;
             }
         }
 
-        public override void UpdateStatus(Terraria.Player player, SkillData data)
+        public override void UpdateStatus(Terraria.Player player, SkillData rawdata)
         {
-            float DamageStack = data.GetFloat(DamageStackVar) / player.statLifeMax2;
+            AngerData data = (AngerData)rawdata;
+            float DamageStack = data.DamageStack / player.statLifeMax2;
             if(DamageStack > 0)
                 player.meleeDamage += DamageStack;
         }
 
         public override void OnHitByNPC(Terraria.Player player, SkillData data, Terraria.NPC npc, int damage, bool crit)
         {
-            data.ChangeFloat(DamageStackVar, damage);
+            ChangeDamageValue(damage, data);
         }
 
         public override void OnHitByProjectile(Terraria.Player player, SkillData data, Terraria.Projectile proj, int damage, bool crit)
         {
-            data.ChangeFloat(DamageStackVar, damage);
+            ChangeDamageValue(damage, data);
+        }
+
+        public void ChangeDamageValue(float Damage, SkillData sd)
+        {
+            AngerData data = (AngerData)sd;
+            data.DamageStack += Damage;
+        }
+
+        public class AngerData : SkillData
+        {
+            public float DamageStack = 0;
         }
     }
 }

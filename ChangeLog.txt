@@ -1,6 +1,32 @@
-﻿-Summoner
+﻿Skill level before the skill is used will be logged inside the skill.
+	That was done to avoid bugs and crashes to happen when spending points on a skill currently in use.
+-Berseker
+	-Frenzy
+		Instead of dropping the defense to 0, will drop It by half.
+-Summoner
+	-Haunting Presence
+		Will now only shoot if the aimed target is in able to be shot by player point of view.
+-Fighter
+	Eased the number of Zombies and Skeletons you must kill to complete the lore.
+-Archer
+	Eased the number of Demon Eyes you have to kill to complete the lore.
+-Cleric
+	Eased the number of Demon Eyes and Zombies you have to kill to complete the lore.
+-Mage
+	Buffed number of Fallen Stars you need to collect.
+	Nerfed the number of Vultures you need to kill.
+-Summoner
+	Nerfed the number of Snatchers, Variegated Lardfish and Hornets to complete the lore.
 	-Summon Demon
-		Increased severelly the cooldown between each shot.
-		Fixed an issue where the skill cooldown wasn't set.
-		Demons will not longer launch scythes when fading in/out.
-		Shot cooldown is no longer influenced by number of demons invoked.
+		Summoned Demon now teleports to your position when too far away from you.
+	-Queen Bee Summon
+		Summoned Queen Bee now teleports to your position when too far away from you.
+-Thief
+	Nerfed the number of Shackles and Zombies to complete the lore.
+-Cerberus
+	Cerberus Head
+		New Skill
+	Paw Strike
+		New Skill
+	Claw Slash
+		New Skill
