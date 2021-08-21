@@ -8,6 +8,8 @@
 		Will now only shoot if the aimed target is in able to be shot by player point of view.
 -Fighter
 	Eased the number of Zombies and Skeletons you must kill to complete the lore.
+	-Progressive Attack
+		No longer shows combo progress on your character.
 -Archer
 	Eased the number of Demon Eyes you have to kill to complete the lore.
 -Cleric
@@ -24,9 +26,9 @@
 -Thief
 	Nerfed the number of Shackles and Zombies to complete the lore.
 -Cerberus
-	Cerberus Head
+	-Cerberus Head
 		New Skill
-	Paw Strike
+	-Paw Strike
 		New Skill
-	Claw Slash
+	-Claw Slash
 		New Skill

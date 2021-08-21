@@ -63,6 +63,7 @@
     <Compile Include="ClassList\Cerberus.cs" />
     <Compile Include="ClassList\Cleric.cs" />
     <Compile Include="ClassList\Archer.cs" />
+    <Compile Include="ClassList\Hoplite.cs" />
     <Compile Include="ClassList\Knight.cs" />
     <Compile Include="ClassList\Sharpshooter.cs" />
     <Compile Include="ClassList\Fighter.cs" />
@@ -79,7 +80,9 @@
     <Compile Include="ItemSkillLevelBonus.cs" />
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
     <Compile Include="NameIDHelper.cs" />
+    <Compile Include="SkillList\Arachnomancer\Ensnare.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
+    <Compile Include="SkillList\Arachnomancer\ToxicInjection.cs" />
     <Compile Include="SkillList\Arachnomancer\VenomousAmmo.cs" />
     <Compile Include="SkillList\Archer\PreciseStrike.cs" />
     <Compile Include="SkillList\Cerberus\CerberusHead.cs" />
@@ -93,6 +96,9 @@
     <Compile Include="SkillList\Cleric\DivineSmite.cs" />
     <Compile Include="SkillList\Cleric\IncreaseAgility.cs" />
     <Compile Include="SkillList\Fighter\PiercingShot.cs" />
+    <Compile Include="SkillList\Hoplite\AdaptedCombat.cs" />
+    <Compile Include="SkillList\Hoplite\Javelin.cs" />
+    <Compile Include="SkillList\Hoplite\Survival.cs" />
     <Compile Include="SkillList\Knight\Cavalry.cs" />
     <Compile Include="SkillList\Knight\Charge.cs" />
     <Compile Include="SkillList\Knight\ConstantRest.cs" />

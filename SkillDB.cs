@@ -173,6 +173,16 @@ namespace TerraClasses
                     return new SkillList.Cerberus.PawStrike();
                 case 79:
                     return new SkillList.Cerberus.ClawSlash();
+                case 80:
+                    return new SkillList.Hoplite.Javelin();
+                case 81:
+                    return new SkillList.Hoplite.AdaptedCombat();
+                case 82:
+                    return new SkillList.Hoplite.Survival();
+                case 83:
+                    return new SkillList.Arachnomancer.Ensnare();
+                case 84:
+                    return new SkillList.Arachnomancer.ToxicInjection();
             }
             return new SkillBase();
         }

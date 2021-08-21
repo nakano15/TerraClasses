@@ -14,6 +14,8 @@ namespace TerraClasses.ClassList
             MaxLevel = 50;
             AddSkill(57);
             AddSkill(59);
+            AddSkill(83);
+            AddSkill(84);
         }
     }
 }

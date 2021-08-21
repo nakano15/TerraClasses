@@ -96,6 +96,7 @@ namespace TerraClasses.SkillList.Cerberus
                     }
                     head.AffectedNpcs = HitNpcs;
                 }
+                head.ShroudedFoe = false;
                 if (head.BiteTimes > 0 || head.AttackTime > 10)
                 {
                     foreach(byte n in head.AffectedNpcs)
@@ -103,7 +104,17 @@ namespace TerraClasses.SkillList.Cerberus
                         NPC npc = Main.npc[n];
                         if (npc.active)
                         {
-                            npc.velocity *= 0.3f;
+                            if (data.IsTargetSmallForMouth(head, npc.width, npc.height))
+                            {
+                                head.ShroudedFoe = true;
+                                npc.position.X = head.Position.X - npc.width * 0.5f;
+                                npc.position.Y = head.Position.Y - npc.height * 0.5f;
+                                npc.velocity = Vector2.Zero;
+                            }
+                            else
+                            {
+                                npc.velocity *= 0.3f;
+                            }
                             /*Vector2 MouthCenter = head.Position - npc.Center;
                             MouthCenter.Normalize();
                             npc.velocity += MouthCenter;*/
@@ -270,6 +281,12 @@ namespace TerraClasses.SkillList.Cerberus
                 head.Rotation = (Main.rand.NextFloat() - 0.5f) * (float)Math.PI * 0.5f;
             }
 
+            public bool IsTargetSmallForMouth(CerberusHead head, int Width, int Height)
+            {
+                float HeadDimension = 32 * head.Scale;
+                return Width < HeadDimension && Height < HeadDimension;
+            }
+
             public class CerberusHead
             {
                 public int AttackTime = 0, MaxAttackTime = 0;
@@ -279,12 +296,13 @@ namespace TerraClasses.SkillList.Cerberus
                 public bool IsResetBite = false;
                 public List<byte> AffectedNpcs = new List<byte>();
                 public List<byte> ShroudedPlayers = new List<byte>();
+                public bool ShroudedFoe = false;
 
                 public bool MouthFull
                 {
                     get
                     {
-                        return ShroudedPlayers.Count > 0;
+                        return ShroudedFoe || ShroudedPlayers.Count > 0;
                     }
                 }
             }

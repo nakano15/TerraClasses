@@ -35,7 +35,7 @@ namespace TerraClasses.SkillList.Fighter
                     data.TimeOut = 300;
                     if (data.AttackLevel > 3)
                         data.AttackLevel -= 3;
-                    CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.position.X, (int)player.Center.Y, player.width, 1), Microsoft.Xna.Framework.Color.Red, "Swing " + data.AttackLevel, false, true);
+                    //CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.position.X, (int)player.Center.Y, player.width, 1), Microsoft.Xna.Framework.Color.Red, "Swing " + data.AttackLevel, false, true);
                 }
             }
             data.LastItemAttackTime = player.itemAnimation;
@@ -51,7 +51,7 @@ namespace TerraClasses.SkillList.Fighter
                     if (data.AttackLevel > 0)
                     {
                         data.AttackLevel = 0;
-                           CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.Center.X, (int)player.Center.Y, 1, 1), Microsoft.Xna.Framework.Color.Red, "Combo Break", false, true);
+                        //CombatText.NewText(new Microsoft.Xna.Framework.Rectangle((int)player.Center.X, (int)player.Center.Y, 1, 1), Microsoft.Xna.Framework.Color.Red, "Combo Break", false, true);
                     }
                 }
                 else
