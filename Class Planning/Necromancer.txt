@@ -1,0 +1,2 @@
+A skill that invokes ghosts to attack nearby foes.
+	Functions like the Spore Sac accessory effect.
