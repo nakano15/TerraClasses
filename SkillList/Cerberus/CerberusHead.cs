@@ -58,13 +58,14 @@ namespace TerraClasses.SkillList.Cerberus
                     }
                     Rectangle HitPosition = new Rectangle((int)head.Position.X - (int)(16 * head.Scale), (int)head.Position.Y - (int)(16 * head.Scale), (int)(32 * head.Scale), (int)(32 * head.Scale));
                     List<byte> HitNpcs = new List<byte>();
-                    int Damage = data.GetMeleeDamage(0, 0.67f + 0.023f * data.Level, player);
+                    float DamagePercentage = 0.67f + 0.023f * data.Level;
+                    //int Damage = data.GetMeleeDamage(0, 0.67f + 0.023f * data.Level, player);
                     for(byte n = 0; n < 255; n++)
                     {
                         if(n < 200 && Main.npc[n].active && !Main.npc[n].friendly && !Main.npc[n].dontTakeDamage && Main.npc[n].getRect().Intersects(HitPosition))
                         {
                             HitNpcs.Add(n);
-                            if(data.HurtNpc(Main.npc[n], Damage, 0, 0) > 0 && Main.rand.Next(3) == 0)
+                            if(data.HurtNpc(player, Main.npc[n], DamageTypes.Melee, DamagePercentage, 0, 0) > 0 && Main.rand.Next(3) == 0)
                             {
                                 Main.npc[n].AddBuff(Terraria.ID.BuffID.Burning, 7 * 60);
                             }

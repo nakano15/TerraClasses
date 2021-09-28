@@ -124,6 +124,14 @@ namespace TerraClasses
             {
                 damage += npc.defense / 2;
             }
+            foreach(SkillProjectile skproj in SkillData.SkillProjs)
+            {
+                if(skproj.ProjectilePos == projectile.whoAmI)
+                {
+                    skproj.skillData.OnSkillProjectileHitNpc(projectile, skproj.Owner, npc, damage, knockback, crit, hitDirection);
+                    return;
+                }
+            }
         }
 
         public override void NPCLoot(NPC npc)

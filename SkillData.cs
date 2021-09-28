@@ -9,6 +9,8 @@ namespace TerraClasses
 {
     public class SkillData
     {
+        public static List<SkillProjectile> SkillProjs = 
+            new List<SkillProjectile>();
         public SkillBase GetBase { get { return MainMod.GetSkill(ID, ModID); } }
         public int ID = 0;
         public string ModID = "";
@@ -170,11 +172,94 @@ namespace TerraClasses
             }
         }
 
-        public int HurtPlayer(Player player, int Damage, int DamageDirection, int Cooldown = 8, bool Critical = false)
+        public int GetPlayerDamage(Player Caster, DamageTypes DamageType)
+        {
+            switch (DamageType)
+            {
+                case DamageTypes.Melee:
+                    return GetMeleeDamage(0, 1, Caster);
+                case DamageTypes.Ranged:
+                    return GetRangedDamage(0, 1, Caster);
+                case DamageTypes.Magic:
+                    return GetMagicDamage(0, 1, Caster);
+                case DamageTypes.Summon:
+                    return GetSummonDamage(0, 1, Caster);
+            }
+            return 1;
+        }
+
+        public DamageTypes GetItemDamage(Item item)
+        {
+            if (item.melee)
+                return DamageTypes.Melee;
+            if (item.ranged)
+                return DamageTypes.Ranged;
+            if (item.magic)
+                return DamageTypes.Magic;
+            if (item.summon)
+                return DamageTypes.Summon;
+            return DamageTypes.Neutral;
+        }
+
+        public DamageTypes GetProjDamage(Projectile proj)
+        {
+            if (proj.melee)
+                return DamageTypes.Melee;
+            if (proj.ranged)
+                return DamageTypes.Ranged;
+            if (proj.magic)
+                return DamageTypes.Magic;
+            if (proj.minion)
+                return DamageTypes.Summon;
+            return DamageTypes.Neutral;
+        }
+        public int HurtPlayer(Player Caster, Player player, DamageTypes DamageType, float DamageMult, int DamageDirection, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
         {
             if (PlayerDamageCooldown.ContainsKey((byte)player.whoAmI))
                 return 0;
-            int NewDamage = Damage - player.statDefense / 2;
+            int NewDamage = (int)((GetPlayerDamage(Caster, DamageType) * (Critical ? 2 : 1) - (CountDefense ? player.statDefense / 0.5f : 0)) * DamageMult);
+            if (NewDamage < 1)
+                NewDamage = 1;
+            player.statLife -= NewDamage;
+            if (player.statLife <= 0)
+                player.KillMe(Terraria.DataStructures.PlayerDeathReason.ByPlayer(Owner), NewDamage, DamageDirection, true);
+            else
+            {
+                if (player.stoned)
+                {
+                    Main.PlaySound(0, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
+                }
+                else if (player.frostArmor)
+                {
+                    Main.PlaySound(Terraria.ID.SoundID.Item27, player.position);
+                }
+                else if ((player.wereWolf || player.forceWerewolf) && !player.hideWolf)
+                {
+                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 6, 1f, 0f);
+                }
+                else if (player.boneArmor)
+                {
+                    Main.PlaySound(3, (int)player.position.X, (int)player.position.Y, 2, 1f, 0f);
+                }
+                else if (!player.Male)
+                {
+                    Main.PlaySound(20, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
+                }
+                else
+                {
+                    Main.PlaySound(1, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
+                }
+            }
+            CombatText.NewText(player.getRect(), Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            ApplyCooldownToPlayer(player, Cooldown);
+            return NewDamage;
+        }
+
+        public int HurtPlayer(Player player, int Damage, int DamageDirection, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
+        {
+            if (PlayerDamageCooldown.ContainsKey((byte)player.whoAmI))
+                return 0;
+            int NewDamage = Damage - (CountDefense ? player.statDefense / 2 : 0);
             if (NewDamage < 1)
                 NewDamage = 1;
             if (Critical)
@@ -214,19 +299,17 @@ namespace TerraClasses
             return NewDamage;
         }
 
-        public int HurtNpc(NPC npc, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false)
+        public int HurtNpc(Player Caster, NPC npc, DamageTypes DamageType, float DamagePercentage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
         {
             if (NpcDamageCooldown.ContainsKey((byte)npc.whoAmI) || npc.immortal || npc.dontTakeDamage)
                 return 0;
-            int NewDamage = Damage - npc.defense / 2;
+            int NewDamage = (int)((GetPlayerDamage(Caster, DamageType) * (Critical ? 2 : 1) - (CountDefense ? npc.defense * 0.5f : 0)) * DamagePercentage);
             if (NewDamage < 1)
                 NewDamage = 1;
-            if (Critical)
-                NewDamage *= 2;
             npc.life -= NewDamage;
             npc.ApplyInteraction(Owner);
             npc.checkDead();
-            npc.HitEffect(DamageDirection, Damage);
+            npc.HitEffect(DamageDirection, NewDamage);
             if (npc.life > 0)
             {
                 Main.PlaySound(npc.HitSound, npc.Center);
@@ -242,7 +325,35 @@ namespace TerraClasses
             return NewDamage;
         }
 
-        public int HurtTarget(TargetTranslator.Translator target, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false)
+        public int HurtNpc(NPC npc, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
+        {
+            if (NpcDamageCooldown.ContainsKey((byte)npc.whoAmI) || npc.immortal || npc.dontTakeDamage)
+                return 0;
+            int NewDamage = Damage - (CountDefense ? npc.defense / 2 : 0);
+            if (NewDamage < 1)
+                NewDamage = 1;
+            if (Critical)
+                NewDamage *= 2;
+            npc.life -= NewDamage;
+            npc.ApplyInteraction(Owner);
+            npc.checkDead();
+            npc.HitEffect(DamageDirection, NewDamage);
+            if (npc.life > 0)
+            {
+                Main.PlaySound(npc.HitSound, npc.Center);
+                if (Knockback > 0 && npc.knockBackResist > 0)
+                {
+                    float NewKB = Knockback * npc.knockBackResist;
+                    npc.velocity.X += DamageDirection * NewKB;
+                    npc.velocity.Y -= (npc.noGravity ? 0.75f : 0.5f);
+                }
+            }
+            CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            ApplyCooldownToNpc(npc, Cooldown);
+            return NewDamage;
+        }
+
+        public int HurtTarget(Player Caster, TargetTranslator.Translator target, DamageTypes DamageType, float DamagePercentage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
         {
             foreach(TargetTranslator.Translator Keys in ExtraTargetDamageCooldown.Keys)
             {
@@ -251,7 +362,33 @@ namespace TerraClasses
             }
             if (target.Immunity)
                 return 0;
-            int NewDamage = Damage - target.Defense / 2;
+            int NewDamage = (int)((GetPlayerDamage(Caster, DamageType) * (Critical ? 2 : 1) - (CountDefense ? target.Defense * 0.5f : 0)) * DamagePercentage);
+            if (NewDamage < 1)
+                NewDamage = 1;
+            target.Health -= NewDamage;
+            if (target.Health <= 0)
+                target.Kill(NewDamage, DamageDirection, true, " was slain...");
+            else
+            {
+                target.PlayHurtSound();
+                target.ApplyKnockback(Knockback, DamageDirection);
+                target.HitEffect(NewDamage, DamageDirection);
+            }
+            CombatText.NewText(target.GetRectangle, Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            ApplyCooldownToTarget(target, Cooldown);
+            return NewDamage;
+        }
+
+        public int HurtTarget(TargetTranslator.Translator target, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
+        {
+            foreach(TargetTranslator.Translator Keys in ExtraTargetDamageCooldown.Keys)
+            {
+                if (Keys == target)
+                    return 0;
+            }
+            if (target.Immunity)
+                return 0;
+            int NewDamage = Damage - (CountDefense ? target.Defense / 2 : 0);
             if (NewDamage < 1)
                 NewDamage = 1;
             if (Critical)
@@ -352,6 +489,59 @@ namespace TerraClasses
                     Targets.RemoveAt(MaxTargets);
             }
             return Targets.ToArray();
+        }
+
+        public Projectile SpawnSkillProjectile(Vector2 Position,
+            Vector2 Velocity, int Type, float Knockback,
+            PlayerMod Owner, int Damage = 1, float Ai0 = 0, float Ai1 = 0)
+        {
+            int Pos = Projectile.NewProjectile(Position,
+                Velocity, Type, Damage, Knockback, Owner.player.whoAmI,
+                Ai0, Ai1);
+            AddSkillProjectile(Pos, Owner);
+            return Main.projectile[Pos];
+        }
+
+        public void AddSkillProjectile(int ProjPos, PlayerMod Owner)
+        {
+            for(int i = 0; i < SkillProjs.Count; i++)
+            {
+                if(SkillProjs[i].ProjectilePos == ProjPos)
+                {
+                    SkillProjs[i] = new SkillProjectile(ProjPos, this, Owner);
+                    return;
+                }
+            }
+            SkillProjs.Add(new SkillProjectile(ProjPos, this, Owner));
+        }
+
+        public static void CheckSkillProjs()
+        {
+            for (int i = 0; i < SkillProjs.Count; i++)
+            {
+                if (!Main.projectile[SkillProjs[i].ProjectilePos].active)
+                {
+                    SkillProjs.RemoveAt(i);
+                }
+            }
+        }
+
+        public void OnSkillProjectileHitPlayer(Projectile proj, SkillData data, PlayerMod Owner, PlayerMod Target, int Damage, bool Crit)
+        {
+            SkillBase sb = GetBase;
+            int DamageValue = sb.SkillProjectileDamagePlayer(proj, data, Owner, Target, Damage, Crit);
+            if (DamageValue < 1)
+                DamageValue = 1;
+            HurtPlayer(Target.player, DamageValue, proj.direction, 0, Crit, false);
+        }
+
+        public void OnSkillProjectileHitNpc(Projectile proj, PlayerMod Owner, NPC Target, int damage, float knockback, bool crit, int hitDirection)
+        {
+            SkillBase sb = GetBase;
+            int DamageValue = sb.SkillProjectileDamageNpc(proj, this, Owner, Target, damage, ref knockback, ref crit, ref hitDirection);
+            if (DamageValue < 1)
+                DamageValue = 1;
+            HurtNpc(Target, DamageValue, hitDirection, knockback, 0, crit, false);
         }
 
         public void ApplyPlayerInteraction(Player player)

@@ -14,7 +14,6 @@ namespace TerraClasses.SkillList.Mage
         {
             Name = "Soul Rage";
             Description = "Launches vengeful spirits at the foes 150ft near the mouse.\n" +
-                " Affects 3 targets initially, number increases every 3 levels.\n" +
                 " Number of souls spawned is 1 + Level / 2.\n" +
                 " Souls causes 120% + 22% magic damage per level.";
             MaxLevel = 10;
@@ -39,7 +38,6 @@ namespace TerraClasses.SkillList.Mage
                 Vector2 CheckPosition = GetMousePositionInTheWorld;
                 data.targets.Clear();
                 const float Distance = 300f;
-                int MaxTargets = 3 + data.Level / 3;
                 TargetTranslator.Translator[] Targets = rawdata.GetPossibleTargets(false).ToArray();
                 foreach (TargetTranslator.Translator target in Targets)
                 {
@@ -47,8 +45,6 @@ namespace TerraClasses.SkillList.Mage
                     if (MyDistance < Distance)
                     {
                         data.targets.Add(new SoulRageData.Victim() { Target = target });
-                        if (data.targets.Count >= MaxTargets)
-                            break;
                     }
                 }
                 /*foreach (TargetTranslator.Translator target in Targets)
@@ -103,9 +99,10 @@ namespace TerraClasses.SkillList.Mage
                         shot.Velocity.Normalize();
                         shot.Velocity *= 12;
                     }
+                    float DamagePercentage = 1.2f + 0.22f * data.Level;
                     if (victim.Target != null && (victim.Target.Center - shot.Position).Length() < shot.Velocity.Length() * 2)
                     {
-                        if (data.HurtTarget(victim.Target, data.GetMagicDamage(0, 1.2f + 0.22f * data.Level, player), player.Center.X < victim.Target.Center.X ? 1 : -1, 4f, 4) != 0)
+                        if (data.HurtTarget(player, victim.Target, DamageTypes.Magic, DamagePercentage, player.Center.X < victim.Target.Center.X ? 1 : -1, 4f, 4) != 0)
                         {
                             victim.SoulsPosition.RemoveAt(s);
                         }

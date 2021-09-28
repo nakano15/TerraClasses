@@ -40,7 +40,7 @@ namespace TerraClasses.SkillList.Arachnomancer
         {
             if (data.Level > 5 && target.venom && Main.rand.NextFloat() * 10 < (data.Level - 5) * 2)
             {
-                data.HurtNpc(target, (int)(damage * 0.08f), player.direction, 0);
+                data.HurtNpc(target, (int)(damage * 0.08f), player.direction, 0, 0, CountDefense: false);
             }
         }
 
@@ -48,7 +48,7 @@ namespace TerraClasses.SkillList.Arachnomancer
         {
             if (data.Level > 5 && target.venom && Main.rand.NextFloat() * 10 < (data.Level - 5) * 2)
             {
-                data.HurtNpc(target, (int)(damage * 0.08f), player.direction, 0);
+                data.HurtNpc(target, (int)(damage * 0.08f), player.direction, 0, 0, CountDefense: false);
             }
         }
 

@@ -26,10 +26,9 @@ namespace TerraClasses
             SelectedClass = -1;
             SelectedSkill = -1;
             CheckedClassID = CheckedSkillID = -1;
-            Mod NExperienceMod = ModLoader.GetMod("NExperience");
-            if (NExperienceMod != null)
+            if (MainMod.NExperienceMod != null)
             {
-                NExperienceMod.Call(new string[] { "hidehud" });
+                MainMod.NExperienceMod.Call(new string[] { "hidehud" });
             }
         }
 
@@ -37,10 +36,9 @@ namespace TerraClasses
         {
             Active = false;
             AskIfShouldResetThis = false;
-            Mod NExperienceMod = ModLoader.GetMod("NExperience");
-            if (NExperienceMod != null)
+            if (MainMod.NExperienceMod != null)
             {
-                NExperienceMod.Call(new string[] { "showhud" });
+                MainMod.NExperienceMod.Call(new string[] { "showhud" });
             }
         }
 
@@ -143,7 +141,7 @@ namespace TerraClasses
                         string[] Desc = sb.Description.Split('\n');
                         foreach (string desc in Desc)
                         {
-                            Utils.DrawBorderString(Main.spriteBatch, desc, SkillInterfacePos, Color.White, 0.8f);
+                            Utils.DrawBorderString(Main.spriteBatch, desc, SkillInterfacePos, Color.White, 0.8f, 0, 0);
                             SkillInterfacePos.Y += 18;
                         }
                         Vector2 ButtonPosition = new Vector2(Main.screenWidth * 0.5f - Width * 0.5f + 4 + Width - 68f, Main.screenHeight - 22);

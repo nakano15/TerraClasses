@@ -717,6 +717,15 @@ namespace TerraClasses
             {
                 sd.GetBase.ModifyHitByProjectile(player, sd, proj, ref damage, ref crit);
             }
+            float kb = 0;
+            foreach (SkillProjectile skproj in SkillData.SkillProjs)
+            {
+                if (skproj.ProjectilePos == proj.whoAmI)
+                {
+                    //skproj.skillData.GetBase.SkillProjectileDamageNpc(proj, skproj.skillData, skproj.Owner, )
+                    return;
+                }
+            }
         }
 
         public override bool PreItemCheck()

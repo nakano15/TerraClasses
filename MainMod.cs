@@ -22,12 +22,11 @@ namespace TerraClasses
         public static bool DebugMode = false, DebugSkills = false;
         public static bool SaySkillNameOnUse = false;
         public static bool EnableMonsterStatusBuffingBasedOnClasses = true;
-        public static Mod mod;
+        public static Mod mod, NExperienceMod;
         public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect, LightningBolt, CerberusBiteHead, CerberusPawSprite,
             CerberusClawMark;
         public static Texture2D MagicCircle, CastBar, StarTexture;
         public const int ModVersion = 2;
-        public static bool LoadedCustomModClasses = false;
         public const string ModClassAndSkillListCallName = "modandskillclasslist";
         public static Vector2 ExpBarOffset = Vector2.Zero;
         public static bool NExperienceLoaded = false;
@@ -52,6 +51,11 @@ namespace TerraClasses
         {
             if (!ModsWithTargetCompatibility.Contains(mod.Name))
                 ModsWithTargetCompatibility.Add(mod.Name);
+        }
+
+        public override void PostSetupContent()
+        {
+            NExperienceMod = ModLoader.GetMod("NExperience");
         }
 
         public static void SaveUnlockedClasses()
@@ -182,12 +186,6 @@ namespace TerraClasses
             return UnlockedClasses.Any(x => x.Key == ID && x.Value == ModID);
         }
 
-        public static void TryLoadingCustomClasses()
-        {
-            LoadCustomModClasses();
-            LoadedCustomModClasses = true;
-        }
-
         public static ClassUnlockLoreData GetClassLoreData(int ID, string ModID = "")
         {
             if (ModID == "")
@@ -219,10 +217,6 @@ namespace TerraClasses
 
         public static ClassBase GetClass(int ID, string ModID = "")
         {
-            if (!LoadedCustomModClasses)
-            {
-                TryLoadingCustomClasses();
-            }
             if (ModID == "")
                 ModID = mod.Name;
             ModContentContainer container;
@@ -240,10 +234,6 @@ namespace TerraClasses
 
         public static SkillBase GetSkill(int ID, string ModID = "")
         {
-            if (!LoadedCustomModClasses)
-            {
-                TryLoadingCustomClasses();
-            }
             if (ModID == "")
                 ModID = mod.Name;
             ModContentContainer container;
@@ -257,19 +247,6 @@ namespace TerraClasses
                 container = ModContentList[ModID];
             }
             return container.GetSkillBase(ID);
-        }
-
-        public static void LoadCustomModClasses()
-        {
-            ModContentList.Clear();
-            foreach (Mod mod in ModLoader.Mods)
-            {
-                try
-                {
-                    mod.Call(new string[] { ModClassAndSkillListCallName });
-                }
-                catch { }
-            }
         }
 
         public static List<TargetTranslator.Translator> GetOtherModTargets(Player caster, bool Allies)
@@ -576,6 +553,12 @@ namespace TerraClasses
                     return true;
             }
             return false;
+        }
+
+        public override void PostUpdateEverything()
+        {
+            if(!Main.gameMenu)
+                SkillData.CheckSkillProjs();
         }
 
         public override object Call(params object[] args)

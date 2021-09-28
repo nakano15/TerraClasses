@@ -27,16 +27,22 @@ namespace TerraClasses.SkillList.Thief
 
         public override void OnHitNPC(Player player, SkillData data, Item item, NPC target, int damage, float knockback, bool crit)
         {
-            data.HurtNpc(target, (int)(damage * 0.05f), player.direction, 0f, 5);
-            if (Main.rand.NextDouble() < 0.02f * data.Level)
-                target.AddBuff(Terraria.ID.BuffID.Poisoned, 8 * 60);
+            if (item.melee)
+            {
+                data.HurtNpc(target, (int)(damage * 0.05f), player.direction, 0f, 5, CountDefense: false);
+                if (Main.rand.NextDouble() < 0.02f * data.Level)
+                    target.AddBuff(Terraria.ID.BuffID.Poisoned, 8 * 60);
+            }
         }
 
         public override void OnHitNPCWithProj(Player player, SkillData data, Projectile proj, NPC target, int damage, float knockback, bool crit)
         {
-            data.HurtNpc(target, (int)(damage * 0.05f), player.direction, 0f, 5);
-            if (Main.rand.NextDouble() < 0.02f * data.Level)
-                target.AddBuff(Terraria.ID.BuffID.Poisoned, 8 * 60);
+            if (proj.melee)
+            {
+                data.HurtNpc(target, (int)(damage * 0.05f), player.direction, 0f, 5, CountDefense:false);
+                if (Main.rand.NextDouble() < 0.02f * data.Level)
+                    target.AddBuff(Terraria.ID.BuffID.Poisoned, 8 * 60);
+            }
         }
     }
 }

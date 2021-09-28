@@ -34,12 +34,13 @@ namespace TerraClasses.SkillList.Cerberus
             if (data.AttackDuration > 0)
             {
                 Rectangle Hitbox = new Rectangle((int)data.ClawSpawnPosition.X - 32, (int)data.ClawSpawnPosition.Y - 32, 64, 64);
-                int Damage = data.GetMeleeDamage(0, 0.66f + 0.012f * data.Level, player);
+                float DamagePercentage = 0.66f + 0.012f * data.Level;
+                //int Damage = data.GetMeleeDamage(0, 0.66f + 0.012f * data.Level, player);
                 for (int i = 0; i < 200; i++)
                 {
                     if (Main.npc[i].active && !Main.npc[i].friendly && !Main.npc[i].dontTakeDamage && Main.npc[i].getRect().Intersects(Hitbox))
                     {
-                        data.HurtNpc(Main.npc[i], Damage, player.direction, 1.3f);
+                        data.HurtNpc(player, Main.npc[i], DamageTypes.Melee, DamagePercentage, player.direction, 1.3f);
                     }
                 }
                 data.AttackDuration--;

@@ -162,6 +162,16 @@ namespace TerraClasses
 
         }
 
+        public virtual int SkillProjectileDamagePlayer(Projectile proj, SkillData data, PlayerMod Owner, PlayerMod Target, int Damage, bool Critical)
+        {
+            return Damage;
+        }
+
+        public virtual int SkillProjectileDamageNpc(Projectile proj, SkillData data, PlayerMod Owner, NPC Target, int damage, ref float knockback, ref bool crit, ref int hitDirection)
+        {
+            return damage;
+        }
+
         public virtual void Draw(Player player, SkillData data, Terraria.ModLoader.PlayerDrawInfo pdi)
         {
 

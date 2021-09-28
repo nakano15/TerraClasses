@@ -34,13 +34,14 @@ namespace TerraClasses.SkillList.Arachnomancer
                 data.EndUse(true);
                 return;
             }
-            int Damage = data.GetMagicDamage(0, 0.27f + 0.025f * data.Level, player);
+            float DamageMult = 0.27f + 0.025f * data.Level;
+            //int Damage = data.GetMagicDamage(0, 0.27f + 0.025f * data.Level, player);
             foreach(NPC n in EnsnareSkill.GetNpcsInteractedWith())
             {
-                data.HurtNpc(n, Damage, 0, 0);
+                data.HurtNpc(player, n, DamageTypes.Magic, DamageMult, 0, 0);
                 for(int i = 0; i < 20; i++)
                 {
-                    Dust.NewDust(n.position, n.width, n.height, Terraria.ID.DustID.Venom, Main.rand.Next(-100, 101) * 0.1f, Main.rand.Next(-100, 101) * 0.1f);
+                    Dust.NewDust(n.position, n.width, n.height, 171, Main.rand.Next(-100, 101) * 0.1f, Main.rand.Next(-100, 101) * 0.1f);
                 }
                 n.AddBuff(Terraria.ID.BuffID.Venom, 12 * 60);
             }

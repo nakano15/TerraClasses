@@ -76,6 +76,7 @@
     <Compile Include="ClassUnlockLoreBase.cs" />
     <Compile Include="ClassUnlockLoreData.cs" />
     <Compile Include="ConfigMod.cs" />
+    <Compile Include="DamageTypes.cs" />
     <Compile Include="Enum\SkillTypes.cs" />
     <Compile Include="ItemSkillLevelBonus.cs" />
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
@@ -117,6 +118,7 @@
     <Compile Include="SkillList\Thief\PoisonousArrows.cs" />
     <Compile Include="SkillList\Thief\PoisonousStrike.cs" />
     <Compile Include="SkillList\Thief\Steal.cs" />
+    <Compile Include="SkillProjectile.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
     <Compile Include="TargetTranslator\Translator.cs" />

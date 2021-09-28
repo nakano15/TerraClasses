@@ -56,12 +56,12 @@ namespace TerraClasses.SkillList.Knight
             }
             Translator[] Targets = data.GetPossibleTargets(false, false, player.Center, 200);
             Microsoft.Xna.Framework.Rectangle rect = player.getRect();
-            int Damage = data.GetMeleeDamage(0, DamageToInflict, player);
+            //int Damage = data.GetMeleeDamage(0, DamageToInflict, player);
             foreach(Translator Target in Targets)
             {
                 if (Target.GetRectangle.Intersects(rect))
                 {
-                    data.HurtTarget(Target, Damage, player.direction, 12f, 18);
+                    data.HurtTarget(player, Target, DamageTypes.Melee, DamageToInflict, player.direction, 12f, 18);
                 }
             }
             if (data.Time >= 3 * 60)

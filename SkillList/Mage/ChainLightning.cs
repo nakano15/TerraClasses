@@ -16,7 +16,6 @@ namespace TerraClasses.SkillList.Mage
         {
             Name = "Chain Lightning";
             Description = "Releases lightning bolts that target one enemy after another dealing magic damage.\n" +
-                " Can affect up to 3 + Level / 2 targets at once.\n" +
                 " Affects enemies at mouse position.\n" +
                 " Electricity hits targets 10 + Level / 2 times.\n" +
                 " Inflicts 80% + 2.5% per level Magic Damage per hit.\n" +
@@ -44,47 +43,7 @@ namespace TerraClasses.SkillList.Mage
                 int MaxTargets = 3 + data.Level / 2;
                 Translator[] Targets = data.GetPossibleTargets(false);
                 float LightningDistance = GetEffectRange(data);
-                List<Translator> AffectedOnes = new List<Translator>();
-                for(int t = 0; t < MaxTargets; t++)
-                {
-                    Translator Target = null;
-                    float NearestDistance = LightningDistance;
-                    foreach(Translator victim in Targets)
-                    {
-                        float Distance = (victim.Center - MousePosition).Length();
-                        /*foreach (Translator affected in AffectedOnes)
-                        {
-                            float Distance2 = (victim.Center - affected.Center).Length();
-                            if (Distance2 < Distance)
-                                Distance = Distance2;
-                        }*/
-                        if (Distance < LightningDistance)
-                        {
-                            bool Repeated = false;
-                            foreach (Translator affected in AffectedOnes)
-                            {
-                                if (affected.Target.Equals(victim.Target))
-                                {
-                                    Repeated = true;
-                                    break;
-                                }
-                            }
-                            if (!Repeated)
-                            {
-                                Target = victim;
-                                NearestDistance = Distance;
-                            }
-                        }
-                    }
-                    if(Target != null)
-                    {
-                        AffectedOnes.Add(Target);
-                    }
-                    else
-                    {
-                        break;
-                    }
-                }
+                List<Translator> AffectedOnes = Targets.ToList();
                 if(AffectedOnes.Count == 0)
                 {
                     data.EndUse(true);

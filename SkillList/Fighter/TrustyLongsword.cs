@@ -52,17 +52,18 @@ namespace TerraClasses.SkillList.Fighter
                     if (player.direction < 0) rect.X -= rect.Width;
                 }
                 rect.X += player.direction * 4;
-                int Damage = data.GetMeleeDamage(0, 1.4f + 0.2f * data.Level, player);
+                float DamageMult = 1.4f + 0.2f * data.Level;
+                //int Damage = data.GetMeleeDamage(0, 1.4f + 0.2f * data.Level, player);
                 for (int x = 0; x < 255; x++)
                 {
                     if (player.hostile && x != player.whoAmI && Main.player[x].active && !Main.player[x].dead && Main.player[x].hostile && (Main.player[x].team == 0 || Main.player[x].team != player.team) && Main.player[x].getRect().Intersects(rect))
                     {
-                        data.HurtPlayer(Main.player[x], Damage, player.direction, 60, false);
+                        data.HurtPlayer(player, Main.player[x], DamageTypes.Melee, DamageMult, player.direction, 60, false);
                         //Hurt player
                     }
                     if (x < 200 && Main.npc[x].active && !Main.npc[x].friendly && !Main.npc[x].townNPC && !Main.npc[x].dontTakeDamage && Main.npc[x].getRect().Intersects(rect))
                     {
-                        data.HurtNpc(Main.npc[x], Damage, player.direction, player.inventory[player.selectedItem].knockBack, 60, false);
+                        data.HurtNpc(player, Main.npc[x], DamageTypes.Melee, DamageMult, player.direction, player.inventory[player.selectedItem].knockBack, 60, false);
                         //Hurt npc
                     }
                 }

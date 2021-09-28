@@ -62,12 +62,13 @@ namespace TerraClasses.SkillList.Cerberus
                 HitBox.X -= (int)(8 * player.direction * PawSize);
                 HitBox.Y += (int)(8 * PawSize);
             }
-            int Damage = data.GetMeleeDamage(0, 1.20f + 0.44f * data.Level, player);
+            float DamagePercentage = 1.20f + 0.44f * data.Level;
+            //int Damage = data.GetMeleeDamage(0, 1.20f + 0.44f * data.Level, player);
             for(int i = 0; i < 200; i++)
             {
                 if(Main.npc[i].active && !Main.npc[i].friendly && !Main.npc[i].dontTakeDamage && Main.npc[i].getRect().Intersects(HitBox))
                 {
-                    data.HurtNpc(Main.npc[i], Damage, player.direction, 3.6f, 30);
+                    data.HurtNpc(player, Main.npc[i], DamageTypes.Melee, DamagePercentage, player.direction, 3.6f, 30);
                 }
             }
         }

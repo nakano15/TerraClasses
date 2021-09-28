@@ -52,6 +52,11 @@ namespace TerraClasses
             return SkillList[ID];
         }
 
+        /// <summary>
+        /// Override this to get your mod class infos.
+        /// </summary>
+        /// <param name="ID">The id of the class from your mod.</param>
+        /// <returns>Return the class base info of your mod class.</returns>
         public virtual ClassBase GetModClassBase(int ID)
         {
             ClassBase cb = new ClassBase();
@@ -59,6 +64,11 @@ namespace TerraClasses
             return cb;
         }
 
+        /// <summary>
+        /// Override this to get your mod skill infos.
+        /// </summary>
+        /// <param name="ID">The id of the skill from your mod.</param>
+        /// <returns>Return the skill base info of your mod skills.</returns>
         public virtual SkillBase GetModSkillBase(int ID)
         {
             SkillBase sb = new SkillBase();

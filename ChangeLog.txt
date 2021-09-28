@@ -17,6 +17,10 @@
 -Mage
 	Buffed number of Fallen Stars you need to collect.
 	Nerfed the number of Vultures you need to kill.
+	Chain Lightning
+		Removed maximum target cap.
+	Soul Rage
+		Removed maximum target cap.
 -Summoner
 	Nerfed the number of Snatchers, Variegated Lardfish and Hornets to complete the lore.
 	-Summon Demon
@@ -25,6 +29,9 @@
 		Summoned Queen Bee now teleports to your position when too far away from you.
 -Thief
 	Nerfed the number of Shackles and Zombies to complete the lore.
+	Poisonous Strike
+		The extra damage caused by attacks will no longer be discounted by defense.
+		Only melee attacks will cause this effect.
 -Cerberus
 	-Cerberus Head
 		New Skill
@@ -32,3 +39,5 @@
 		New Skill
 	-Claw Slash
 		New Skill
+The mod will no longer ask for classes from other mods.
+	Now, to add a custom mod content, you need to use MainMod.AddModContent to add your mod version of class and skill content.
