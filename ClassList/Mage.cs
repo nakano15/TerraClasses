@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Mage";
             Description = "Patience rewards with strong spells.";
+            SkillColor = new Microsoft.Xna.Framework.Color(15, 46, 153);
             MaxLevel = 50;
             AddSkill(8);
             AddSkill(14);
@@ -20,6 +21,12 @@ namespace TerraClasses.ClassList
             AddSkill(18);
             AddSkill(46);
             AddSkill(48);
+
+            MaxHealthBonus = 1;
+            MaxManaBonus = 3;
+            PhysicalDamageBonus = 2;
+            MagicalDamageBonus = 4;
+            DefenseBonus = 0;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using Terraria;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Graphics;
 
 namespace TerraClasses
 {
@@ -11,7 +12,16 @@ namespace TerraClasses
     {
         public static List<SkillProjectile> SkillProjs = 
             new List<SkillProjectile>();
-        public SkillBase GetBase { get { return MainMod.GetSkill(ID, ModID); } }
+        private SkillBase _SkillBase;
+        public SkillBase GetBase
+        {
+            get
+            {
+                if (_SkillBase == null)
+                    _SkillBase = MainMod.GetSkill(ID, ModID);
+                return _SkillBase;
+            }
+        }
         public int ID = 0;
         public string ModID = "";
         public int Cooldown = 0;
@@ -46,6 +56,11 @@ namespace TerraClasses
                 Step = StepNum;
             Time = 0;
             StepChanged = true;
+        }
+
+        public void DrawSkillIcon(Vector2 Position, float OriginX = 0, float OriginY = 0, bool DrawBackground = true, bool DrawForeground = true, bool DrawEffect = true, bool DrawBorder = true, ClassBase cb = null)
+        {
+            GetBase.DrawSkillIcon(Position, OriginX, OriginY, DrawBackground, DrawForeground, DrawEffect, DrawBorder, this, cb);
         }
 
         public int GetProjectileFromWeapon(Item i, Player player, bool ConsumeAmmo = true)
@@ -750,26 +765,6 @@ namespace TerraClasses
                 ExtraTargetDamageCooldown[target]--;
                 if (ExtraTargetDamageCooldown[target] <= 0)
                     ExtraTargetDamageCooldown.Remove(target);
-            }
-        }
-
-        public void DrawSkillIcon(Vector2 Position, float Scale = 2f)
-        {
-            Position.X = (int)Position.X;
-            Position.Y = (int)Position.Y;
-            byte[,] IconMap;
-            Color IconColor;
-            GetBase.GetSkillIconInfos(out IconMap, out IconColor);
-            const float ColorStrengthValue = 1f / 9;
-            for (int y = 0; y < 16; y++)
-            {
-                for (int x = 0; x < 16; x++)
-                {
-                    Vector2 NewPosition = Position;
-                    NewPosition.X += x * Scale;
-                    NewPosition.Y += y * Scale;
-                    Main.spriteBatch.Draw(Main.blackTileTexture, NewPosition, null, IconColor * (IconMap[x, y] * ColorStrengthValue), 0, Vector2.Zero, Scale, Microsoft.Xna.Framework.Graphics.SpriteEffects.None, 0f);
-                }
             }
         }
 

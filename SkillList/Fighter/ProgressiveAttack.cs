@@ -17,7 +17,7 @@ namespace TerraClasses.SkillList.Fighter
                 " First swing inflicts 1% extra damage per level.\n" +
                 " Second swing inflicts 20%+1% per level more damage.\n" +
                 " Third swing inflicts 40% + 1% per level more damage, attack is 30% slower and then resets the cycle.\n" +
-                " Level increases melee damage and attack speed.";
+                " Level increases melee damage.";
             skillType = Enum.SkillTypes.Attack;
             MaxLevel = 10;
         }
@@ -64,11 +64,11 @@ namespace TerraClasses.SkillList.Fighter
                             break;
                         case 2:
                             player.meleeDamage += 0.2f + 0.01f * data.Level;
-                            player.meleeSpeed -= player.meleeSpeed * 0.01f * data.Level;
+                            //player.meleeSpeed -= player.meleeSpeed * 0.01f * data.Level;
                             break;
                         case 3:
                             player.meleeDamage += 0.4f + 0.01f * data.Level;
-                            player.meleeSpeed += 0.3f - player.meleeSpeed * 0.01f * data.Level;
+                            //player.meleeSpeed += 0.3f - player.meleeSpeed * 0.01f * data.Level;
                             break;
                     }
                 }

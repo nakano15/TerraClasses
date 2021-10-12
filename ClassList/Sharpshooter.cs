@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Sharpshooter";
             Description = "Guns are their thing.";
+            SkillColor = new Microsoft.Xna.Framework.Color(57, 71, 77);
             AddSkill(2);
             AddSkill(23);
             AddSkill(26);
@@ -19,6 +20,12 @@ namespace TerraClasses.ClassList
             AddSkill(29);
             AddSkill(68);
             MaxLevel = 50;
+
+            MaxHealthBonus = 2;
+            MaxManaBonus = 2;
+            PhysicalDamageBonus = 6;
+            MagicalDamageBonus = 0;
+            DefenseBonus = 0;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

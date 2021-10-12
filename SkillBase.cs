@@ -20,46 +20,92 @@ namespace TerraClasses
         public Enum.SkillTypes skillType = Enum.SkillTypes.Passive;
         public PositionToTakeOnCastEnum PositionToTake = PositionToTakeOnCastEnum.Mouse;
         public virtual SkillData GetSkillData { get { return new SkillData(); } }
-        private byte[,] SkillIconMap = new byte[16, 16];
-        private Color SkillIconColor = Color.White;
+        public Texture2D SkillBackgroundTextureStyle = MainMod.SkillBackgroundTexture;
+        public byte BackgroundTextureX = 0, BackgroundTextureY = 0;
+        private Texture2D _SkillTexture = null;
 
         public SkillBase()
         {
-            SkillIconMap = new byte[,]{
-                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
-                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
-                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
-                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
-                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
-                {9,9,5,5,5,4,4,4,4,4,4,5,5,5,9,9},
-                {9,9,5,5,5,4,2,2,2,2,4,5,5,5,9,9},
-                {9,9,5,5,5,4,2,1,1,2,4,5,5,5,9,9},
-                {9,9,5,5,5,4,2,1,1,2,4,5,5,5,9,9},
-                {9,9,5,5,5,4,2,2,2,2,4,5,5,5,9,9},
-                {9,9,5,5,5,4,4,4,4,4,4,5,5,5,9,9},
-                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
-                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
-                {9,9,5,5,5,5,5,5,5,5,5,5,5,5,9,9},
-                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9},
-                {9,9,9,9,9,9,9,9,9,9,9,9,9,9,9,9}
-            };
         }
 
-        public void ChangeSkillIconColor(Color NewColor)
+        public void DrawSkillIcon(Vector2 Position, float OriginX = 0, float OriginY = 0, bool DrawBackground = true, bool DrawForeground = true, bool DrawEffect = true, bool DrawBorder = true, SkillData sd = null, ClassBase cb = null)
         {
-            this.SkillIconColor = NewColor;
+            Vector2 DrawPosition = Position;
+            DrawPosition.X -= OriginX * 32;
+            DrawPosition.Y -= OriginY * 32;
+            Color SkillColor = Color.White;
+            if (cb != null) SkillColor = cb.SkillColor;
+            if (DrawBackground)
+            {
+                Main.spriteBatch.Draw(MainMod.SkillSlotTexture, DrawPosition, Color.White);
+                Texture2D SkillBackground = SkillBackgroundTextureStyle;
+                Main.spriteBatch.Draw(SkillBackground, DrawPosition, new Rectangle(BackgroundTextureX, BackgroundTextureY, 32, 32), SkillColor);
+            }
+            if (DrawForeground)
+            {
+                Texture2D SkillIcon = GetIconTexture();
+                Main.spriteBatch.Draw(SkillIcon, DrawPosition, Color.White);
+            }
+            if (DrawEffect && sd != null)
+            {
+                if (sd.Cooldown > 0)
+                {
+                    float Percentage = (float)sd.Cooldown / Cooldown;
+                    DrawPosition.Y += (1f - Percentage) * 32;
+                    Main.spriteBatch.Draw(Main.blackTileTexture, new Rectangle((int)DrawPosition.X, (int)DrawPosition.Y, 32, (int)(32 * Percentage)), null, Color.Red * 0.5f);
+                    float CooldownTime = sd.Cooldown * (1f / 60);
+                    if (CooldownTime > 5)
+                        CooldownTime = (int)CooldownTime;
+                    else
+                        CooldownTime = (float)Math.Round(CooldownTime, 1);
+                    Vector2 TextPosition = new Vector2(Position.X + 16, Position.Y + 32);
+                    string mes = "";
+                    if(CooldownTime >= 60)
+                    {
+                        mes = (int)(CooldownTime * (1f / 60)) + "m";
+                    }
+                    else
+                    {
+                        mes = CooldownTime + "s";
+                    }
+                    Utils.DrawBorderString(Main.spriteBatch, mes, TextPosition, Color.Wheat, 0.8f, 0.5f, 1);
+                }
+            }
+            if (DrawBorder)
+            {
+                Color color = Color.White;
+                switch (skillType)
+                {
+                    case Enum.SkillTypes.Active:
+                        color = Color.Green;
+                        break;
+                    case Enum.SkillTypes.Attack:
+                        color = Color.Red;
+                        break;
+                    case Enum.SkillTypes.Passive:
+                        color = Color.Goldenrod;
+                        break;
+                }
+                MainMod.DrawSkillIconBorder(Position, color);
+            }
         }
 
-        public void SetSkillIcon(byte[,] SkillByteMap, Color IconColor)
+        public Texture2D GetIconTexture()
         {
-            this.SkillIconMap = SkillByteMap;
-            this.SkillIconColor = IconColor;
-        }
-
-        public void GetSkillIconInfos (out byte[,] ByteMap, out Color color)
-        {
-            ByteMap = SkillIconMap;
-            color = SkillIconColor;
+            if(_SkillTexture == null || _SkillTexture.IsDisposed)
+            {
+                string TextureDirectory = this.GetType().Namespace.Replace(".", "/").Replace("TerraClasses/", "") + "/" + this.GetType().Name;
+                if (MainMod.mod.TextureExists(TextureDirectory))
+                {
+                    _SkillTexture = MainMod.mod.GetTexture(TextureDirectory);
+                }
+                else
+                {
+                    _SkillTexture = MainMod.SkillEmptyTexture;
+                    //Main.NewText("Texture does not exists at: " + TextureDirectory);
+                }
+            }
+            return _SkillTexture;
         }
 
         public virtual float GetEffectRange(SkillData sd)

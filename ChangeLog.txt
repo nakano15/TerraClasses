@@ -10,6 +10,7 @@
 	Eased the number of Zombies and Skeletons you must kill to complete the lore.
 	-Progressive Attack
 		No longer shows combo progress on your character.
+		Removed attack speed bonus.
 -Archer
 	Eased the number of Demon Eyes you have to kill to complete the lore.
 -Cleric
@@ -41,3 +42,18 @@
 		New Skill
 The mod will no longer ask for classes from other mods.
 	Now, to add a custom mod content, you need to use MainMod.AddModContent to add your mod version of class and skill content.
+All classes now gives innate status bonus to the player.
+	The bonus status given by a class:
+		They give 2% bonus to the status they are reffered to.
+		All classes gives a total of 10 status bonus among all status that gives bonus, except for Terrarian class.
+	You can check it on the class list.
+Changed the way skill infos are displayed on the interface from text to icons.
+	The skills now have foreground and background icons.
+		Foreground icons are unique for each skill type.
+		Foreground icons are still not implemented, so It will only display the default foreground icon.
+		Background icons are setup to the skill in another way. That way can change the layout of the background of the skill icon.
+	The color of the skill background icon changes depending on the class.
+		Each class has their skill color.
+	Instead of clicking the skill slots to set the skills as active or combat skill, you must now drag and drop the icon of the skill you want to change to the slot.
+	You can remove the currently selected skill by right clicking its slot, while the class interface is opened.
+	Skill icons will show how much time until the skill will become useable again.

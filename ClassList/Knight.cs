@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Knight";
             Description = "Who did you vow to protect?";
+            SkillColor = new Microsoft.Xna.Framework.Color(58, 131, 153);
             AddSkill(49);
             AddSkill(50);
             AddSkill(51);
@@ -21,6 +22,12 @@ namespace TerraClasses.ClassList
             AddSkill(56);
             AddSkill(67);
             MaxLevel = 50;
+
+            MaxHealthBonus = 3;
+            MaxManaBonus = 1;
+            PhysicalDamageBonus = 2;
+            MagicalDamageBonus = 0;
+            DefenseBonus = 4;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

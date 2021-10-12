@@ -434,6 +434,27 @@ namespace TerraClasses
             return false;
         }
 
+        public override void PostUpdateEquips()
+        {
+            int HPBonus = 0, MPBonus = 0, PDamageBonus = 0, MDamageBonus = 0, DefBonus = 0;
+            foreach(ClassData cd in Classes)
+            {
+                ClassBase cb = cd.GetClass;
+                HPBonus += cb.MaxHealthBonus;
+                MPBonus += cb.MaxManaBonus;
+                PDamageBonus += cb.PhysicalDamageBonus;
+                MDamageBonus += cb.MagicalDamageBonus;
+                DefBonus += cb.DefenseBonus;
+            }
+            player.statLifeMax2 += (int)(player.statLifeMax2 * 0.02f * HPBonus);
+            player.statManaMax2 += (int)(player.statManaMax2 * 0.02f * MPBonus);
+            player.meleeDamage += 0.02f * PDamageBonus;
+            player.rangedDamage += 0.02f * PDamageBonus;
+            player.magicDamage += 0.02f * MDamageBonus;
+            player.minionDamage += 0.02f * MDamageBonus;
+            player.statDefense += (int)(player.statDefense * 0.02f * DefBonus);
+        }
+
         public override void ResetEffects()
         {
             BuyValue = SellValue = ReforgeValue = HealValue = 1f;

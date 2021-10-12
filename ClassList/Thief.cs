@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Thief";
             Description = "Hit the tank, not me!";
+            SkillColor = new Microsoft.Xna.Framework.Color(83, 38, 162);
             MaxLevel = 50;
             AddSkill(58);
             AddSkill(60);
@@ -19,6 +20,12 @@ namespace TerraClasses.ClassList
             AddSkill(63);
             AddSkill(7);
             AddSkill(69);
+
+            MaxHealthBonus = 3;
+            MaxManaBonus = 1;
+            PhysicalDamageBonus = 5;
+            MagicalDamageBonus = 0;
+            DefenseBonus = 1;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

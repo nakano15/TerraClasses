@@ -12,6 +12,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Summoner";
             Description = "Be able to call for aid.";
+            SkillColor = new Microsoft.Xna.Framework.Color(43, 138, 179);
             MaxLevel = 50;
             AddSkill(35);
             AddSkill(36);
@@ -21,6 +22,12 @@ namespace TerraClasses.ClassList
             AddSkill(44);
             AddSkill(75);
             AddSkill(76);
+
+            MaxHealthBonus = 3;
+            MaxManaBonus = 1;
+            PhysicalDamageBonus = 2;
+            MagicalDamageBonus = 4;
+            DefenseBonus = 0;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

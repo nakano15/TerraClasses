@@ -12,6 +12,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Berseker";
             Description = "Attack, attack, attack. No tactic.";
+            SkillColor = new Microsoft.Xna.Framework.Color(194, 33, 8);
             MaxLevel = 50;
             AddSkill(30); //Anger
             AddSkill(31); //Constitution
@@ -19,6 +20,12 @@ namespace TerraClasses.ClassList
             AddSkill(33); //Frenzy
             AddSkill(42); //Bully
             AddSkill(43); //Threatening Presence
+
+            MaxHealthBonus = 3;
+            MaxManaBonus = 0;
+            PhysicalDamageBonus = 4;
+            MagicalDamageBonus = 0;
+            DefenseBonus = 3;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

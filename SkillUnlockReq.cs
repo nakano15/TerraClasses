@@ -15,5 +15,13 @@ namespace TerraClasses
         /// </summary>
         public int[] SkillReqPosition = new int[] { -1, -1, -1 };
         public int[] SkillLevel = new int[] { 1, 1, 1 };
+
+        public SkillBase GetSkillBase
+        {
+            get
+            {
+                return MainMod.GetSkill(SkillID, SkillMod);
+            }
+        }
     }
 }

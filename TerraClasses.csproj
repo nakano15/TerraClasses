@@ -81,6 +81,8 @@
     <Compile Include="ItemSkillLevelBonus.cs" />
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
     <Compile Include="NameIDHelper.cs" />
+    <Compile Include="NewClassSelectionInterface.cs" />
+    <Compile Include="SelectedSkillsInterface.cs" />
     <Compile Include="SkillList\Arachnomancer\Ensnare.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
     <Compile Include="SkillList\Arachnomancer\ToxicInjection.cs" />
@@ -221,6 +223,9 @@
     <Content Include="Interface\Border.png" />
     <Content Include="Interface\ClassBtn.png" />
     <Content Include="Interface\LevelArrow.png" />
+    <Content Include="Interface\skill_background.png" />
+    <Content Include="Interface\skill_emptytexture.png" />
+    <Content Include="Interface\skill_slot.png" />
     <Content Include="Interface\Star.png" />
     <Content Include="Items\ClassBooks\ArcherBook.png" />
     <Content Include="Items\ClassBooks\BersekerBook.png" />

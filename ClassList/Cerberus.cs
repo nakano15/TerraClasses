@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Cerberus";
             Description = "No longer guarding the gates of hell.";
+            SkillColor = new Microsoft.Xna.Framework.Color(92, 23, 12);
             ClassType = ClassTypes.Aspect;
             MaxLevel = 50;
             AddSkill(22, "", 1); //Cerberus Form
@@ -21,6 +22,12 @@ namespace TerraClasses.ClassList
             AddSkill(77); //Cerberus Bite
             AddSkill(78); //Paw Strike
             AddSkill(79); //Claw Slash
+
+            MaxHealthBonus = 3;
+            MaxManaBonus = 2;
+            PhysicalDamageBonus = 2;
+            MagicalDamageBonus = 2;
+            DefenseBonus = 1;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

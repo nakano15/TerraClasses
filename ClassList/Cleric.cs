@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Cleric";
             Description = "You got the buffs! You got the healz!";
+            SkillColor = new Microsoft.Xna.Framework.Color(0, 255, 243);
             MaxLevel = 50;
             AddSkill(12);
             AddSkill(13);
@@ -19,6 +20,12 @@ namespace TerraClasses.ClassList
             AddSkill(65);
             AddSkill(66);
             AddSkill(71);
+
+            MaxHealthBonus = 1;
+            MaxManaBonus = 4;
+            PhysicalDamageBonus = 2;
+            MagicalDamageBonus = 3;
+            DefenseBonus = 0;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

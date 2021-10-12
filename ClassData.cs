@@ -8,7 +8,16 @@ namespace TerraClasses
 {
     public class ClassData
     {
-        public ClassBase GetClass { get { return MainMod.GetClass(ClassID, ClassModID); } }
+        private ClassBase _ClassBase;
+        public ClassBase GetClass
+        {
+            get
+            {
+                if (_ClassBase == null)
+                    _ClassBase = MainMod.GetClass(ClassID, ClassModID);
+                return _ClassBase;
+            }
+        }
         public int ClassID = 0;
         public string ClassModID = "";
         public byte ClassRank = 0;

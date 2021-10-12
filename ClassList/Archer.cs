@@ -11,6 +11,7 @@ namespace TerraClasses.ClassList
         {
             Name = "Archer";
             Description = "Good for Bow and Arrow users.";
+            SkillColor = new Microsoft.Xna.Framework.Color(40, 168, 12);
             AddSkill(1); //Extra Arrows
             AddSkill(2); //Ranged Mastery
             AddSkill(3); //Arrow Rain
@@ -19,6 +20,12 @@ namespace TerraClasses.ClassList
             AddSkill(40); //Precision
             AddSkill(41); //Swift Step
             MaxLevel = 50;
+
+            MaxHealthBonus = 2;
+            MaxManaBonus = 1;
+            PhysicalDamageBonus = 4;
+            MagicalDamageBonus = 2;
+            DefenseBonus = 1;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

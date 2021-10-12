@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using Terraria;
+using Microsoft.Xna.Framework;
 
 namespace TerraClasses
 {
@@ -14,6 +15,9 @@ namespace TerraClasses
         public int MaxLevel = 10;
         public ClassTypes ClassType = ClassTypes.Normal;
         private ClassUnlockLoreBase LoreBase;
+        public byte MaxHealthBonus = 0, MaxManaBonus = 0, PhysicalDamageBonus = 0, MagicalDamageBonus = 0, DefenseBonus = 0;
+        public const byte MaxClassStatusBonus = 10;
+        public Color SkillColor = Color.White;
 
         public ClassUnlockLoreBase GetLoreBase
         {

@@ -11,11 +11,18 @@ namespace TerraClasses.ClassList
         {
             Name = "Merchant";
             Description = "You seems to really like golds.";
+            SkillColor = new Microsoft.Xna.Framework.Color(221, 212, 17);
             MaxLevel = 50;
             AddSkill(20); //Barter
             AddSkill(21); //Avarice
             AddSkill(24); //Discount
             AddSkill(45); //Throw Coins
+
+            MaxHealthBonus = 3;
+            MaxManaBonus = 2;
+            PhysicalDamageBonus = 4;
+            MagicalDamageBonus = 0;
+            DefenseBonus = 1;
         }
 
         public override ClassUnlockLoreBase CreateLoreBase()

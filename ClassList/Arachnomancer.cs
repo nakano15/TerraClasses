@@ -16,6 +16,13 @@ namespace TerraClasses.ClassList
             AddSkill(59);
             AddSkill(83);
             AddSkill(84);
+            SkillColor = new Microsoft.Xna.Framework.Color(90, 13, 110);
+
+            MaxHealthBonus = 2;
+            MaxManaBonus = 4;
+            PhysicalDamageBonus = 3;
+            MagicalDamageBonus = 1;
+            DefenseBonus = 0;
         }
     }
 }
