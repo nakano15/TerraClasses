@@ -20,13 +20,20 @@ namespace TerraClasses
         public Enum.SkillTypes skillType = Enum.SkillTypes.Passive;
         public PositionToTakeOnCastEnum PositionToTake = PositionToTakeOnCastEnum.Mouse;
         public virtual SkillData GetSkillData { get { return new SkillData(); } }
-        public Texture2D SkillBackgroundTextureStyle = MainMod.SkillBackgroundTexture;
+        private Texture2D _SkillBackgroundTextureStyle;
+        public Texture2D SkillBackgroundTextureStyle { get { if(_SkillBackgroundTextureStyle == null || _SkillBackgroundTextureStyle.IsDisposed) _SkillBackgroundTextureStyle = MainMod.SkillBackgroundTexture; return _SkillBackgroundTextureStyle; } }
         public byte BackgroundTextureX = 0, BackgroundTextureY = 0;
         private Texture2D _SkillTexture = null;
 
         public SkillBase()
         {
         }
+
+        public void SetSkillBackgroundTexture(Texture2D texture)
+        {
+            _SkillBackgroundTextureStyle = texture;
+        }
+
 
         public void DrawSkillIcon(Vector2 Position, float OriginX = 0, float OriginY = 0, bool DrawBackground = true, bool DrawForeground = true, bool DrawEffect = true, bool DrawBorder = true, SkillData sd = null, ClassBase cb = null)
         {

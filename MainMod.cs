@@ -309,6 +309,9 @@ namespace TerraClasses
             }
         }
 
+        Terraria.UI.LegacyGameInterfaceLayer levelinfo;
+        bool LoadedInterfaces = false;
+
         public override void ModifyInterfaceLayers(List<Terraria.UI.GameInterfaceLayer> layers)
         {
             int InterfaceArrowPos = 0;
@@ -317,7 +320,11 @@ namespace TerraClasses
                 if (layers[l].Name.Contains("Resource"))
                     InterfaceArrowPos = l;
             }
-            Terraria.UI.LegacyGameInterfaceLayer levelinfo = new Terraria.UI.LegacyGameInterfaceLayer("NClasses: Class Level Info", DrawLevelInfo, Terraria.UI.InterfaceScaleType.UI);
+            if (!LoadedInterfaces)
+            {
+                levelinfo = new Terraria.UI.LegacyGameInterfaceLayer("NClasses: Class Level Info", DrawLevelInfo, Terraria.UI.InterfaceScaleType.UI);
+                LoadedInterfaces = true;
+            }
             layers.Insert(InterfaceArrowPos, levelinfo);
         }
 

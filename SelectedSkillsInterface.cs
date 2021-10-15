@@ -16,90 +16,97 @@ namespace TerraClasses
 
         public static void NewDraw()
         {
-            Vector2 DrawPositionStart = new Vector2(Main.screenWidth * 0.5f, Main.screenHeight);
-            if (ClassSelectionInterface.Active)
-                DrawPositionStart.Y -= ClassSelectionInterface.Height;
-            PlayerMod playerMod = Main.player[Main.myPlayer].GetModPlayer<PlayerMod>();
-            if (!ClassSelectionInterface.ShowHud)
+            try
             {
-                return;
-            }
-            const int IconsDimension = 32 + 12;
-            if (playerMod.CombatSkillsUnlocked)
-            {
-                Vector2 SkillIconPosition = new Vector2(DrawPositionStart.X - IconsDimension * 0.5f + 6, DrawPositionStart.Y + 6 - IconsDimension * 2);
-                SkillData sd = playerMod.GetSkillInfo(playerMod.CombatSkill);
-                if (sd == null)
+                Vector2 DrawPositionStart = new Vector2(Main.screenWidth * 0.5f, Main.screenHeight);
+                if (ClassSelectionInterface.Active)
+                    DrawPositionStart.Y -= ClassSelectionInterface.Height;
+                PlayerMod playerMod = Main.player[Main.myPlayer].GetModPlayer<PlayerMod>();
+                if (!ClassSelectionInterface.ShowHud)
                 {
-                    Main.spriteBatch.Draw(MainMod.SkillSlotTexture, SkillIconPosition, Color.White);
-                    MainMod.DrawSkillIconBorder(SkillIconPosition, Color.Red);
+                    return;
                 }
-                else
+                const int IconsDimension = 32 + 12;
+                if (playerMod.CombatSkillsUnlocked)
                 {
-                    sd.DrawSkillIcon(SkillIconPosition, cb:playerMod.Classes[playerMod.CombatSkill.ClassPosition].GetClass);
-                }
-                if (Main.mouseX >= SkillIconPosition.X && Main.mouseX < SkillIconPosition.X + 32 &&
-                    Main.mouseY >= SkillIconPosition.Y && Main.mouseY < SkillIconPosition.Y + 32)
-                {
-                    if (HeldSkill != null)
-                    {
-                        SkillData HeldSkillData = playerMod.GetSkillInfo(HeldSkill);
-                        if (HeldSkillData.SkillTypes == Enum.SkillTypes.Attack && !Main.mouseLeft)
-                        {
-                            playerMod.CombatSkill = HeldSkill;
-                        }
-                    }
-                    if (ClassSelectionInterface.Active && Main.mouseRight && Main.mouseRightRelease)
-                        playerMod.CombatSkill = new SkillSlot() { ClassPosition = -1 };
-                    Vector2 TextPosition = new Vector2(SkillIconPosition.X + 16, SkillIconPosition.Y - 26);
-                    string Text = "None";
-                    if (sd != null)
-                        Text = sd.Name;
-                    Utils.DrawBorderString(Main.spriteBatch, Text, TextPosition, Color.White, anchorx: 0.5f);
-                }
-            }
-            if (playerMod.ActiveSkillsUnlocked)
-            {
-                for (int i = 0; i < 4; i++)
-                {
-                    Vector2 SkillIconPosition = new Vector2(DrawPositionStart.X - IconsDimension * 2 + 6 + IconsDimension * i, DrawPositionStart.Y + 6 - IconsDimension);
-                    SkillData sd = playerMod.GetSkillInfo(playerMod.ActiveSkill[i]);
+                    Vector2 SkillIconPosition = new Vector2(DrawPositionStart.X - IconsDimension * 0.5f + 6, DrawPositionStart.Y + 6 - IconsDimension * 2);
+                    SkillData sd = playerMod.GetSkillInfo(playerMod.CombatSkill);
                     if (sd == null)
                     {
                         Main.spriteBatch.Draw(MainMod.SkillSlotTexture, SkillIconPosition, Color.White);
-                        MainMod.DrawSkillIconBorder(SkillIconPosition, Color.Green);
+                        MainMod.DrawSkillIconBorder(SkillIconPosition, Color.Red);
                     }
                     else
                     {
-                        sd.DrawSkillIcon(SkillIconPosition, cb: playerMod.Classes[playerMod.ActiveSkill[i].ClassPosition].GetClass);
+                        sd.DrawSkillIcon(SkillIconPosition, cb: playerMod.Classes[playerMod.CombatSkill.ClassPosition].GetClass);
                     }
                     if (Main.mouseX >= SkillIconPosition.X && Main.mouseX < SkillIconPosition.X + 32 &&
                         Main.mouseY >= SkillIconPosition.Y && Main.mouseY < SkillIconPosition.Y + 32)
                     {
+                        if (HeldSkill != null)
+                        {
+                            SkillData HeldSkillData = playerMod.GetSkillInfo(HeldSkill);
+                            if (HeldSkillData.SkillTypes == Enum.SkillTypes.Attack && !Main.mouseLeft)
+                            {
+                                playerMod.CombatSkill = HeldSkill;
+                            }
+                        }
+                        if (ClassSelectionInterface.Active && Main.mouseRight && Main.mouseRightRelease)
+                            playerMod.CombatSkill = new SkillSlot() { ClassPosition = -1 };
                         Vector2 TextPosition = new Vector2(SkillIconPosition.X + 16, SkillIconPosition.Y - 26);
                         string Text = "None";
                         if (sd != null)
                             Text = sd.Name;
-                        if (HeldSkill != null)
-                        {
-                            SkillData HeldSkillData = playerMod.GetSkillInfo(HeldSkill);
-                            if (HeldSkillData.SkillTypes == Enum.SkillTypes.Active && !Main.mouseLeft)
-                            {
-                                playerMod.ActiveSkill[i] = HeldSkill;
-                            }
-                        }
-                        if (ClassSelectionInterface.Active && Main.mouseRight && Main.mouseRightRelease)
-                            playerMod.ActiveSkill[i] = new SkillSlot() { ClassPosition = -1 };
                         Utils.DrawBorderString(Main.spriteBatch, Text, TextPosition, Color.White, anchorx: 0.5f);
                     }
                 }
+                if (playerMod.ActiveSkillsUnlocked)
+                {
+                    for (int i = 0; i < 4; i++)
+                    {
+                        Vector2 SkillIconPosition = new Vector2(DrawPositionStart.X - IconsDimension * 2 + 6 + IconsDimension * i, DrawPositionStart.Y + 6 - IconsDimension);
+                        SkillData sd = playerMod.GetSkillInfo(playerMod.ActiveSkill[i]);
+                        if (sd == null)
+                        {
+                            Main.spriteBatch.Draw(MainMod.SkillSlotTexture, SkillIconPosition, Color.White);
+                            MainMod.DrawSkillIconBorder(SkillIconPosition, Color.Green);
+                        }
+                        else
+                        {
+                            sd.DrawSkillIcon(SkillIconPosition, cb: playerMod.Classes[playerMod.ActiveSkill[i].ClassPosition].GetClass);
+                        }
+                        if (Main.mouseX >= SkillIconPosition.X && Main.mouseX < SkillIconPosition.X + 32 &&
+                            Main.mouseY >= SkillIconPosition.Y && Main.mouseY < SkillIconPosition.Y + 32)
+                        {
+                            Vector2 TextPosition = new Vector2(SkillIconPosition.X + 16, SkillIconPosition.Y - 26);
+                            string Text = "None";
+                            if (sd != null)
+                                Text = sd.Name;
+                            if (HeldSkill != null)
+                            {
+                                SkillData HeldSkillData = playerMod.GetSkillInfo(HeldSkill);
+                                if (HeldSkillData.SkillTypes == Enum.SkillTypes.Active && !Main.mouseLeft)
+                                {
+                                    playerMod.ActiveSkill[i] = HeldSkill;
+                                }
+                            }
+                            if (ClassSelectionInterface.Active && Main.mouseRight && Main.mouseRightRelease)
+                                playerMod.ActiveSkill[i] = new SkillSlot() { ClassPosition = -1 };
+                            Utils.DrawBorderString(Main.spriteBatch, Text, TextPosition, Color.White, anchorx: 0.5f);
+                        }
+                    }
+                }
+                if (HeldSkill != null)
+                {
+                    if (!Main.mouseLeft)
+                        HeldSkill = null;
+                    else
+                        playerMod.GetSkillInfo(HeldSkill).DrawSkillIcon(new Vector2(Main.mouseX, Main.mouseY), 0.5f, 0.5f, true, true, false, false, playerMod.Classes[HeldSkill.ClassPosition].GetClass);
+                }
             }
-            if (HeldSkill != null)
+            catch (Exception ex)
             {
-                if (!Main.mouseLeft)
-                    HeldSkill = null;
-                else
-                    playerMod.GetSkillInfo(HeldSkill).DrawSkillIcon(new Vector2(Main.mouseX, Main.mouseY), 0.5f, 0.5f, true, true, false, false, playerMod.Classes[HeldSkill.ClassPosition].GetClass);
+                throw ex;
             }
         }
 
