@@ -77,6 +77,13 @@ namespace TerraClasses
                                 }
                             }
                             break;
+                        case ClassUnlockLoreBase.ObjectiveType.GatherObject:
+                            {
+                                ClassUnlockLoreBase.GatherObjectObjective goo = (ClassUnlockLoreBase.GatherObjectObjective)ClassBase.Objectives[i];
+                                if (LoreInternalProgress[i].StepValue >= goo.Stack)
+                                    LoreInternalProgress[i].Complete = true;
+                            }
+                            break;
                     }
                     if (!LoreInternalProgress[i].Complete)
                     {
@@ -199,6 +206,12 @@ namespace TerraClasses
                                 Lore += "Speak with " + tno.NpcName + ".";
                             }
                             break;
+                        case ClassUnlockLoreBase.ObjectiveType.GatherObject:
+                            {
+                                ClassUnlockLoreBase.GatherObjectObjective goo = (ClassUnlockLoreBase.GatherObjectObjective)ClassBase.Objectives[i];
+                                Lore += "Gather " + LoreInternalProgress[i].StepValue + "/" + goo.Stack + " " + goo.GetObjectName + " from "+goo.GetMobName+".";
+                            }
+                            break;
                     }
                     break;
                 }
@@ -286,6 +299,16 @@ namespace TerraClasses
                                 }
                             }
                             break;
+                        case ClassUnlockLoreBase.ObjectiveType.GatherObject:
+                            {
+                                ClassUnlockLoreBase.GatherObjectObjective goo = (ClassUnlockLoreBase.GatherObjectObjective)ClassBase.Objectives[i];
+                                if (IsRequiredMonster(MobID, goo.MobID) && Main.rand.NextDouble() < goo.DropRate)
+                                {
+                                    LoreInternalProgress[i].StepValue++;
+                                    Main.NewText("Found a " + goo.GetObjectName + ".");
+                                }
+                            }
+                            break;
                     }
                     break;
                 }
@@ -312,7 +335,7 @@ namespace TerraClasses
             {
                 switch (ReqMobID)
                 {
-                    case NPCID.Zombie: //Add event monsters to the list.
+                    case NPCID.Zombie:
                         return NpcType == 430 || NpcType == 132 || NpcType == 186 || NpcType == 432 || NpcType == 187 || NpcType == 433 || NpcType == 188 || NpcType == 434 || NpcType == 189 || NpcType == 435 ||
                             NpcType == 200 || NpcType == 436 || NpcType == 319 || NpcType == 320 || NpcType == 321 || NpcType == 331 || NpcType == 332 || NpcType == 223 || NpcType == 52 || NpcType == 53 || NpcType == 536 ||
                             NpcType == Terraria.ID.NPCID.ZombieEskimo || NpcType == NPCID.ArmedZombieEskimo || NpcType == 255 || NpcType == 254 || NpcType == Terraria.ID.NPCID.BloodZombie;
@@ -330,6 +353,8 @@ namespace TerraClasses
                         return NpcType == NPCID.BloodCrawlerWall;
                     case NPCID.Demon:
                         return NpcType == NPCID.VoodooDemon;
+                    case NPCID.WallCreeper:
+                        return NpcType == NPCID.WallCreeperWall;
                     case NPCID.JungleCreeper:
                         return NpcType == NPCID.JungleCreeperWall;
                     case NPCID.Hornet:

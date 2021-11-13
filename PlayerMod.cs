@@ -782,7 +782,8 @@ namespace TerraClasses
             SkillBeingCasted = null;
             foreach (SkillData sd in GetSkillsUnderEffect)
             {
-                if (sd.CastTime >= sd.GetBase.CastTime)
+				sd.UpdateSkillEffect(this);
+                /*if (sd.CastTime >= sd.GetBase.CastTime)
                 {
                     sd.GetBase.Update(player, sd);
                 }
@@ -800,7 +801,7 @@ namespace TerraClasses
                     {
                         sd.Time++;
                     }
-                }
+                }*/
             }
             GetDifficultyLevel();
         }

@@ -183,6 +183,10 @@ namespace TerraClasses
                     return new SkillList.Arachnomancer.Ensnare();
                 case 84:
                     return new SkillList.Arachnomancer.ToxicInjection();
+                case 85:
+                    return new SkillList.Arachnomancer.SpiderAssault();
+                case 86:
+                    return new SkillList.Vilemancer.CorruptQuills();
             }
             return new SkillBase();
         }

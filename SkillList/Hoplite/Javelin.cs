@@ -18,11 +18,12 @@ namespace TerraClasses.SkillList.Hoplite
             MaxLevel = 10;
             skillType = Enum.SkillTypes.Active;
             Cooldown = 50;
+            CastTime = 25;
         }
 
         public override void Update(Player player, SkillData data)
         {
-            if (data.Time >= 90)
+            if (data.Step == 0 || data.Time >= 30)
             {
                 int Stack = 1;
                 if (data.Step > 0)

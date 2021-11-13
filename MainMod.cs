@@ -23,7 +23,7 @@ namespace TerraClasses
         public static bool EnableMonsterStatusBuffingBasedOnClasses = true;
         public static Mod mod, NExperienceMod;
         public static SkillSprite Longsword, CerberusSprite, Electricity, ShieldBashEffect, ProvokeAudioEffect, HideEffect, LightningBolt, CerberusBiteHead, CerberusPawSprite,
-            CerberusClawMark;
+            CerberusClawMark, CorruptQuills;
         public static Texture2D MagicCircle, CastBar, StarTexture;
         public const int ModVersion = 2;
         public const string ModClassAndSkillListCallName = "modandskillclasslist";
@@ -303,6 +303,7 @@ namespace TerraClasses
                 CerberusBiteHead = new SkillSprite("Content/Effects/CerberusBiteHead");
                 CerberusPawSprite = new SkillSprite("Content/Effects/CerberusPaw");
                 CerberusClawMark = new SkillSprite("Content/Effects/CerberusClaw");
+                CorruptQuills = new SkillSprite("Content/Effects/PoisonQuill");
                 if (ModLoader.GetMod("NExperience") != null)
                     NExperienceLoaded = true;
                 LoadUnlockedClasses();

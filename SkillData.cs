@@ -48,13 +48,16 @@ namespace TerraClasses
         private static bool StepChanged = false;
         public Vector2 CastPosition = Vector2.Zero;
 
-        public void ChangeStep(int StepNum = -1)
+        public void ChangeStep(int StepNum = -1, int TimeDiscount = -1)
         {
             if (StepNum == -1)
                 Step++;
             else
                 Step = StepNum;
-            Time = 0;
+			if(TimeDiscount > -1)
+				Time -= TimeDiscount;
+			else
+				Time = 0;
             StepChanged = true;
         }
 
@@ -767,6 +770,29 @@ namespace TerraClasses
                     ExtraTargetDamageCooldown.Remove(target);
             }
         }
+		
+		public void UpdateSkillEffect(PlayerMod player)
+		{
+			if (CastTime >= GetBase.CastTime)
+            {
+                GetBase.Update(player.player, this);
+            }
+            bool Passive = IsPassive;
+            if (Active || Passive)
+            {
+                if (!Passive && GetBase.UnallowOtherSkillUsage)
+                    player.UsingPrivilegedSkill = true;
+                if (!Passive && CastTime < GetBase.CastTime)
+                {
+                    CastTime++;
+                    player.SkillBeingCasted = this;
+                }
+                else
+                {
+                    Time++;
+                }
+            }
+		}
 
         public void EndUse(bool Fail = false)
         {

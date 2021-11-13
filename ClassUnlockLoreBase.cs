@@ -28,6 +28,12 @@ namespace TerraClasses
             Objectives.Add(tno);
         }
 
+        public void AddGatherObjectObjective(string ObjectName, int MobID, int Stack, float DropRate = 0.5f)
+        {
+            GatherObjectObjective goo = new GatherObjectObjective(ObjectName, MobID, Stack, DropRate);
+            Objectives.Add(goo);
+        }
+
         public class LoreObjective
         {
             public string LorePiece = "";
@@ -94,12 +100,34 @@ namespace TerraClasses
             }
         }
 
+        public class GatherObjectObjective : LoreObjective
+        {
+            public int MobID, Stack;
+            private string MobName, ObjectName;
+            public float DropRate;
+            public string GetMobName { get { return MobName; } }
+            public string GetObjectName { get { return ObjectName; } }
+
+            public GatherObjectObjective(string ObjectName, int MobID, int Stack, float DropRate = 0.5f)
+            {
+                this.MobID = MobID;
+                this.Stack = Stack;
+                this.DropRate = DropRate;
+                this.ObjectName = ObjectName;
+                NPC n = new NPC();
+                n.SetDefaults(MobID);
+                MobName = n.TypeName;
+                objectivetype = ObjectiveType.GatherObject;
+            }
+        }
+
         public enum ObjectiveType
         {
             None,
             Hunt,
             GatherItem,
-            TalkToNpc
+            TalkToNpc,
+            GatherObject
         }
     }
 }

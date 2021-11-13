@@ -72,6 +72,7 @@
     <Compile Include="ClassList\Summoner.cs" />
     <Compile Include="ClassList\Terrarian.cs" />
     <Compile Include="ClassList\Thief.cs" />
+    <Compile Include="ClassList\Vilemancer.cs" />
     <Compile Include="ClassSelectionInterface.cs" />
     <Compile Include="ClassUnlockLoreBase.cs" />
     <Compile Include="ClassUnlockLoreData.cs" />
@@ -84,6 +85,7 @@
     <Compile Include="NewClassSelectionInterface.cs" />
     <Compile Include="SelectedSkillsInterface.cs" />
     <Compile Include="SkillList\Arachnomancer\Ensnare.cs" />
+    <Compile Include="SkillList\Arachnomancer\SpiderAssault.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
     <Compile Include="SkillList\Arachnomancer\ToxicInjection.cs" />
     <Compile Include="SkillList\Arachnomancer\VenomousAmmo.cs" />
@@ -120,6 +122,8 @@
     <Compile Include="SkillList\Thief\PoisonousArrows.cs" />
     <Compile Include="SkillList\Thief\PoisonousStrike.cs" />
     <Compile Include="SkillList\Thief\Steal.cs" />
+    <Compile Include="SkillList\Vilemancer\CorruptQuills.cs" />
+    <Compile Include="SkillList\Vilemancer\Vilemancy.cs" />
     <Compile Include="SkillProjectile.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
@@ -217,6 +221,7 @@
     <Content Include="Content\Effects\HideEffect.png" />
     <Content Include="Content\Effects\LightningBolt.png" />
     <Content Include="Content\Effects\longsword.png" />
+    <Content Include="Content\Effects\PoisonQuill.png" />
     <Content Include="Content\Effects\ShieldBashEffect.png" />
     <Content Include="Content\MagicCircle.png" />
     <Content Include="Content\Effects\ProvokeSound.png" />
