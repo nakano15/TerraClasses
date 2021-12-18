@@ -79,7 +79,12 @@ namespace TerraClasses.TargetTranslator
 
         public override double Hurt(int Damage, float Knockback, bool Critical = false, bool Pvp = false, string HitText = " was slain...")
         {
-            return npc.StrikeNPC(Damage, Knockback, (Knockback > 0 ? 1 : -1), Critical);
+            double NewDamage = npc.StrikeNPC(Damage, Knockback, (Knockback > 0 ? 1 : -1), Critical);
+            if(Main.netMode == 1)
+            {
+                Netplay.SendSkillHurtNPC(Main.myPlayer, npc.whoAmI, (int)NewDamage, System.Math.Abs(Knockback), (Knockback > 0 ? 1 : -1));
+            }
+            return NewDamage;
         }
 
         public override void Kill(int Damage, int HitDirection, bool Pvp = false, string KillText = " was slain...")

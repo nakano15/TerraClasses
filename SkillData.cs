@@ -235,6 +235,8 @@ namespace TerraClasses
         {
             if (PlayerDamageCooldown.ContainsKey((byte)player.whoAmI))
                 return 0;
+            if (Caster.whoAmI != Main.myPlayer)
+                return 0;
             int NewDamage = (int)((GetPlayerDamage(Caster, DamageType) * (Critical ? 2 : 1) - (CountDefense ? player.statDefense / 0.5f : 0)) * DamageMult);
             if (NewDamage < 1)
                 NewDamage = 1;
@@ -268,8 +270,12 @@ namespace TerraClasses
                     Main.PlaySound(1, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
                 }
             }
-            CombatText.NewText(player.getRect(), Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            CombatText.NewText(player.getRect(), Color.MediumPurple, NewDamage);
             ApplyCooldownToPlayer(player, Cooldown);
+            if (Main.netMode == 1)
+            {
+                Netplay.SendSkillHurtPlayer(Owner, player.whoAmI, NewDamage, DamageDirection);
+            }
             return NewDamage;
         }
 
@@ -277,6 +283,10 @@ namespace TerraClasses
         {
             if (PlayerDamageCooldown.ContainsKey((byte)player.whoAmI))
                 return 0;
+            if(Owner != Main.myPlayer)
+            {
+                return 0;
+            }
             int NewDamage = Damage - (CountDefense ? player.statDefense / 2 : 0);
             if (NewDamage < 1)
                 NewDamage = 1;
@@ -312,8 +322,12 @@ namespace TerraClasses
                     Main.PlaySound(1, (int)player.position.X, (int)player.position.Y, 1, 1f, 0f);
                 }
             }
-            CombatText.NewText(player.getRect(), Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            CombatText.NewText(player.getRect(), Color.MediumPurple, NewDamage);
             ApplyCooldownToPlayer(player, Cooldown);
+            if(Main.netMode == 1)
+            {
+                Netplay.SendSkillHurtPlayer(Owner, player.whoAmI, NewDamage, DamageDirection);
+            }
             return NewDamage;
         }
 
@@ -321,6 +335,10 @@ namespace TerraClasses
         {
             if (NpcDamageCooldown.ContainsKey((byte)npc.whoAmI) || npc.immortal || npc.dontTakeDamage)
                 return 0;
+            if(Caster.whoAmI != Main.myPlayer)
+            {
+                return 0;
+            }
             int NewDamage = (int)((GetPlayerDamage(Caster, DamageType) * (Critical ? 2 : 1) - (CountDefense ? npc.defense * 0.5f : 0)) * DamagePercentage);
             if (NewDamage < 1)
                 NewDamage = 1;
@@ -338,8 +356,12 @@ namespace TerraClasses
                     npc.velocity.Y -= (npc.noGravity ? 0.75f : 0.5f);
                 }
             }
-            CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            CombatText.NewText(npc.getRect(), Color.MediumPurple, NewDamage);
             ApplyCooldownToNpc(npc, Cooldown);
+            if(Main.netMode == 1)
+            {
+                Netplay.SendSkillHurtNPC(Caster.whoAmI, npc.whoAmI, NewDamage, Knockback, DamageDirection);
+            }
             return NewDamage;
         }
 
@@ -347,6 +369,10 @@ namespace TerraClasses
         {
             if (NpcDamageCooldown.ContainsKey((byte)npc.whoAmI) || npc.immortal || npc.dontTakeDamage)
                 return 0;
+            if (Owner != Main.myPlayer)
+            {
+                return 0;
+            }
             int NewDamage = Damage - (CountDefense ? npc.defense / 2 : 0);
             if (NewDamage < 1)
                 NewDamage = 1;
@@ -366,8 +392,12 @@ namespace TerraClasses
                     npc.velocity.Y -= (npc.noGravity ? 0.75f : 0.5f);
                 }
             }
-            CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.MediumPurple, NewDamage);
+            CombatText.NewText(npc.getRect(), Color.MediumPurple, NewDamage);
             ApplyCooldownToNpc(npc, Cooldown);
+            if (Main.netMode == 1)
+            {
+                Netplay.SendSkillHurtNPC(Owner, npc.whoAmI, NewDamage, Knockback, DamageDirection);
+            }
             return NewDamage;
         }
 
@@ -397,7 +427,7 @@ namespace TerraClasses
             return NewDamage;
         }
 
-        public int HurtTarget(TargetTranslator.Translator target, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false, bool CountDefense = true)
+        public int HurtTarget(TargetTranslator.Translator target, int Damage, int DamageDirection, float Knockback, int Cooldown = 8, bool Critical = false, float DefensePercentage = 1f)
         {
             foreach(TargetTranslator.Translator Keys in ExtraTargetDamageCooldown.Keys)
             {
@@ -406,7 +436,7 @@ namespace TerraClasses
             }
             if (target.Immunity)
                 return 0;
-            int NewDamage = Damage - (CountDefense ? target.Defense / 2 : 0);
+            int NewDamage = Damage - (DefensePercentage > 0 ? (int)((target.Defense * DefensePercentage) / 2) : 0);
             if (NewDamage < 1)
                 NewDamage = 1;
             if (Critical)

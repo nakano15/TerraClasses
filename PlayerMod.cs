@@ -334,6 +334,18 @@ namespace TerraClasses
             return Classes.Any(x => x.ClassID == ClassID && x.ClassModID == ClassModID);
         }
 
+        public ClassData GetClass(int ClassID, string ClassModID = "")
+        {
+            if (ClassModID == "")
+                ClassModID = mod.Name;
+            foreach(ClassData cd in Classes)
+            {
+                if (cd.ClassID == ClassID && cd.ClassModID == ClassModID)
+                    return cd;
+            }
+            return new ClassData();
+        }
+
         public static int GetPlayerSkillBuffLevel(Player player, int BuffID)
         {
             return player.GetModPlayer<PlayerMod>().GetSkillBuffLevel(BuffID);
@@ -486,6 +498,11 @@ namespace TerraClasses
         public void AddClassExp(int Exp)
         {
             if (Exp == 0) return;
+            if(Main.netMode > 0 && player.whoAmI != Main.myPlayer)
+            {
+                Netplay.SendExp(player.whoAmI, Exp);
+                return;
+            }
             List<ClassData> ClassesToGetExp = new List<ClassData>();
             for (int c = 0; c < Classes.Count; c++)
             {
@@ -537,6 +554,22 @@ namespace TerraClasses
             }
         }
 
+        public override void OnEnterWorld(Player player)
+        {
+            if (Main.netMode == 1)
+            {
+                for (int i = 0; i < Classes.Count; i++)
+                {
+                    Netplay.SendClassInfo(player.whoAmI, i);
+                    ClassData cd = Classes[i];
+                    for(int s = 0; s < cd.Skills.Count; s++)
+                    {
+                        Netplay.SendClassSkillInfo(player.whoAmI, i, s);
+                    }
+                }
+            }
+        }
+
         public override void SetControls()
         {
             if (player.whoAmI == Main.myPlayer)
@@ -548,6 +581,10 @@ namespace TerraClasses
                         if (ActiveSkill[s].SkillPosition > -1 && ActiveSkill[s].ClassPosition > -1)
                         {
                             Classes[ActiveSkill[s].ClassPosition].Skills[ActiveSkill[s].SkillPosition].UseSkill(player);
+                            if (Main.netMode == 1)
+                            {
+                                Netplay.SendClassSkillInfo(player.whoAmI, ActiveSkill[s].ClassPosition, ActiveSkill[s].SkillPosition);
+                            }
                         }
                     }
                 }

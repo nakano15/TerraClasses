@@ -187,6 +187,8 @@ namespace TerraClasses
                     return new SkillList.Arachnomancer.SpiderAssault();
                 case 86:
                     return new SkillList.Vilemancer.CorruptQuills();
+                case 87:
+                    return new SkillList.Vilemancer.Vilemancy();
             }
             return new SkillBase();
         }

@@ -82,6 +82,7 @@
     <Compile Include="ItemSkillLevelBonus.cs" />
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
     <Compile Include="NameIDHelper.cs" />
+    <Compile Include="Netplay.cs" />
     <Compile Include="NewClassSelectionInterface.cs" />
     <Compile Include="SelectedSkillsInterface.cs" />
     <Compile Include="SkillList\Arachnomancer\Ensnare.cs" />

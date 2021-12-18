@@ -37,9 +37,12 @@ namespace TerraClasses.SkillList.Knight
                     rect.X -= rect.Width;
                 TargetTranslator.Translator[] Targets = data.GetPossibleTargets(false, rect);
                 int Damage = data.GetMeleeDamage(0, 1.2f + 0.026f * data.Level, player);
-                foreach (TargetTranslator.Translator Target in Targets)
+                if (player.whoAmI == Main.myPlayer)
                 {
-                    Target.Hurt(Damage, 15, false, true, " was launched way too far.");
+                    foreach (TargetTranslator.Translator Target in Targets)
+                    {
+                        Target.Hurt(Damage, 15, false, true, " was launched way too far.");
+                    }
                 }
             }
             if (data.Time >= 20)

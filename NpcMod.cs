@@ -55,21 +55,6 @@ namespace TerraClasses
 
         public override bool CheckDead(NPC npc)
         {
-            if (CPReward > 0)
-            {
-                bool PlayerGotClassExp = false;
-                for (int p = 0; p < 255; p++)
-                {
-                    if (Main.player[p].active && npc.playerInteraction[p])
-                    {
-                        if (p == Main.myPlayer)
-                            PlayerGotClassExp = true;
-                        Main.player[p].GetModPlayer<PlayerMod>().AddClassExp(CPReward);
-                    }
-                }
-                if (PlayerGotClassExp)
-                    CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.Cyan, CPReward + " CP", true);
-            }
             if (Main.netMode < 2 && npc.playerInteraction[Main.myPlayer])
             {
                 Main.player[Main.myPlayer].GetModPlayer<PlayerMod>().OnMobKill(npc);
@@ -136,6 +121,21 @@ namespace TerraClasses
 
         public override void NPCLoot(NPC npc)
         {
+            if (Main.netMode != 1 && CPReward > 0)
+            {
+                bool PlayerGotClassExp = false;
+                for (int p = 0; p < 255; p++)
+                {
+                    if (Main.player[p].active && npc.playerInteraction[p])
+                    {
+                        if (p == Main.myPlayer)
+                            PlayerGotClassExp = true;
+                        Main.player[p].GetModPlayer<PlayerMod>().AddClassExp(CPReward);
+                    }
+                }
+                if (PlayerGotClassExp)
+                    CombatText.NewText(npc.getRect(), Microsoft.Xna.Framework.Color.Cyan, CPReward + " CP", true);
+            }
             if ((npc.type == Terraria.ID.NPCID.Demon || npc.type == Terraria.ID.NPCID.VoodooDemon) && Main.rand.Next(500) == 0)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.CerberusBook>());
             if ((npc.type == Terraria.ID.NPCID.HeadlessHorseman || npc.type == Terraria.ID.NPCID.ArmoredSkeleton || npc.type == Terraria.ID.NPCID.ArmoredViking ||

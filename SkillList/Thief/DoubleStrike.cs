@@ -51,9 +51,12 @@ namespace TerraClasses.SkillList.Thief
                             TargetTranslator.Translator[] Targets = data.GetPossibleTargets(false, HitBox, false);
                             int ExtraDamage = data.GetMeleeDamage(0, 0.4f + 0.04f * data.Level, player);
                             bool Critical = Main.rand.Next(100) < player.meleeCrit + item.crit;
-                            foreach(TargetTranslator.Translator target in Targets)
+                            if (player.whoAmI == Main.myPlayer)
                             {
-                                target.Hurt(ExtraDamage, item.knockBack, Critical, true, " was sliced again.");
+                                foreach (TargetTranslator.Translator target in Targets)
+                                {
+                                    target.Hurt(ExtraDamage, item.knockBack, Critical, true, " was sliced again.");
+                                }
                             }
                         }
                     }

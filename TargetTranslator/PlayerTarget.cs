@@ -96,7 +96,10 @@ namespace TerraClasses.TargetTranslator
 
         public override double Hurt(int Damage, float Knockback, bool Critical = false, bool Pvp = false, string HitText = " was slain...")
         {
-            return player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason(HitText), Damage, (Knockback > 0 ? 1 : -1), Pvp, false, Critical);
+            double HurtVal = player.Hurt(Terraria.DataStructures.PlayerDeathReason.ByCustomReason(HitText), Damage, (Knockback > 0 ? 1 : -1), Pvp, false, Critical);
+            if(Main.netMode == 1)
+                Netplay.SendSkillHurtPlayer(Main.myPlayer, player.whoAmI, (int)HurtVal, (Knockback > 0 ? 1 : -1));
+            return HurtVal;
         }
 
         public override void Kill(int Damage, int HitDirection, bool Pvp = false, string KillText = " was slain...")

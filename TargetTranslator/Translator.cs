@@ -24,10 +24,7 @@ namespace TerraClasses.TargetTranslator
         public virtual int Width { get; set; }
         public virtual int Height { get; set; }
         public virtual bool Immunity { get; set; }
-        public Vector2 Center
-        {
-            get { return Position + new Vector2(Width, Height) * 0.5f; }
-        }
+        public Vector2 Center => Position + new Vector2(Width, Height) * 0.5f;
         public float HealthValueDecimal { get { return (float)Health / MaxHealth; } }
         public float HealthValuePercentage { get { return HealthValueDecimal * 100; } }
         public virtual void PlayHurtSound()

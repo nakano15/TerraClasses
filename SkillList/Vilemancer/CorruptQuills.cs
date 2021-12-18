@@ -52,7 +52,7 @@ namespace TerraClasses.SkillList.Vilemancer
                 else
                 {
                     int Target = QuillNumber % data.Targets.Length;
-                    data.HurtTarget(data.Targets[Target], data.GetMagicDamage(0, 0.34f + 0.023f * data.Level, player), 0, 0.1f, 0, false, false);
+                    data.HurtTarget(data.Targets[Target], data.GetMagicDamage(0, 0.34f + 0.023f * data.Level, player), 0, 0.1f, 0, false, 0);
                 }
             }
         }

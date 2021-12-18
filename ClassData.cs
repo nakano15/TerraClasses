@@ -189,6 +189,10 @@ namespace TerraClasses
                 {
                     Exp = 0;
                     Main.NewText(Name + " mastered!");
+                    if(Main.netMode == 1)
+                    {
+                        Netplay.SendMessageToOtherPlayers(player.name + " has mastered [" + Name + "] class!", Microsoft.Xna.Framework.Color.Green);
+                    }
                 }
                 else
                 {

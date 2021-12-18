@@ -13,6 +13,8 @@ namespace TerraClasses.ClassList
             Description = "Control the corrupt forces at your will.";
             SkillColor = new Microsoft.Xna.Framework.Color(40, 168, 12);
             MaxLevel = 50;
+            AddSkill(86);
+            AddSkill(87);
 
             MaxHealthBonus = 1;
             MaxManaBonus = 3;

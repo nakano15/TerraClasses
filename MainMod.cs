@@ -34,6 +34,20 @@ namespace TerraClasses
         public const string ModGetTargetListCallName = "getothermodtargets";
         public const int TotalSkills = 67;
         private static List<string> ModsWithTargetCompatibility = new List<string>();
+        private static ModPacket _packet;
+        public static ModPacket GetPacket
+        {
+            get
+            {
+                if (_packet == null)
+                    ResetPacket();
+                return _packet;
+            }
+        }
+        public static void ResetPacket()
+        {
+            _packet = mod.GetPacket();
+        }
 
         /// <summary>
         /// To add a kind of support to other things having classes too, maybe 
@@ -308,6 +322,11 @@ namespace TerraClasses
                     NExperienceLoaded = true;
                 LoadUnlockedClasses();
             }
+        }
+
+        public override void HandlePacket(BinaryReader reader, int whoAmI)
+        {
+            Netplay.ReceiveMessage(reader, whoAmI);
         }
 
         Terraria.UI.LegacyGameInterfaceLayer levelinfo;

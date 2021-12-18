@@ -66,7 +66,8 @@ namespace TerraClasses.SkillList.Mage
                     if (target.IsActive() && !target.IsDead())
                     {
                         SomeoneAlive = true;
-                        target.Hurt(DamageToInflict, 0.1f, false, true, (Main.rand.Next(2) == 0 ? " got shocked!" : " danced to death!"));
+                        if (player.whoAmI == Main.myPlayer)
+                            target.Hurt(DamageToInflict, 0.1f, false, true, (Main.rand.Next(2) == 0 ? " got shocked!" : " danced to death!"));
                     }
                 }
                 if (!SomeoneAlive)
