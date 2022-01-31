@@ -13,29 +13,35 @@ namespace TerraClasses
             switch (ID)
             {
                 case 0:
-                    return new ClassList.Terrarian();
+                    return new Terrarian();
                 case 1:
-                    return new ClassList.Fighter();
+                    return new Fighter();
                 case 2:
-                    return new ClassList.Archer();
+                    return new Archer();
                 case 3:
-                    return new ClassList.Merchant();
+                    return new Merchant();
                 case 4:
-                    return new ClassList.Mage();
+                    return new Mage();
                 case 5:
-                    return new ClassList.Thief();
+                    return new Thief();
                 case 6:
-                    return new ClassList.Cleric();
+                    return new Cleric();
                 case 7:
-                    return new ClassList.Cerberus();
+                    return new Cerberus();
                 case 8:
-                    return new ClassList.Sharpshooter();
+                    return new Sharpshooter();
                 case 9:
-                    return new ClassList.Berseker();
+                    return new Berseker();
                 case 10:
-                    return new ClassList.Summoner();
+                    return new Summoner();
                 case 11:
-                    return new ClassList.Knight();
+                    return new Knight();
+                case 12:
+                    return new Hoplite();
+                case 13:
+                    return new Vilemancer();
+                case 14:
+                    return new Arachnomancer();
             }
             return new ClassBase();
         }

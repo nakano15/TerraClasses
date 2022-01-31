@@ -84,7 +84,7 @@ namespace TerraClasses
                 {
                     int WDamage = (int)(player.inventory[i].damage * player.meleeDamage);
                     if (!player.inventory[i].melee)
-                        WDamage -= WDamage / 4;
+                        WDamage -= (int)(WDamage * 0.25f);
                     if (WDamage < 1)
                         WDamage = 1;
                     if (WDamage > dmg)
@@ -103,7 +103,7 @@ namespace TerraClasses
                 {
                     int WDamage = (int)(player.inventory[i].damage * player.rangedDamage);
                     if (!player.inventory[i].ranged)
-                        WDamage -= WDamage / 4;
+                        WDamage -= (int)(WDamage * 0.25f);
                     if (WDamage < 1)
                         WDamage = 1;
                     if (WDamage > dmg)
@@ -122,7 +122,7 @@ namespace TerraClasses
                 {
                     int WDamage = (int)(player.inventory[i].damage * player.magicDamage);
                     if (!player.inventory[i].magic)
-                        WDamage -= WDamage / 4;
+                        WDamage -= (int)(WDamage * 0.25f);
                     if (WDamage < 1)
                         WDamage = 1;
                     if (WDamage > dmg)
@@ -141,7 +141,7 @@ namespace TerraClasses
                 {
                     int WDamage = (int)(player.inventory[i].damage * player.minionDamage);
                     if (!player.inventory[i].summon)
-                        WDamage -= WDamage / 4;
+                        WDamage -= (int)(WDamage * 0.25f);
                     if (WDamage < 1)
                         WDamage = 1;
                     if (WDamage > dmg)

@@ -145,6 +145,19 @@ namespace TerraClasses
             if ((npc.type == Terraria.ID.NPCID.AngryBones || npc.type == Terraria.ID.NPCID.AngryBonesBig || npc.type == Terraria.ID.NPCID.AngryBonesBigHelmet ||
                 npc.type == Terraria.ID.NPCID.AngryBonesBigMuscle) && Main.rand.Next(1000) == 0)
                 Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.BersekerBook>());
+            if ((npc.type == Terraria.ID.NPCID.JungleCreeper || npc.type == Terraria.ID.NPCID.JungleCreeperWall || npc.type == Terraria.ID.NPCID.WallCreeper || npc.type == Terraria.ID.NPCID.WallCreeperWall
+                 || npc.type == Terraria.ID.NPCID.BlackRecluse || npc.type == Terraria.ID.NPCID.BlackRecluseWall) && Main.rand.Next(1000) == 0)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.ArachnomancerBook>());
+            }
+            if ((npc.type == Terraria.ID.NPCID.GreekSkeleton || npc.type == Terraria.ID.NPCID.Medusa) && Main.rand.Next(50) == 0)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.HopliteBook>());
+            }
+            if ((npc.type == Terraria.ID.NPCID.EaterofSouls) && Main.rand.Next(500) == 0)
+            {
+                Item.NewItem(npc.getRect(), ModContent.ItemType<Items.ClassBooks.VilemancerBook>());
+            }
         }
     }
 }

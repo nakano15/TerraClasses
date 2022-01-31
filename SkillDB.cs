@@ -1,14 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using TerraClasses.SkillList;
-
-namespace TerraClasses
+﻿namespace TerraClasses
 {
     public class SkillDB
     {
-
         public static SkillBase GetSkill(int ID)
         {
             switch (ID)
@@ -189,6 +182,14 @@ namespace TerraClasses
                     return new SkillList.Vilemancer.CorruptQuills();
                 case 87:
                     return new SkillList.Vilemancer.Vilemancy();
+                case 88:
+                    return new SkillList.Vilemancer.Infestation();
+                case 89:
+                    return new SkillList.Vilemancer.CorruptionAffinity();
+                case 90:
+                    return new SkillList.Arachnomancer.Arachnophile();
+                case 91:
+                    return new SkillList.Vilemancer.Vilify();
             }
             return new SkillBase();
         }

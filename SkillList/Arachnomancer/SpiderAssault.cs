@@ -11,11 +11,11 @@ namespace TerraClasses.SkillList.Arachnomancer
 {
     public class SpiderAssault : SkillBase
     {
-        private const int DropSpeed = 100;
+        private const int DropSpeed = 16, DropHeight = 1000;
 
         public SpiderAssault()
         {
-            Name = "Spider Swarm";
+            Name = "Spider Assault";
             Description = "Summon spiders to drop on nearby enemies.";
             MaxLevel = 10;
             Cooldown = GetTime(50);
@@ -23,6 +23,8 @@ namespace TerraClasses.SkillList.Arachnomancer
             PositionToTake = PositionToTakeOnCastEnum.Mouse;
             CastTime = 45;
         }
+
+        public override SkillData GetSkillData => new SpiderAssaultData();
 
         public override void Update(Player player, SkillData rawdata)
         {
@@ -37,7 +39,7 @@ namespace TerraClasses.SkillList.Arachnomancer
                         data.SpiderPositions.Clear();
                         foreach(TargetTranslator.Translator Target in Targets)
                         {
-                            SpiderAssaultData.DropPosition drop = new SpiderAssaultData.DropPosition(Target.Position + Target.Velocity * (2000 / DropSpeed));
+                            SpiderAssaultData.DropPosition drop = new SpiderAssaultData.DropPosition(Target.Position + Target.Velocity * ((float)DropHeight / DropSpeed));
                             data.SpiderPositions.Add(drop);
                         }
                         data.ChangeStep();
@@ -91,7 +93,7 @@ namespace TerraClasses.SkillList.Arachnomancer
                 {
                     if (d.DropCompleted) continue;
                     Vector2 Position = d.Position - Main.screenPosition;
-                    Terraria.DataStructures.DrawData dd = new Terraria.DataStructures.DrawData(SpiderTexture, Position, new Rectangle(0, 0, 56, 52), Color.White, 0, Origin, 1f, SpriteEffects.FlipVertically, 0);
+                    Terraria.DataStructures.DrawData dd = new Terraria.DataStructures.DrawData(SpiderTexture, Position, new Rectangle(0, 0, 56, 52), Color.White, MathHelper.ToRadians(90), Origin, 1f, SpriteEffects.FlipVertically, 0);
                     Main.playerDrawData.Insert(0, dd);
                 }
             }
@@ -110,7 +112,7 @@ namespace TerraClasses.SkillList.Arachnomancer
                 public DropPosition(Vector2 Destination)
                 {
                     DestinationY = Destination.Y;
-                    Position = new Vector2(Destination.X, Destination.Y - 2000);
+                    Position = new Vector2(Destination.X, Destination.Y - DropHeight);
                 }
             }
         }

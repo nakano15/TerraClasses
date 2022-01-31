@@ -23,7 +23,7 @@ namespace TerraClasses.SkillList.Hoplite
 
         public override void Update(Player player, SkillData data)
         {
-            if (data.Step == 0 || data.Time >= 30)
+            if (data.Step == 0 || data.Time >= 15)
             {
                 int Stack = 1;
                 if (data.Step > 0)
@@ -36,7 +36,7 @@ namespace TerraClasses.SkillList.Hoplite
                 const int ProjectileID = Terraria.ID.ProjectileID.JavelinFriendly;
                 const float ProjectileSpeed = 12;
                 int Damage = data.GetRangedDamage(0, 0.65f + 0.02f * data.Level, player);
-                float LaunchDirection = (GetMousePositionInTheWorld - player.Center + LaunchOffset).ToRotation();
+                float LaunchDirection = -(player.Center - GetMousePositionInTheWorld + LaunchOffset).ToRotation() - MathHelper.ToRadians(90);
                 switch (data.Step)
                 {
                     case 0:

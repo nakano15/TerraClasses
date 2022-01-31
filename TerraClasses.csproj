@@ -80,11 +80,15 @@
     <Compile Include="DamageTypes.cs" />
     <Compile Include="Enum\SkillTypes.cs" />
     <Compile Include="ItemSkillLevelBonus.cs" />
+    <Compile Include="Items\ClassBooks\ArachnomancerBook .cs" />
+    <Compile Include="Items\ClassBooks\HopliteBook.cs" />
     <Compile Include="Items\ClassBooks\KnightBook.cs" />
+    <Compile Include="Items\ClassBooks\VilemancerBook .cs" />
     <Compile Include="NameIDHelper.cs" />
     <Compile Include="Netplay.cs" />
     <Compile Include="NewClassSelectionInterface.cs" />
     <Compile Include="SelectedSkillsInterface.cs" />
+    <Compile Include="SkillList\Arachnomancer\Arachnophile.cs" />
     <Compile Include="SkillList\Arachnomancer\Ensnare.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderAssault.cs" />
     <Compile Include="SkillList\Arachnomancer\SpiderSwarm.cs" />
@@ -123,8 +127,11 @@
     <Compile Include="SkillList\Thief\PoisonousArrows.cs" />
     <Compile Include="SkillList\Thief\PoisonousStrike.cs" />
     <Compile Include="SkillList\Thief\Steal.cs" />
+    <Compile Include="SkillList\Vilemancer\CorruptionAffinity.cs" />
     <Compile Include="SkillList\Vilemancer\CorruptQuills.cs" />
+    <Compile Include="SkillList\Vilemancer\Infestation.cs" />
     <Compile Include="SkillList\Vilemancer\Vilemancy.cs" />
+    <Compile Include="SkillList\Vilemancer\Vilify.cs" />
     <Compile Include="SkillProjectile.cs" />
     <Compile Include="TargetTranslator\NpcTarget.cs" />
     <Compile Include="TargetTranslator\PlayerTarget.cs" />
@@ -233,18 +240,21 @@
     <Content Include="Interface\skill_emptytexture.png" />
     <Content Include="Interface\skill_slot.png" />
     <Content Include="Interface\Star.png" />
+    <Content Include="Items\ClassBooks\ArachnomancerBook.png" />
     <Content Include="Items\ClassBooks\ArcherBook.png" />
     <Content Include="Items\ClassBooks\BersekerBook.png" />
     <Content Include="Items\ClassBooks\CerberusBook.png" />
     <Content Include="Items\ClassBooks\ClassLoreBookPrefab.png" />
     <Content Include="Items\ClassBooks\ClericBook.png" />
     <Content Include="Items\ClassBooks\FighterBook.png" />
+    <Content Include="Items\ClassBooks\HopliteBook.png" />
     <Content Include="Items\ClassBooks\KnightBook.png" />
     <Content Include="Items\ClassBooks\MageBook.png" />
     <Content Include="Items\ClassBooks\MerchantBook.png" />
     <Content Include="Items\ClassBooks\SharpshooterBook.png" />
     <Content Include="Items\ClassBooks\SummonerBook.png" />
     <Content Include="Items\ClassBooks\ThiefBook.png" />
+    <Content Include="Items\ClassBooks\VilemancerBook.png" />
   </ItemGroup>
   <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />

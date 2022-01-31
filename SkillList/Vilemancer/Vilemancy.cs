@@ -11,7 +11,7 @@ namespace TerraClasses.SkillList.Vilemancer
 {
     class Vilemancy : SkillBase
     {
-        public Vilemancy()
+        public Vilemancy() //Causes massive lag for some reason.
         {
             Name = "Vilemancy";
             Description = 

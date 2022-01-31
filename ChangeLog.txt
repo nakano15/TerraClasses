@@ -1,1 +1,4 @@
-﻿
+﻿Fixed Overprice skill giving an incorrect status boost.
+Hoplite, Arachnomancer and Vilemancer classes are now playable.
+	Those classes have skills missing, and 2 of them got one of their skills removed due to issues.
+	They are still playable, and should prove useful for anyone who tries it.

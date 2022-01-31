@@ -12,7 +12,7 @@ namespace TerraClasses.SkillList.Arachnomancer
         {
             Name = "Toxic Injection";
             Description = "Applied Acid Venom debuff on enemies affected by Ensnare.\n" +
-                "  Inflicts 27% + 2.5% per level of magic damage on use.\n" +
+                "  Inflicts 87% + 2.5% per level of magic damage on use.\n" +
                 "  Acid Venom debuff lasts for 12 seconds.";
             Cooldown = GetTime(10);
             skillType = Enum.SkillTypes.Active;
@@ -34,8 +34,7 @@ namespace TerraClasses.SkillList.Arachnomancer
                 data.EndUse(true);
                 return;
             }
-            float DamageMult = 0.27f + 0.025f * data.Level;
-            //int Damage = data.GetMagicDamage(0, 0.27f + 0.025f * data.Level, player);
+            float DamageMult = 0.87f + 0.025f * data.Level;
             foreach(NPC n in EnsnareSkill.GetNpcsInteractedWith())
             {
                 data.HurtNpc(player, n, DamageTypes.Magic, DamageMult, 0, 0);

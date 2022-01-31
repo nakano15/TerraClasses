@@ -338,7 +338,7 @@ namespace TerraClasses
                     case NPCID.Zombie:
                         return NpcType == 430 || NpcType == 132 || NpcType == 186 || NpcType == 432 || NpcType == 187 || NpcType == 433 || NpcType == 188 || NpcType == 434 || NpcType == 189 || NpcType == 435 ||
                             NpcType == 200 || NpcType == 436 || NpcType == 319 || NpcType == 320 || NpcType == 321 || NpcType == 331 || NpcType == 332 || NpcType == 223 || NpcType == 52 || NpcType == 53 || NpcType == 536 ||
-                            NpcType == Terraria.ID.NPCID.ZombieEskimo || NpcType == NPCID.ArmedZombieEskimo || NpcType == 255 || NpcType == 254 || NpcType == Terraria.ID.NPCID.BloodZombie;
+                            NpcType == NPCID.ZombieEskimo || NpcType == NPCID.ArmedZombieEskimo || NpcType == 255 || NpcType == 254 || NpcType == NPCID.BloodZombie;
                     case NPCID.Skeleton:
                         return NpcType == NPCID.ArmoredSkeleton || NpcType == NPCID.BigHeadacheSkeleton || NpcType == NPCID.BigMisassembledSkeleton || NpcType == NPCID.BigPantlessSkeleton || NpcType == NPCID.BigSkeleton ||
                             NpcType == NPCID.BoneThrowingSkeleton || NpcType == NPCID.BoneThrowingSkeleton2 || NpcType == NPCID.BoneThrowingSkeleton3 || NpcType == NPCID.BoneThrowingSkeleton4 ||
@@ -358,7 +358,8 @@ namespace TerraClasses
                     case NPCID.JungleCreeper:
                         return NpcType == NPCID.JungleCreeperWall;
                     case NPCID.Hornet:
-                        return NpcType == NPCID.HornetFatty || NpcType == NPCID.HornetHoney || NpcType == NPCID.HornetLeafy || NpcType == NPCID.HornetSpikey || NpcType == NPCID.HornetStingy;
+                        return NpcType == NPCID.HornetFatty || NpcType == NPCID.HornetHoney || NpcType == NPCID.HornetLeafy || NpcType == NPCID.HornetSpikey || 
+                            NpcType == NPCID.HornetStingy;
                     case NPCID.AngryBones:
                         return NpcType == 294 || NpcType == 295 || NpcType == 296;
                     case NPCID.BlueArmoredBones:

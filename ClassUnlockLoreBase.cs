@@ -28,9 +28,9 @@ namespace TerraClasses
             Objectives.Add(tno);
         }
 
-        public void AddGatherObjectObjective(string ObjectName, int MobID, int Stack, float DropRate = 0.5f)
+        public void AddGatherObjectObjective(string ObjectName, int MobID, int Stack, string LorePiece, float DropRate = 0.5f)
         {
-            GatherObjectObjective goo = new GatherObjectObjective(ObjectName, MobID, Stack, DropRate);
+            GatherObjectObjective goo = new GatherObjectObjective(ObjectName, MobID, Stack, LorePiece, DropRate);
             Objectives.Add(goo);
         }
 
@@ -108,8 +108,9 @@ namespace TerraClasses
             public string GetMobName { get { return MobName; } }
             public string GetObjectName { get { return ObjectName; } }
 
-            public GatherObjectObjective(string ObjectName, int MobID, int Stack, float DropRate = 0.5f)
+            public GatherObjectObjective(string ObjectName, int MobID, int Stack, string LorePiece, float DropRate = 0.5f)
             {
+                this.LorePiece = LorePiece;
                 this.MobID = MobID;
                 this.Stack = Stack;
                 this.DropRate = DropRate;

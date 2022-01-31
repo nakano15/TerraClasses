@@ -19,7 +19,7 @@ namespace TerraClasses.SkillList.Merchant
 
         public override void Update(Player player, SkillData data)
         {
-            player.GetModPlayer<PlayerMod>().SellValue += player.GetModPlayer<PlayerMod>().SellValue * (0.0033f * data.Level);
+            player.GetModPlayer<PlayerMod>().SellValue += player.GetModPlayer<PlayerMod>().SellValue * (0.033f * data.Level);
         }
     }
 }
